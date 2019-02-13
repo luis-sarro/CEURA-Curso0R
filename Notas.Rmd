@@ -1,0 +1,5 @@
+Notas sobre los apuntes
+=======================
+  
+Es necesario crear un archivo HTML de entrada, con el título, los nombres de los autores y el índice navegable.
+

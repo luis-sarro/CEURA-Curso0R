@@ -1,0 +1,262 @@
+---
+title: "¿Qué objetos tenemos?"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+Para saber los objetos que hemos definido hacemos
+            
+```{r, eval = FALSE}
+             ls()
+             objects()
+             objects(pattern="a*")
+
+```
+
+R tiene una lista donde buscar los objetos accesibles: 'the search list'. Cargar un paquete extiende la 'search list'. Para obtener la lista de los directorios, llamados 'databases':
+             
+```{r, eval = FALSE}
+search()
+library(MASS)
+search()            
+```
+
+Para que un objeto o directorio sea fácilmente accesible lo podemos poner en la 'search list' de R. En el caso de un data.frame, esto permite acceder directamente a las columnas por su nombre.
+             
+```{r, eval = FALSE}
+x <- c(190,8,22,191,4,1.7,223,80,2,210,50,3)
+datos <- matrix(x,nrow=4,byrow=T)
+ciudades <- c("Barna","Tarraco","Lleida","Girona")
+dimnames(datos) <- list(ciudades,NULL)
+variables <- c("A","B","C")
+dimnames(datos) <- list(ciudades,variables)
+
+playa <- c("si","si","no","no")
+datos.df <- data.frame(datos, playa)
+datos.df$playa
+
+str(datos.df) # es un data.frame
+A # error
+attach(datos.df)
+A # ahora sí
+plot(A,B) # en lugar de plot(datos.df$A,datos.df$B)
+```
+
+Pero la actualización no es dinámica
+
+            
+```{r, eval = FALSE}
+datos.df$D <- 1:4 # una nueva columna
+datos.df # aquí está
+D        # pero aquí no            
+```
+
+Recordamos que para desconectar
+            
+```{r, eval = FALSE}
+ detach(datos.df)
+```
+
+Para borrar objetos concretos
+
+```{r, eval = FALSE}
+# rm(<objetos>)
+```
+
+Para borrar todos los objetos del entorno de trabajo:
+            
+```{r, eval = FALSE}
+# rm(list = ls())
+```
+
+Para cargar un archivo `nombre.RData` con objetos diversos (datos, funciones,...) se puede hacer un `attach` o un `load`. La primera instrucción accede a los objetos cuando se requieren, la segunda los carga todos.
+
+```{r, eval = FALSE}
+search()
+attach("misdatos.RData")
+search()
+ls(pos=2) # segunda posición en la 'search list'
+summary(crabs)
+detach(file:misdatos.RData)
+search()
+summary(crabs)
+```
+
+¡Alerta!
+     
+```{r, eval = FALSE}
+attach(datos.df)
+datos.df
+A <- 1
+A  # usa la última
+search() # el search path
+detach(datos.df)
+attach(datos.df)
+D
+A # cuidado
+```
+
+Conclusión: En “entornos confusos”, como un análisis que se prolonga dos semanas, es mejor evitar `attach` y acceder siempre a las variables usando su localización explícita y completa.
+
+
+### Ejemplo 1. Obtener más atributos de un objeto.
+
+Tenemos a nuestra disposición distintas funciones para obtener los atributos 
+de un objeto definido: (i)  Modo (`mode`) o tipo básico (vector o array: lógico, entero, real, carácter, etc); (ii) Tipo (`typeof`) tipo de elementos que contiene (int, double, etc.); (iii) Nombres (`names`) etiquetas de los elementos individuales de un vector o lista; (iv) Dimensiones (`dim`) de los arrays (alguna puede ser cero); (v) Dimnames (`dimnames`) nombres de las dimensiones de los arrays; (vi) Clase (`class`): vector alfanumérico con la lista de las clases del objeto; (vii) Otros: atributos de una serie temporal.
+
+```{r, eval = FALSE}
+  x <- 1:15 
+  length(x)
+  y <- matrix(5, nrow = 3, ncol = 4) 
+  dim(y)
+  is.vector(x)
+  is.vector(y)
+  is.array(x)
+  x1 <- 1:5 
+  x2 <- c(1, 2, 3, 4, 5) 
+  x3 <- "patata"
+  typeof(x1)
+  typeof(x2)
+  typeof(x3)
+  mode(x)
+  mode(y)
+  z <- c(TRUE, FALSE)
+  mode(z)
+  attributes(y)
+  w <- list(a = 1:3, b = 5)
+  attributes(w)
+  y <- as.data.frame(y)
+  attributes(y)
+  f1 <- function(x) {return(2 * x)} # función doble de un número
+  attributes(f1)
+  is.function(f1)
+```
+
+Nombres para los objetos
+------------------------
+
+Los nombres válidos para un objeto son combinaciones de letras, números y el punto '.'. Los nombres no pueden empezar con un número. R es 'case-sensitive', es decir, la variable `x` es distinta de la variable  `X`. Hay nombres reservados ('function', 'if', etc.). Otras consideraciones:
+  
+  - El uso del punto es distinto del de C++.
+  - Evita nombres que usa R (ej., `c`, `mean`)
+  - Las asignaciones se hacen con **<-** y se recomiendan los espacios. El signo **=** se reserva para los argumentos de las funciones.
+
+```{r, eval = FALSE}
+# x<-1:5   # Estilo incorrecto
+x <- 1:5 # Estilo correcto
+```
+
+Operaciones aritméticas
+-----------------------
+
+¡Recuerda! las operaciones con vectores mejoran el uso de bucles (en tiempo y memoria). Las principales operaciones aritméticas:
+
+-   suma `+`, resta `-`, multiplicación `*`, división `/`
+-   potencia `^`, raíz cuadrada `sqrt()`
+-   `%/%` división entera, `%%` módulo: resto de la división entera
+-   logaritmos `log`, `log10`, `log2`, `logb(x, base)`, exponencial
+    `exp`
+-   trigonométricas `sin`, `cos`, `tan`, `asin`, `acos`, `atan`
+-   otras: `max`, `min`, `range`, `pmax`, `pmin`, `mean`, `median`, `var`,
+    `sd`, `quantile`, `sum`, `prod`, `diff` `cumsum`, `cumprod`, `cummax`, `cummin`
+
+### Ejemplo 2. Operaciones básicas
+    
+```{r, eval = FALSE}
+  data(presidents)
+  help(presidents)
+  range(presidents, na.rm = TRUE)
+  which.min(presidents) # 28
+  which.max(presidents) # 2
+```
+
+Operadores lógicos
+------------------
+
+R es capaz de trabajar con los operadores lógicos habituales en otros lenguajes de progrmación. Destacamos:
+
+- `<`, `>`, `<=`, `>=`, `==`, `!=`
+
+- `!`, `&`, `|`, `xor()` y los parecidos `&&`, `||`
+
+```{r, eval=FALSE}
+x <- 5; x < 5; x >= 5; x == 6; x != 5
+y <- c(TRUE, FALSE); !y; z <- c(TRUE, TRUE)
+xor(y, z)
+y & z
+y | z
+```
+   
+- Las formas `&&`, `||` se evalúan de izquierda a derecha, examinando sólo el primer elemento de cada vector (si decide). Se suelen usar dentro de instrucciones 'if'.
+- `if (is.numeric(x) && min(x) > 0) {entonces...`, `min(x)` no tiene sentido si `x` no es numérico.
+- `0 + y; as.numeric(y); mode(y) <- "numeric"`
+
+### Ejemplo 3. Usar operadores lógicos
+
+```{r, eval = FALSE}
+peso <- c(19,14,15,17,20,23,30,19,25)
+peso < 20
+peso < 20 | peso > 25
+peso[peso<20]
+peso[peso<20 & peso!=15]
+trat <- c(rep("A",3),rep("B",3),rep("C",3))
+peso[trat=="A"]
+peso[trat=="A"|trat=="B"]
+```
+
+### Ejemplo 4. Agrupar o discretizar datos
+
+La función `split(x,f)`
+
+```{r, eval = FALSE}
+         split(peso,trat)
+         split(peso,trat)$A
+```
+
+La función `cut`
+
+```{r, eval = FALSE}
+vv <- rnorm(100)
+cut1 <- cut(vv, 5)
+table(cut1)
+cut2 <- cut(vv, quantile(vv, c(0, 1/4, 1/2, 3/4, 1)))
+summary(cut2)
+class(cut2)
+```
+
+### Ejemplo 5. Operaciones con conjuntos
+
+```{r, eval = FALSE}
+x <- 1:5; y <- c(1, 3, 7:10)
+union(x, y)
+intersect(x, y)
+setdiff(y, x)
+v <- c("bcA1", "bcA2", "blX1")
+w <- c("bcA2", "xA3")
+union(v, w)
+intersect(v, w)
+setdiff(w, v)
+setdiff(v, w)
+```
+
+
+
+
+
+En resumen
+----------
+
+-   La manipulación de datos en R es muy flexible.
+-   Podemos seleccionar variables, casos, subsecciones de datos, etc, de acuerdo con criterios arbitrarios (que usan, además, condiciones que pueden implicar a un número arbitrario de variables y casos).
+-   Los data.frames y las matrices pueden separarse, juntarse, cambiarse de forma (`reshape`), etc.
+-   El indexado y selección de casos pueden usar números, factores, cadenas de caracteres, etc.
+-   Podemos preparar código que repita las mismas operaciones con datos semejantes (i.e., podemos automatizar el proceso con sencillez).
+-   Podemos verificar 'al vuelo' que estas transformaciones hacen lo que queremos que hagan (mirando selectivamente los resultados, o 'emulando' el proceso en unos datos artificiales más pequeños).
+-   Por tanto, una vez que los datos están en R, no hay muchas razones para exportarlos y hacer la selección y manipulación con otros lenguajes (ej., Python, Perl) para luego volver a leerlos en R.

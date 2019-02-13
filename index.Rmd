@@ -1,0 +1,21 @@
+---
+title: "Luis Sarro Lectures at the Data Science Master at CEURA"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      after_body: [footer.html]
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+</style>
+
+# Data Science Master. UNED-CEURA
+Curso 0: Introducción a R

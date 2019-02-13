@@ -1,0 +1,86 @@
+---
+title: "Data frames"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+Se utilizan para datos de diferentes tipos. Por ejemplo, si tenemos los vectores
+
+```{r, eval = FALSE}
+x3 <- letters[1:10]
+a9 <- cbind(x1, x2, x3)
+
+```
+
+¿De qué tipo es `a9`? ¿Es eso lo que queríamos? Mejor con un `data.frame`:
+
+```{r, eval = FALSE}
+a10 <- data.frame(x1, x2, x3)
+```
+
+Ahora pueden aplicarse, por ejemplo, algunas técnicas de reducción de dimensión como el análisis de componentes principales:
+
+```{r, eval =FALSE}
+prcomp(a10[, c(1,2)])# comp. principales
+prcomp(a10[, c("x1", "x2")])
+prcomp(a10[, -3])
+```
+
+También podemos añadir alguna columna a una matriz como `datos`:
+        
+```{r, eval = FALSE}
+playa <- c("si","si","no","no")
+datos.df <- data.frame(datos, playa)
+datos.df$playa
+```
+
+Usar `$` facilita el acceso y la creación de nuevas columnas:
+
+```{r, eval = FALSE}
+set.seed(1) # fija la semilla del random number generator
+d1 <- data.frame(g1 = runif(10), g2 = rnorm(10))
+d1$edad <- c(rep(20, 5), rep(40, 5))
+set.seed(1)
+d2 <- cbind(g1 = runif(10), g2 = rnorm(10))
+d2[, 3] <- c(rep(20, 5), rep(40, 5)) # error
+d2 <- cbind(d2, edad = c(rep(20, 5), rep(40, 5)))
+```      
+
+Además, en los `data.frame` los “character vectors” se convierten en factores. Podemos convertir matrices a `data.frame` con `as.data.frame()`. Los `data.frame` también tienen `rownames`, `colnames`.
+
+```{r, eval = FALSE}
+attributes(a10) # cuando no están definidos
+# También podemos usar `dimnames(a10)`
+```
+
+
+### Ejemplo. Tabular variables cualitativas
+
+La tabulación cruzada de dos variables cualitativas se consigue con la función `table`:
+            
+```{r, eval = FALSE}
+sexo <- sample(c("H","M"),100,replace = T)
+nivel <- sample(c("1","2","3","4","5"),100,replace = T)
+table(sexo,nivel)
+```
+
+Para introducir una tabla de contingencia también se utiliza la instrucción `table`. Las variables se definen con sus modalidades con la instrucción `expand.grid(var1,var2)`.
+
+             
+```{r, eval = FALSE}
+resultado <- cbind(expand.grid(
+             calif=c("mejor","peor","igual"),
+             tratam=c("A","B")))
+
+             frec <- c(21,34,5,7,12,14)
+             tabla <- table(resultado$calif,resultado$tratam)*frec
+             tabla
+```
+

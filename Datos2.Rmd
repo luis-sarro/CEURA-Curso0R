@@ -1,0 +1,138 @@
+---
+title: "Arrays y matrices"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+Recuerda que un array es una colección de datos del mismo tipo con varias dimensiones. Observa el siguiente ejemplo en el que se crea un array de dimensiones 3x4x2.
+
+```{r, eval = FALSE}
+a <- 1:24
+dim(a) <- c(3,4,2)
+a
+```
+
+Una `matrix` es un array con dos dimensiones. Tienen una funcionalidad muy parecida, pero matrix es más 'cómoda'.
+         
+```{r, eval = FALSE}
+a1 <- array(9, dim = c(5,4))
+a2 <- matrix(1:20, nrow = 5)# como en FORTRAN
+a3 <- matrix(1:20, nrow = 5, byrow = TRUE) # Si queremos rellenar la matriz por filas
+a4 <- 1:20
+is.matrix(a4)
+dim(a4) <- c(5, 4) # ¡Cuidado! ¡Automágicamente transforma a4 en una matriz!
+is.matrix(a4)
+```
+
+Con las coordenadas se obtienen los elementos particulares, como en los vectores:
+         
+```{r, eval = FALSE}
+a[1,1,1] 
+a[1,1,2] 
+a[3,4,2]
+```
+
+También podemos considerar subconjuntos de un array
+
+```{r, eval = FALSE}
+a[2, , ] # es un array de dimensión c(4,2)
+a4[1, ] # La primera fila de a4
+a4[, 2] # La segunda columna
+a4[c(1, 3), c(2, 4)] # Cuatro elementos de a4
+```
+
+y también se pueden dar las coordenadas matricialmente, por ejemplo:
+         
+```{r, eval = FALSE}
+im <- matrix(c(1, 3, 2, 4), nrow = 2)
+im
+a4[im] # Se interpreta que cada fila de im es una indexación de a4
+```
+
+### Ejemplo 1. Explicitar los nombres de las filas y columnas.
+
+```{r, eval = FALSE}
+x <- c(190,8,22,191,4,1.7,223,80,2,210,50,3)
+datos <- matrix(x,nrow=4,byrow=T)
+dim(datos)
+ciudades <- c("Barna","Tarraco","Lleida","Girona")
+dimnames(datos) <- list(ciudades,NULL)
+variables <- c("A","B","C")
+dimnames(datos) <- list(ciudades,variables)
+datos
+dimnames(datos)
+datos["Barna", ]
+datos[ ,"C"]
+```
+
+    
+### Ejemplo 2. Ordenación por columnas.
+
+```{r, eval = FALSE}
+a4 <- 1:20 
+dim(a4) <- c(5, 4)
+attributes(a4)
+colnames(a4) <- paste("v", 1:4, sep = "")
+rownames(a4) <- paste("id", 1:5, sep = ".")
+a4[, c("v1", "v3")]
+attributes(a4)
+matriz <- matrix(rnorm(20),ncol=4)
+o.matriz <- matriz[order(matriz[, 1]), ] # Reordena las filas de la matriz de 
+# acuerdo a los valores de su primera columna. 
+```
+
+     
+### Nota. Operaciones con matrices
+
+-   `A %*% B` : producto de matrices
+-   `t(A)` : traspuesta de la matriz $A$
+-   `solve(A,b)` : solución del sistema de ecuaciones $Ax=b$.
+-   `solve(A)` : inversa de la matriz $A$
+-   `svd(A)` : descomposición en valores singulares
+-   `qr(A)` : descomposición QR
+-   `eigen(A)` : valores y vectores propios
+-   `diag(b)` : matriz diagonal ($b$ es un vector)
+-   `diag(A)` : matriz diagonal ($A$ es una matriz)
+-   `A %o% B == outer(A,B)` : producto exterior de dos vectores o matrices
+
+La función `outer(X, Y, FUN="*", ...)` proporciona de forma predifinda el producto exterior de los dos arrays. Sin embargo, podemos introducir otras funciones e incluso nuestras propias funciones.
+
+```{r, eval = FALSE}
+x <- 1:9
+names(x) <- paste(x,":",sep="")
+# Multiplication & Power Tables
+y <- seq(10,1,length.out = 10)
+names(y) <- paste(y,":",sep="")
+x %o% y
+outer(y, x, "^")
+```
+
+         
+### Ejemplo 3. Combinación de arrays
+
+Para combinar vectores, matrices o arrays utilizamos las instrucciones
+`rbind` y `cbind`.
+     
+```{r, eval = FALSE}
+x1 <- 1:10
+x2 <- 11:20
+a6 <- diag(6) # matriz identidad
+a7 <- cbind(x1, x2)
+a8 <- rbind(x1, x2)
+a24 <- cbind(a2, a4)
+
+cbind(a4, a6) # no funciona
+rbind(a4, a6) # no funciona
+
+a9 <- matrix(rnorm(30), nrow = 5)
+
+cbind(a4, a9)
+rbind(a4, a9) # no funciona
+```

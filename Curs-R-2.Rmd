@@ -1,0 +1,90 @@
+---
+title: "Estructuras de datos"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+
+Casi todo en R es un objeto, incluyendo funciones y estructuras de datos. Para saber los objetos que tenemos en el espacio de trabajo utilizaremos `ls()`. Además si escribimos el nombre de un objeto muestra su contenido (por ejemplo `sd`). Para guardar el contenido del espacio de trabajo se pueden utilizar las funciones `save.image()` y `save(<objetos>,file="nombre.RData")`. Si queremos trabajar con datos propios se pueden cargar con `load()` desde la carpeta de trabajo (o del camino que especifiquemos) o se pueden adjuntar con `attach()`:
+  
+```{r, eval = FALSE}
+# primero borramos (remove) todos los objetos del entorno de trabajo
+rm(list = ls())
+# ahora cargamos algunos datos del paquete MASS
+data(list=c("Animals","crabs","UScrime"), package="MASS")
+ls()
+save("Animals","crabs","UScrime", file="misdatos.RData")
+rm(list = ls())
+ls()
+load("misdatos.RData")
+ls()
+```
+
+Adjuntar los datos hará que podamos acceder a ellos de forma directa, unicamente indicando sus nombres. Observemos que los datos adjuntados ocupan la segunda posición en la 'search list'. Para 'desadjuntarlos' utilizaremos la función `detach()`.
+
+Puede que tu investigación involucre cargar archivos de grandes bases de datos. En ese caso deberías "perder" algo de tiempo buscando la mejor estrategía para cargarlos de forma eficiente. Echa un vistazo [aquí](http://cran.r-project.org/web/packages/saves/index.html) y [aquí](http://www.columbia.edu/~sjm2186/EPIC_R/EPIC_R_BigData.pdf), y luego echa un vistazo a este paquete [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html).
+
+Hay diferentes estructuras de datos y los siguientes enlaces profundizan lo suficiente para que tengas las destrezas básicas en su manejo. Si no puedes esperar ... la siguiente sección te hace un resumen de dichas estructuras.
+
+
+- [Vectores](Datos1.html)
+- [Matrices](Datos2.html)
+- [Data frames](Datos3.html)
+- [Listas](Datos4.html)
+- [Manipulación](Datos5.html)
+
+
+## ¡Para los impacientes!
+
+Los datos pueden declararse a través de diferentes objetos dentro de R:
+
+- `vector`: colección ordenada de elementos del mismo tipo.
+  
+```{r, eval = FALSE}
+    x <- c(1, 2, 3)
+    y <- c("a", "b", "c")
+    z <- c(TRUE, TRUE, FALSE)
+```
+
+- `array`: generalización multidimensional del vector. Elementos del mismo tipo.
+
+```{r, eval=FALSE}
+array(x, c(2,4)) # utilizamos el vector x definido anteriormente
+```
+
+Fijaos qué ocurre cuando no proporcionamos suficientes elementos para rellenar la estructura que queremos definir.
+
+- `data.frame`: como el array, pero con columnas de diferentes tipos. Es el objeto más habitual para los datos experimentales.
+
+```{r, eval = FALSE}
+  datos <- data.frame(ID=c("gen0", "genB", "genZ"),
+  subj1 = c(10, 25, 33), subj2 = c(NA, 34, 15),
+  oncogen = c(TRUE, TRUE, FALSE),
+  loc = c(1,30, 125))
+```
+
+- `factor`: tipo de vector para datos categóricos.
+
+```{r, eval = FALSE}
+        ff <- factor(c("H","M","H","H","H","M","H","M"))
+```
+
+- `list`: cada lista está formada por componentes que pueden ser otras listas. Cada componente puede ser de distinto tipo. Son contenedores generales de datos. Muy flexibles, pero sin estructura. Muchas funciones devuelven una lista o conjunto de resultados de distinta longitud y distinto tipo.
+    
+```{r, eval = FALSE}
+         una.lista <- list(un.vector = c(1:10),
+                        una.palabra = "hola",
+                        una.matriz = matrix(rnorm(20), ncol = 5),
+                        lista2 = list(a = 5,
+                                   b = factor(c("a", "b"))))
+```
+
+
+

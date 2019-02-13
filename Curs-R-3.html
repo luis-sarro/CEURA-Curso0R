@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Entrada/Salida de datos</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">0</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Curs-R-1.html">Introducción</a>
+</li>
+<li>
+  <a href="Curs-R-2.html">Estructuras de datos</a>
+</li>
+<li>
+  <a href="Curs-R-3.html">Lectura/Escritura de datos</a>
+</li>
+<li>
+  <a href="Curs-R-4.html">Representación gráfica</a>
+</li>
+<li>
+  <a href="Curs-R-5.html">Funciones</a>
+</li>
+<li>
+  <a href="Curs-R-6.html">Cuadernos en R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/header.png" alt="School Footer">
+
+</body>
+</html>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Entrada/Salida de datos</h1>
+
+</div>
+
+
+<p>Para leer un fichero simple (por ejemplo en formato CSV), con los datos separados por espacios en blanco, tabuladores o saltos de línea, se utiliza la instrucción <code>read.table</code>. Hay que tener especial cuidado con el formato del archivo, por ejemplo, si el carácter decimal no es un punto sino una coma, deberemos usar dec = “,”:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fichero.df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;c:/dir/mi.fichero&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>,
+    <span class="dt">comment.char =</span> <span class="st">&quot;&quot;</span>) <span class="co"># ruta para Windows</span>
+fichero.df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;/home/myusername/mydir/mi.fichero&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>,
+    <span class="dt">comment.char =</span> <span class="st">&quot;&quot;</span>) <span class="co"># ruta para Windows</span></code></pre></div>
+<p>Se pueden saltar líneas (<code>skip</code>) o leer un número fijo de líneas (<code>nrows</code>). Hay funciones especializadas para otros archivos (ej., <code>read.csv</code>) pero son casos específicos de <code>read.table</code>.</p>
+<div id="ejemplo.-guardar-y-leer-datos" class="section level3">
+<h3>Ejemplo. Guardar y leer datos</h3>
+<p>Resulta muy importante poder guardar datos, funciones, etc., para ser usados en otras sesiones de R. Esos datos así guardados pueden compartirse con otros usuarios e incluso utilizarse en distintos sistemas operativos. Los guardaremos con <code>save()</code> y los leeremos con <code>load()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>)
+y &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="ot">TRUE</span>, <span class="dt">c =</span> <span class="st">&quot;patata&quot;</span>)
+<span class="kw">save</span>(x, y, <span class="dt">file =</span> <span class="st">&quot;xy.RData&quot;</span>)  
+<span class="kw">rm</span>(x,y)
+<span class="kw">load</span>(<span class="st">&quot;xy.RData&quot;</span>)</code></pre></div>
+<p>Podemos guardar todos los objetos con</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save.image</span>() <span class="co"># guardado como &quot;.RData&quot;</span>
+<span class="kw">save.image</span>(<span class="dt">file =</span> <span class="st">&quot;nombre.RData&quot;</span>)</code></pre></div>
+<p>El fichero <code>.RData</code> (sin nombre antes del punto) se carga al iniciarse R. R y muchos otros paquetes incorporan archivos con datos y se cargan con <code>load(&quot;nombre.RData&quot;)</code>. Además la instrucción <code>data</code> permite cargar conjuntos de datos de las librerías disponibles.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>() <span class="co"># muestra todos los archivos</span>
+<span class="kw">data</span>(iris)
+<span class="kw">data</span>(iris, <span class="dt">package =</span> <span class="st">&quot;datasets&quot;</span>) <span class="co"># equivalente</span>
+?iris</code></pre></div>
+</div>
+<div id="ejemplo.-tengo-mis-datos-en-excel-que-hago" class="section level3">
+<h3>Ejemplo. Tengo mis datos en Excel, ¿qué hago?</h3>
+<p>Lo mejor es exportar los datos desde Excel a un archivo de texto separado por tabuladores (CSV). Cuidado con las últimas columnas y <em>missing data</em> (Excel elimina los <em>trailing tabs</em>). Dos formas de minimizar problemas: (i) usar <code>NA</code> para missing; (ii) poner una última columna con datos arbitrarios (ej., una columna llena de doses). Cuidado también con líneas extra al final del fichero. Salvamos como texto (sólo salvamos una de las hojas).</p>
+<p>Si este método no te convence echa un vistazo al paquete <a href="http://cran.r-project.org/web/packages/xlsx/index.html">xlsx</a></p>
+</div>
+<div id="ejemplo.-exportar-los-resultadosdatos-de-nuestro-estudio" class="section level3">
+<h3>Ejemplo. Exportar los resultados/datos de nuestro estudio</h3>
+<p>Lo más sencillo es exportar una matriz (es necesario transponer la matriz).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write</span>(<span class="kw">t</span>(x), <span class="dt">file =</span> <span class="st">&quot;c:/dir/data.txt&quot;</span>, <span class="dt">ncolumns =</span> n, <span class="dt">append =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>También podemos exportar un <code>data.frame</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(my.data.frame,
+          <span class="dt">file =</span> <span class="st">&quot;mi.output.txt&quot;</span>,
+          <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>,<span class="dt">row.names =</span> <span class="ot">FALSE</span>,
+          <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Si lo que quieres es abrirlo más tarde en Excel, mejor expórtalo a un fichero CSV (importable a Excel)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(x, <span class="dt">file =</span> <span class="st">&quot;foo.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">col.names =</span> <span class="ot">NA</span>)</code></pre></div>
+</div>
+
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/Footnote.png" alt="School Footer">
+
+</body>
+</html>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

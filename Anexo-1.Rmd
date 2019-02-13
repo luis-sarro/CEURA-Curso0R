@@ -1,0 +1,58 @@
+¿Dónde puedo encontrar más documentación sobre R?
+=================================================
+
+Los manuales incluidos en todas las instalaciones de R son: 
+- *An introduction to R* (de lectura obligatoria), 
+- *Writing R extensions*, 
+- *R data import/export*, 
+- *The R language definition*, 
+- *R installation and administration*. 
+
+Además de estos manuales podemos encontrar muchos tutoriales y ayudas en Internet (en continua actualización). Te recomendamos que eches un vistazo a las [CRAN Task Views](http://cran.r-project.org/web/views/) de forma que puedas afinar en el conjunto de paquetes que ya están hechos relativos a tu campo de investigación; revisa lo que están [desarrollando](http://www.r-bloggers.com/tag/rblogs/) y [preguntando](http://stats.stackexchange.com/questions/tagged/r) otros investigadores como tú.
+  
+### Documentación general
+  
+  -   *R para principiantes*, de E. Paradis. En
+<http://cran.es.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf> o
+<http://cran.es.r-project.org/doc/contrib/rdebuts_es.pdf>.
+  -   *A guide for the unwilling S user*, de P. Burns. En
+<http://cran.es.r-project.org/doc/contrib/Burns-unwilling_S.pdf> o
+<http://www.burns-stat.com/pages/tutorials.html>. ¡Sólo 8 páginas!
+  -   *R Graphics*, de Paul Murrell.
+  -   *S Programming*, de W. Venables y B. Ripley.
+
+Es conveniente seguir de cerca alguno de los proyectos en auge en estos momentos: [Rpubs](http://rpubs.com/), [googleVis](http://code.google.com/p/google-motion-charts-with-r/), [programación en paralelo](http://shop.oreilly.com/product/0636920021421.do), o la instalación de paquetes desde Github mediante el paquete `devtools`.
+
+### Estadística
+  
+  -   **simpleR** *Using R for Introductory Statistics* de John Verzani en
+<http://www.math.csi.cuny.edu/Statistics/R/simpleR/index.html>
+  -   *Introductory statistics with R* de P. Dalgaard.
+  -   *An R and S-PLUS companion to applied regression* de J. Fox.
+  -   *Modern applied statistics with S, 4th ed.* de W. Venables y B.Ripley. Ver también <http://www.stats.ox.ac.uk/pub/MASS4>.
+  -   *Practical regression and ANOVA using R* de J. Faraway, en <http://cran.r-project.org/other-docs.html> o <http://www.stat.lsa.umich.edu/~faraway/book/>.
+  -   *Estadística Aplicada con S-PLUS* de M. Dolores Ugarte y Ana F. Militino.
+
+### Otros documentos en <http://cran.es.r-project.org/other-docs.html>
+  
+  -   *S-PLUS 6.0 for Unix. Guide to statistics.* Vol. I & II. En
+<http://www.insightful.com/support/documentation.asp?DID=3>
+  -   *Mixed-effects models in S and S-PLUS* de J. Pinheiro y D. Bates.
+  -   *Regression modelling strategies* de F. Harrell.
+  -   *Modelos Lineales* de F. Carmona.
+  -   "Site" con documentación sobre análisis para datos categóricos ("site" para el libro de A. Agresti *Categorical data analysis*). <http://www.stat.ufl.edu/~aa/cda/cda.html>
+  -   *Modeling survival data: extending the Cox model* de T. M. Therenau
+y P. M. Grambsch.
+  -   Documentos varios en la página de J. Fox
+<http://cran.r-project.org/doc/contrib/Fox-Companion/appendix.html>
+  
+### Más ayudas sobre R
+
+Hay diversas formas de ayuda:
+
+  -   FAQ: <http://cran.es.r-project.org/faqs.html>
+  -   R-help-es -- Ayuda sobre R en español <https://stat.ethz.ch/mailman/listinfo/r-help-es>
+  -   *Rtips* de Paul Johnson <http://pj.freefaculty.org/R/Rtips.html>
+  -   R Help Center <http://www.stat.ucl.ac.be/ISdidactique/Rhelp/>
+  -  Ver <http://cran.es.r-project.org/search.html> y <http://finzi.psych.upenn.edu/search.html>. Permiten hacer las búsquedas no sólo sobre las listas de e-mail sino
+también sobre la documentación (incluyendo paquetes).

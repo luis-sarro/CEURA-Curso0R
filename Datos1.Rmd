@@ -1,0 +1,215 @@
+---
+title: "Vectores"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+### Ejemplo 1. Generación de secuencias
+  
+```{r, eval = FALSE}
+x <- c(1, 2, 3, 4, 5)
+x <- 1:10; y <- -5:3
+1:4+1
+1:(4+1)
+x <- seq(from = 2, to = 18, by = 2)
+x <- seq(from = 2, to = 18, length = 30)
+y <- seq(along = x)
+z2 <- c(1:5, 7:10, seq(from=-7,to=5,by=2))
+rep(1, 5)
+x <- 1:3
+rep(x, 2)
+y <- rep(5, 3)
+rep(x, y)
+rep(1:3, rep(5, 3))
+rep(x, x)
+rep(x, length = 8)
+gl(3, 5) # como rep(1:3, rep(5, 3))
+gl(4, 1, length = 20) # ¡Alerta! gl genera factores
+gl(3, 4, label = c("Sano", "Enfermo", "Muerto"))
+expand.grid(edad = c(10, 18, 25), sexo = c("Macho", "Hembra"), loc = 1:3)
+```
+
+Podemos combinar: `z3 <- c(1:5, rep(8, 3))`
+
+### Ejemplo 2. Generación de secuencias aleatorias
+
+```{r, eval = FALSE}
+sample(x=5)
+sample(x=5, size=3)
+x <- 1:10
+sample(x)
+sample(x, replace = TRUE)
+sample(x, size = 2 * length(x), replace = TRUE)
+probs <- x/sum(x)
+muestra <- sample(x, size= 100, replace=T, prob = probs)
+hist(muestra)
+```
+
+Números aleatorios `rDistribución(n,parámetros)`
+
+```{r, eval = FALSE}
+rnorm(10) # rnorm(10, mean = 0,sd = 1)
+runif(8,min=2,max=10)
+```
+
+### Ejemplo 3. Selección de elementos de un vector
+
+```{r, eval = FALSE}
+x <- 1:5
+x[1]
+x[3]
+x[c(1,3)]
+x[x > 3]
+x > 3
+y <- x > 3
+x[y]
+x[-c(1, 4)]
+y <- c(1, 2, 5)
+x[y]
+names(x) <- c("a", "b", "c", "d", "patata")
+x[c("b", "patata")]
+```
+
+### Ejemplo 4. Valores ausentes
+
+`NA` es el código de 'Not available'.
+
+```{r, eval = FALSE}
+v <- c(1,6,9,NA)
+is.na(v)
+which(is.na(v))
+w <- v[!is.na(v)] # sin los valores perdidos
+v == NA # !No funciona! ¿Por qué?
+```
+
+Si es necesario podemos sustituir `NA` por, p.ej. `0`, con la instrucción 
+
+```{r, eval=FALSE}
+v[is.na(v)] <- 0
+```
+Cuidado, el infinito y `NaN` ('not a number') son diferentes de `NA`.
+
+```{r, eval = FALSE}
+5/0
+-5/0
+0/0
+is.infinite(-5/0)
+is.nan(0/0)
+is.na(5/0)
+```
+
+Con algunas funciones puede especificarse qué hacer con los valores perdidos.
+
+```{r, eval = FALSE}
+xna <- c(1, 2, 3, NA, 4)
+mean(xna)
+mean(xna, na.rm = TRUE)
+```
+
+Además para funciones de modelado de datos o 'modelling functions' (por ejemplo `lm`) lo mejor es usar 
+`na.omit` o `na.exclude`. Esta última es más conveniente para generar predicciones, residuos, etc. 
+
+Si queremos eliminar todos los `NA`:
+  
+  ```{r, eval = FALSE}
+XNA <- matrix(c(1,2,NA,3,NA,4), nrow = 3)
+XNA
+X.no.na <- na.omit(XNA)
+```
+
+### Ejemplo 5. Ordenación de vectores
+
+```{r, eval = FALSE}
+x1 <- c(5, 1, 8, 3)
+order(x1)
+sort(x1)
+rev(x1)
+rank(x1)
+x1[order(x1)]
+x2 <- c(1, 2, 2, 3, 3, 4); rank(x2)
+min(x1) 
+which.min(x1) 
+which(x1 == min(x1))
+y <- c(1, 1, 2, 2); order(y, x1)
+```
+
+
+`order` y `sort` admiten `decreasing = TRUE`.
+
+### Ejemplo 6. Vectores de caracteres
+
+Otras funciones de manipulación de caracteres:
+  
+```{r, eval = FALSE}
+codigos <- paste(c("A", "B"), 2:3, sep = "")
+codigos <- paste(c("A", "B"), 2:3, sep = ".")
+juntar <- paste(c("una", "frase", "simple"), collapse =" ")
+columna.a <- LETTERS[1:5]; columna.b <- 10:15
+juntar <- paste(columna.a, columna.b, sep ="")
+substr("abcdef",2,4) # Seleccionar subcadenas 
+x <- paste(LETTERS[1:5], collapse="")
+substr(x, 3, 5) <- "uv" # Sustituir subcadenas
+print(x)
+x <- paste(LETTERS[1:5], collapse="")
+substr(x, 3, 4) <- "uvs" # ¡Cuidado!
+print(x)
+
+```
+
+Más funciones: `nchar`, `grep`, `match`, `pmatch`, `tolower`, `toupper`, `sub`, `gsub`, `regexpr`.
+
+### Ejemplo 7. Factores
+
+Consideremos una secuencia de códigos postales:
+  
+```{r, eval = FALSE}
+codigo.postal <- c(28430, 28016, 28034)
+mode(codigo.postal)
+```
+
+No deberíamos usar el código postal en, por ejemplo, un ANOVA como si fuera un vector numérico. Usar variables *aparentemente* numéricas en análisis estadísticos es un grave error. Por tanto, debemos transformar dicha variable a un factor (automaticamente se generarán los niveles del mismo)
+
+```{r, eval = FALSE}
+codigo.postal <- factor(codigo.postal) # mejor
+mode(codigo.postal)
+```
+
+Si queremos convertir un vector factor en numérico:
+  
+```{r, eval = FALSE}
+y <- rnorm(10)
+x <- rep(1:5, 2)
+aov(y ~ x) # ¡no es lo que queremos!
+aov(y ~ factor(x)) # mejor
+
+x <- c(34, 89, 1000)
+y <- factor(x)
+y
+as.numeric(y) # mal. los valores han sido recodificados
+as.numeric(as.character(y)) # bien
+```
+
+Podemos fijar el orden de las etiquetas:
+  
+```{r, eval = FALSE}
+ftr1 <- factor(c("alto", "bajo", "medio"))
+ftr1
+ftr1 <- factor(c("alto", "bajo", "medio"), levels = c("bajo", "medio", "alto"))
+ftr1
+```
+
+A la inversa, podemos querer transformar un vector  numérico en una variable categórica por discretización de los valores. Por ejemplo, una variable edad en varios intervalos...
+
+```{r, eval = FALSE}
+edad <- runif(100,0,90)
+bloque.edad <- cut(edad, breaks= c(0,3,6,12,18,23,67,90))
+is.factor(bloque.edad)
+```
+

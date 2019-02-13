@@ -1,0 +1,248 @@
+\section{Funciones}
+
+\subsection{Definición de funciones}
+
+\begin{itemize}
+    \item R es un lenguaje que permite crear nuevas funciones.
+    Una función se define con una asignación de la forma
+    \begin{verbatim}
+    > nombre <- function(arg1,arg2,...){expresión}
+    \end{verbatim}
+
+    \item La expresión es una fórmula o grupo de fórmulas
+    que utilizan los argumentos para calcular su valor.
+    El valor de dicha expresión es el valor que proporciona
+    R en su salida y éste puede ser un simple número, un vector,
+    una gráfica, una lista o un mensaje.
+
+    Ejemplo: Suma de una progresión aritmética
+    \begin{verbatim}
+    > suma <- function(a1,d,n){
+    +         an <- a1+(n-1)*d;
+    +         ((a1+an)*n)/2}
+    \end{verbatim}
+\end{itemize}
+
+\newslide
+
+\subsection{Argumentos}
+
+\begin{itemize}
+    \item Una función con cuatro argumentos
+    \begin{verbatim}
+    > una.f <- function(a,b,c = 4,d = FALSE){x1<-a*z ...}
+    \end{verbatim}
+
+    \item Los argumentos \verb"a" y \verb"b" tienen que darse en el
+    orden debido o, si los nombramos, podemos darlos en cualquier orden:
+    \begin{verbatim}
+    > una.f(4, 5)
+    > una.f(b = 5, a = 4)
+    \end{verbatim}
+
+    \item Pero los argumentos con nombre siempre se tienen que dar
+    después de los posicionales:
+    \begin{verbatim}
+    > una.f(c = 25, 4, 5) # error
+    \end{verbatim}
+
+    \item Los argumentos \verb"c" y \verb"d" tienen valores por defecto.
+    Podemos especificarlos nosotros o no (i.e., usar los valores por defecto).
+
+    \newslide
+
+    \item \verb"args(nombre.funcion)" nos muestra los argumentos de cualquier función.
+
+    \item ``\verb"..."'' permite pasar argumentos a otra función:
+    \begin{verbatim}
+    > f3 <- function(x, y, label = "la x", ...){
+    +                plot(x, y, xlab = label, ...)}
+    >
+    > f3(1:5, 1:5)
+    > f3(1:5, 1:5, col = "red")
+    \end{verbatim}
+
+    \item Para realizar funciones de dos variables se puede utilizar
+    el comando \verb"outer". Por ejemplo:
+    \begin{verbatim}
+    > f <- function(x,y){cos(y)/(x^2-3)}
+    > z <- outer(x,y,f)
+    \end{verbatim}
+
+\end{itemize}
+
+\newslide
+
+\subsection{Scope}
+
+\begin{itemize}
+    \item En la función \verb"una.f" ``\verb"z"'' es una ``free variable'':
+    ¿cómo se especifica su valor? Lexical scoping. Ver documento
+    \emph{Frames, environments and scope in R and S-PLUS} de J. Fox en
+    \url{http://cran.r-project.org/doc/contrib/Fox-Companion/appendix.html}
+    y sección 10.7 en \emph{An introduction to R}.
+    También ver \verb"demo(scoping)".
+
+    \item Un ejemplo
+    \begin{verbatim}
+    > cubo <- function(n) {
+    + sq <- function() n*n # aquí n no es un argumento
+    + n*sq()
+    + }
+    \end{verbatim}
+
+    \item En esto R (lexical scope) y S-PLUS (static scope) son distintos.
+\end{itemize}
+
+\newslide
+
+\subsection{Control de ejecución}
+\begin{itemize}
+    \item Principales instrucciones
+    \begin{verbatim}
+    if(cond) expr
+    if(cond) cons.expr  else  alt.expr
+    for(var in seq) expr
+    while(cond) expr
+    repeat expr
+    break
+    next
+    \end{verbatim}
+
+    \item La expresión \verb"expr" (también \verb"alt.expr")
+    puede ser una expresión simple o una de las llamadas
+    expresiones compuestas, normalmente del tipo \verb"{expr1; expr2}".
+
+    \item Uno de los errores más habituales es el olvido de los corchetes
+    \verb"{...}" alrededor de las instrucciones, i.e. después de \verb"if(...)"
+    o \verb"for(...)".
+
+    \item \verb"if (cond.logica)" \textit{instrucción} \verb"else"
+    \textit{instrucción.alternativa}
+    \begin{verbatim}
+    > f4 <- function(x) {
+    + if(x > 5) print("x > 5")
+    + else {
+    + y <- runif(1)
+    + print(paste("y is ", y))
+    + }
+    + }
+    \end{verbatim}
+
+    \item \verb"ifelse" es una versión vectorizada
+    (Thomas Unternährer, R-help, 2003-04-17)
+    \begin{verbatim}
+    > odd.even <- function(x) {
+    + ifelse(x %% 2 == 1, "Odd", "Even")
+    + }
+    > mtf <- matrix(c(TRUE, FALSE, TRUE, TRUE),
+    + nrow = 2)
+    > ifelse(mtf, 0, 1)
+    \end{verbatim}
+
+    \item \verb"for ("\textit{variable.loop} \verb"in" \textit{valores}\verb")"
+    \textit{instrucción}
+    \begin{verbatim}
+    > for(i in 1:10) cat("el valor de i es", i, "\n")
+
+    > continue.loop <- TRUE
+    > x <- 0
+    > while(continue.loop) {
+    + x <- x + 1
+    + print(x)
+    + if( x > 10) continue.loop <- FALSE
+    + }
+    \end{verbatim}
+
+    \item \verb"break" para salir de un loop.
+
+\end{itemize}
+
+\newslide
+
+\subsection{Cuando algo va mal}
+\begin{itemize}
+    \item Cuando se produce un error, \verb"traceback()"
+    nos informa de la secuencia de llamadas antes del ``crash''
+    de nuestra función.
+    Es útil cuando se producen mensajes de error incomprensibles.
+
+    \item Cuando se producen errores o la función da resultados
+    incorrectos o ``warnings'' indebidos podemos seguir la ejecución de la función.
+
+    \item \verb"browser" interrumpe la ejecución a partir de
+    ese punto y permite seguir la ejecución o examinar el entorno;
+    con ``n'' paso a paso, si otra tecla sigue la ejecución normal.
+    ``Q'' para salir.
+
+    \item \verb"debug" es como poner un \verb"broswer" al
+    principio de la función y se ejecuta la función paso a paso.
+    Se sale con ``Q''.
+    \begin{verbatim}
+    > debug(my.buggy.function)
+    > ...
+    > undebug(my.buggy.function)
+    \end{verbatim}
+
+\end{itemize}
+
+\newslide
+
+Ejemplo:
+\begin{verbatim}
+> my.f2 <- function(x, y) {
++ z <- rnorm(10) + y2 <- z * y + y3 <- z * y * x + return(y3 + 25)
++ }
+> my.f2(runif(3), 1:4)
+> debug(my.f2)
+> my.f2(runif(3), 1:4)
+> undebug(my.f2)
+> # insertar un browser() y correr de nuevo
+\end{verbatim}
+
+\newslide
+
+\subsection{Ejecución no interactiva}
+
+\begin{itemize}
+\item Con \verb"source" abrimos una sesión de R y hacemos
+\begin{verbatim}
+> source("mi.fichero.con.codigo.R")
+\end{verbatim}
+
+\item Con BATCH:
+\begin{verbatim}
+Rcmd BATCH mi.fichero.con.codigo.R
+\end{verbatim}
+
+\item \verb"source" es en ocasiones más útil porque informa
+inmediatamente de errores en el código. BATCH no informa, pero no
+requiere tener abierta una sesión (se puede correr en el
+background).
+
+\item Ver la ayuda: \verb"Rcmd BATCH --help"
+
+\item Puede que necesitemos explícitos \verb"print" statements o
+hacer \verb"source(my.file.R, echo = TRUE)".
+
+\item \verb"sink" es el inverso de \verb"source" (lo manda todo a
+un fichero).
+
+\item Se pueden crear paquetes, con nuestras funciones, que se
+comporten igual que los demás paquetes. Ver \emph{Writing R
+extensions}.
+
+\item R puede llamar código compilado en C/C++ y FORTRAN. Ver
+\verb".C", \verb".Call", \verb".Fortran".
+
+\item ``Lexical scoping'' importante en programación más avanzada.
+
+\item No hemos mencionado el ``computing on the language'' (ej.,
+\verb"do.call", \verb"eval", etc.).
+
+\item R es un verdadero ``object-oriented language''. Dos
+implementaciones, las S3 classes y las S4 classes.
+
+\end{itemize}
+
+\endinput

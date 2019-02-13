@@ -1,0 +1,107 @@
+---
+title: "Entrada/Salida de datos"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+
+Para leer un fichero simple (por ejemplo en formato CSV), con los datos separados por espacios en blanco, tabuladores o saltos de línea, se utiliza la instrucción `read.table`. Hay que tener especial cuidado con el formato del archivo, por ejemplo, si el carácter decimal no es un punto sino una coma, deberemos usar dec = ",":
+
+```{r, eval=FALSE}
+fichero.df <- read.table("c:/dir/mi.fichero", header = TRUE, sep = "",
+    comment.char = "") # ruta para Windows
+fichero.df <- read.table("/home/myusername/mydir/mi.fichero", header = TRUE, sep = "",
+    comment.char = "") # ruta para unix
+```
+
+Se pueden saltar líneas (`skip`) o leer un número fijo de líneas (`nrows`). Hay funciones especializadas para otros archivos (ej., `read.csv`) pero son casos específicos de `read.table`.
+
+Hay muchos modificadores del comportamiento por defecto de read.table. Si tenéis problemas para leer un fichero en particular, leed el manual. Una de las más útiles es colClasses:
+
+```{r, eval=FALSE}
+fichero.df <- read.table("gaiafile.txt", header = TRUE, sep = "",
+    comment.char = "@") 
+fichero.df <- read.table("gaiafile.txt", header = TRUE, sep = "",
+    comment.char = "@",colClasses = "character") 
+fichero.df <- read.table("gaiafile.txt", header = TRUE, sep = "",
+    comment.char = "@",colClasses = c("numeric","character","character"))
+```
+
+
+### Ejemplo. Guardar y leer datos
+
+Resulta muy importante poder guardar datos, funciones, etc., para
+ser usados en otras sesiones de R. Esos datos así guardados pueden
+compartirse con otros usuarios e incluso utilizarse en distintos
+sistemas operativos. Los guardaremos con `save()` y los leeremos con `load()`.
+
+```{r, eval = FALSE}
+x <- runif(20)
+y <- list(a = 1, b = TRUE, c = "patata")
+save(x, y, file = "xy.RData")  
+rm(x,y)
+load("xy.RData")
+```
+            
+Podemos guardar todos los objetos con
+
+```{r, eval = FALSE}
+save.image() # guardado como ".RData"
+save.image(file = "nombre.RData")
+```
+
+El fichero `.RData` (sin nombre antes del punto) se carga al iniciarse R. R y muchos otros paquetes incorporan archivos con datos y se cargan con `load("nombre.RData")`. Además la instrucción `data` permite cargar conjuntos de datos de las librerías disponibles.
+            
+```{r, eval = FALSE}
+data() # muestra todos los archivos
+data(iris)
+data(iris, package = "datasets") # equivalente
+?iris
+```
+
+### Ejemplo. Tengo mis datos en Excel, ¿qué hago?
+
+Lo mejor es exportar los datos desde Excel a un archivo de texto separado por tabuladores (CSV). Cuidado con las últimas columnas y *missing data* (Excel elimina los *trailing tabs*). Dos formas de minimizar problemas: (i) usar `NA` para missing; (ii) poner una última columna con datos arbitrarios (ej., una columna llena de doses). Cuidado también con líneas extra al final del fichero. Salvamos como texto (sólo salvamos una de las hojas).
+
+Si este método no te convence echa un vistazo al paquete [xlsx](http://cran.r-project.org/web/packages/xlsx/index.html)
+
+### Ejemplo. Exportar los resultados/datos de nuestro estudio
+
+Lo más sencillo es exportar una matriz (es necesario transponer la matriz).
+
+```{r, eval = FALSE}
+
+x <- seq(1,100,length.out = 1000)
+y <- sin(x)/x
+plot(x,y,ty="l")
+
+write(t(cbind(x,y)), file = "c:/dir/data.txt", ncolumns = n, append = FALSE)
+write(t(cbind(x,y)), file = "/home/myusername/mydir/data.txt", ncolumns = n, append = FALSE)
+write(t(cbind(x,y)), file = "data.txt", append = FALSE,ncolumns=2)
+matrix <- cbind(x,y)
+write.table(matrix, file = "data.txt", append = FALSE,quote=FALSE,row.names = F,col.names = F, sep=",")
+
+```
+
+También podemos exportar un `data.frame`
+ 
+```{r, eval = FALSE}
+write.table(my.data.frame,
+          file = "mi.output.txt",
+          sep = "",row.names = FALSE,
+          col.names = TRUE)
+```
+
+Si lo que quieres es abrirlo más tarde en Excel, mejor expórtalo a un fichero CSV (importable a Excel)
+            
+```{r, eval = FALSE}
+write.table(x, file = "foo.csv", sep = ",", col.names = NA)
+```
+

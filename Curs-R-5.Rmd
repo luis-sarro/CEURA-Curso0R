@@ -1,0 +1,273 @@
+---
+title: "Funciones en R"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+R es un lenguaje que permite crear nuevas funciones. Una función se define con una asignación de la forma
+    
+```{r, eval = FALSE}
+nombre <- function(arg1,arg2,...){expresión}
+```
+
+La expresión es una fórmula o grupo de fórmulas que utilizan los argumentos para calcular su valor. El valor de dicha expresión es el valor que proporciona R en su salida y éste puede ser un simple número, un vector, una gráfica, una lista o un mensaje. Recuerda leer [estas indicaciones](https://google.github.io/styleguide/Rguide.xml) para mejor lectura de las personas con las que trabajarás.
+
+### Ejemplo 1. Suma de una progresión aritmética
+
+```{r, eval = FALSE}
+suma <- function(a1,d,n){
+  an <- a1+(n-1)*d
+  ((a1+an)*n)/2
+  }
+```
+
+### Ejemplo 2. Una función con cuatro argumentos
+
+```{r, eval = FALSE}
+z <- 1
+    FuncionPrueba <- function(a,b,c = 4,d = FALSE)
+    {
+      x1<-a*b-5*c*d*z
+      return(x1)
+      }
+```
+
+Observa que los argumentos `a` y `b` tienen que darse en el orden debido o, si los nombramos, podemos darlos en cualquier orden:
+            
+```{r, eval = FALSE}
+ FuncionPrueba(4, 5)
+ FuncionPrueba(b = 5, a = 4)           
+```
+
+Cuidado con el orden en el que se pasan los argumentos de la función 
+          
+```{r, eval = FALSE}
+FuncionPrueba(c = 25, 1, 2)
+```
+
+Los argumentos `c` y `d` tienen valores predefinidos. Podemos especificarlos nosotros o no (i.e., usar los valores predefinidos). Con `args(nombre.funcion)` podemos mostrar los argumentos de cualquier función. Además la expresión `...` permite pasar argumentos a otra función:
+            
+```{r, eval = FALSE}
+FuncionPrueba2 <- function(x, y, label = "la x", ...){
+                           plot(x, y, xlab = label, ...)
+                           }
+            
+FuncionPrueba2(1:5, 1:5)
+FuncionPrueba2(1:5, 1:5, col = "red")
+```
+
+Para realizar funciones de dos variables se puede utilizar el comando `outer`.
+
+### Ejemplo 3. Ejecutando una función de dos variables
+
+```{r, eval = FALSE}
+f <- function(x,y){cos(y)/(x^2-3)}
+z <- outer(x,y,f)
+```
+
+
+### Ejemplo 4. La familia `apply`
+
+Utilizar la función `apply` es generalmente mucho más eficiente que un bucle. Además de más claro, más fácil, etc..
+
+```{r, eval = FALSE}
+ax <- matrix(rnorm(20), ncol = 5)
+medias.por.fila <- apply(ax, 1, mean)
+por.si.na <- apply(ax, 1, mean, na.rm = TRUE)
+MiFuncion <- function(x) { return(2*x - 25)}
+MiFuncion.por.fila <- apply(ax, 1, MiFuncion)
+mas.simple <- apply(ax, 1, function(x){return(2*x -25)})
+medias.por.columna <- apply(ax, 2, mean)
+sample.rows <- apply(ax, 1, sample)
+DosCosas <- function(y){return(c(mean(y), var(y)))}
+apply(ax, 1, DosCosas) # ¡Uy! Lo devuelve en un formato poco intuitivo...
+t(apply(ax, 1, DosCosas))
+```
+     
+             
+```{r, eval = FALSE}
+parameters <- cbind(mean = -5:5, sd = 2:12)
+z.data <- matrix(rnorm(1000 * 11), nrow = 11)
+data <- (z.data * parameters[,2]) + parameters[,1]
+apply(data, 1, mean); apply(data, 1, sd)
+```
+
+Las funciones `sapply(X,función)` y `lapply(X,función)` son como `apply(X,i,función)` pero no hay que especificar el índice `i=2`; `sapply` intenta simplificar el resultado a un vector o a una matriz (la "s" es de "simplify""), pero `lapply` siempre devuelve una lista. Ambas pueden aplicarse a vectores, listas, arrays.             
+           
+```{r, eval = FALSE}
+data(airquality)
+sapply(airquality, function(x){sum(is.na(x))})
+```
+
+La función `tapply(x,y,función)` calcula la función especificada sobre el objeto `x` según las categorías de `y`.
+
+```{r, eval = FALSE, eval = FALSE}
+x <- c(19,14,15,17,20,23,19,19,21,18)
+trat <- c(rep("A",5),rep("B",5))
+x.media <- tapply(x,trat,mean)
+print(x.media)
+```
+
+Las funciones `apply`, `sapply`, `lapply` y `tapply` son muy útiles porque contribuyen a hacer el código más legible, fácil de entender, y facilitan posteriores modificaciones y aplicaciones. Consejo: cada vez que vayamos a usar un "loop" intentemos sustituirlo por algún miembro de familia `apply`. Algunas funciones hacen un `apply`:
+
+```{r, eval = FALSE, eval = FALSE}
+x1 <- 1:10
+m1 <- matrix(1:20, ncol = 5)
+d1 <- as.data.frame(m1)
+mean(x1); 
+mean(m1)
+mean(d1); # Oooops 
+sd(x1); 
+sd(m1)
+sd(d1); 
+median(m1); 
+median(d1)
+```
+             
+Si te ha gustado el uso de la familia `apply` puede que también te interese echar un vistazo al paquete [plyr](http://cran.r-project.org/web/packages/plyr/index.html)
+
+
+### Ejemplo 5. Lexical scoping
+
+En la función `FuncionPrueba`, $z$ es una *variable libre*, entonces ¿cómo se especifica su valor? Lexical scoping. Ver documento *Frames, environments and scope in R and S-PLUS* de J. Fox en <http://cran.r-project.org/doc/contrib/Fox-Companion/appendix.html> y sección 10.7 en *An introduction to R*. También ver `demo(scoping)`
+            
+```{r, eval = FALSE}
+x <- 1
+f <- function() x
+g <- function() { x <- 0; f() }
+g() # 1
+}
+```
+            
+```{r, eval = FALSE}
+f <- function() eval.parent(quote(x))
+g() # 0
+```
+
+Probad a quitar la función quote().
+
+En esto, R (lexical scope) y S-PLUS (static scope) son distintos.
+
+### Ejemplo 6. Control de ejecución
+
+Las principales instrucciones para el control de la ejecución son, como en otros lenguajes:
+            
+```{r, eval = FALSE}
+if(cond) expr
+if(cond) cons.expr  else  alt.expr
+for(var in seq) expr
+while(cond) expr
+repeat expr
+break
+next
+```
+
+La expresión `expr` (también `alt.expr`) puede ser una expresión simple o una de las llamadas expresiones compuestas, normalmente del tipo `{expr1; expr2}`. Uno de los errores más habituales es el olvido de los corchetes `{...}` alrededor de las instrucciones, i.e. después de `if(...)` o `for(...)`
+
+Instrucciones de condicionamiento con `if (cond.logica)` *instrucción* `else` *instrucción.alternativa*
+            
+```{r, eval = FALSE}
+FuncionPrueba4 <- function(x) {
+    if(x > 5) print("x > 5")
+    else {
+    y <- runif(1)
+    print(paste("y is ", y))
+    }
+    }
+```
+
+Instrucciones de condicionamiento con `ifelse` es una versión vectorizada 
+
+```{r, eval = FALSE}
+OddEven <- function(x) {
+    ifelse(x %% 2 == 1, "Odd", "Even")
+    }
+    
+mtf <- matrix(c(TRUE, FALSE, TRUE, TRUE), nrow = 2)
+ifelse(mtf, 0, 1)
+```
+
+Bucles `for (`*variable.loop* `in` *valores*`)` *instrucción*
+            
+```{r, eval = FALSE}
+    for(i in 1:10) cat("el valor de i es", i, "\n")
+    continue.loop <- TRUE
+    x <- 0
+    while(continue.loop) {
+    x <- x + 1
+    print(x)
+    if( x > 10) continue.loop <- FALSE
+      }
+```
+
+utilizaremos `break` para salir de un loop.
+
+### Cuando algo va mal en la ejecución de una función...
+
+Cuando se produce un error, podemos ejecutar `traceback()` que nos informará de la secuencia de llamadas antes del “crash” de nuestra función. Es útil cuando se producen mensajes de error incomprensibles. Cuando se producen errores o la función da resultados incorrectos o *warnings* indebidos podemos seguir la ejecución de la función.
+
+- `browser` interrumpe la ejecución a partir de ese punto y permite seguir la ejecución o examinar el entorno; con el comando **n** se sigue la ejecución paso a paso, y con cualquier otra tecla, sigue la ejecución normal. **Q** para salir.
+
+- `debug` es como poner un `browser` al principio de la función y se ejecuta la función paso a paso. Se sale con **Q**.
+            
+```{r, eval = FALSE,echo=FALSE}
+debug(my.buggy.function)
+# se hacen los cambios pertinentes
+undebug(my.buggy.function)
+```
+
+Por ejemplo
+    
+```{r, eval = FALSE}
+MiFuncion2 <- function(x, y) {
+      #browser()
+      z <- rnorm(10) + y2 <- z * y + y3 <- z * y * x + return(y3 + 25)
+    }
+    MiFuncion2(runif(3), 1:4)
+    debug(MiFuncion2)
+    MiFuncion2(runif(3), 1:4)
+    undebug(MiFuncion2)
+    # insertar un browser() y correr de nuevo
+```
+
+Un ejemplo más
+
+```{r, eval = FALSE, eval = FALSE}
+     d3 <- data.frame(g1=runif(10),g2=rnorm(10),
+     id1 = c(rep("a", 3), rep("b", 2),
+     rep("c", 2), rep("d", 3)))
+     
+     MiFuncion3 <- function(x) {
+    las.medias <- mean(x[, -3])
+    las.vars <- var(x[, -3])
+    max.total <- max(x[, -3])
+    tabla.clases <- table(x[, 3])
+    return(list(row.means = las.medias,
+    row.vars = las.vars, maximum = max.total,
+    factor.classes = tabla.clases))
+    }
+     MiFuncion3(d3)
+
+```
+
+
+### Ejecución no interactiva
+
+
+Con `source` abrimos una sesión de R y ejecutamos todo el código dentro un archivo determinado:
+```{r, eval = FALSE}
+source("mi.fichero.con.codigo.R")
+```
+
+Puede que necesitemos explícitos `print` statements o hacer `source(my.file.R, echo = TRUE)`. La función `sink` es el inverso de `source` (lo manda todo a un fichero). Se pueden crear paquetes, con nuestras funciones, que se comporten igual que los demás paquetes (ver *Writing R extensions*). Si ésta es tu intención te recomendamos utilizar Rstudio, ya que la creación de paquetes y la depuración de los mismos ha mejorado mucho en las últimas versiones. 
+
+Recuerda que R puede llamar código compilado en C/C++ y FORTRAN. Ver `.C`, `.Call`, `.Fortran`. El *Lexical scoping* es importante en programación más avanzada. R es un lenguaje orientado a objeto verdadero. El libro *Advanced R* o la [página web]http://adv-r.had.co.nz/) os darán una idea de los aspectos más avanzados de la programación OO en R.
+
+(Nota: no hemos mencionado el “computing on the language” (ej., `do.call`, `eval`, etc.).

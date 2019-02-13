@@ -1,0 +1,266 @@
+---
+title: "Representación gráfica"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+
+R incluye muchas y variadas funciones para hacer gráficos. El sistema permite desde gráficos muy simples a figuras de calidad para incluir en artículos y libros. Sólo examinaremos la superficie. Más detalles en el libro *R Graphics* de Paul Murrell o profundizar en el paquete [ggplot2](http://ggplot2.tidyverse.org/)
+
+También podemos ver un buen conjunto de ejemplos con `demo(graphics)`.
+
+### Ejemplo. El comando `plot`
+
+Si escribimos `plot(x,y)` donde $x$ e
+$y$ son vectores con $n$ coordenadas, entonces R representa
+el gráfico de dispersión con los puntos de coordenadas $(x_i,y_i)$.  Este comando incluye por defecto una elección automática de ejes,
+escalas, etiquetas de los ejes, densidad de las líneas, etc., que
+pueden ser modificados añadiendo parámetros gráficos al comando y que pueden visualizarse con `help(par)`.
+
+```{r, eval = FALSE}
+x <- runif(50, 0, 4)
+y <- runif(50, 0, 4)
+plot(x, y, main = "Título principal",
+     sub = "subtítulo", xlab = "eje x", ylab = "eje y",
+     xlim = c(0,5),ylim = c(0,5))
+```
+
+### Ejemplo. Variaciones de `plot`
+
+    
+```{r, eval = FALSE}
+z <- cbind(x,y)
+    plot(z)
+    plot(y ~ x)
+    plot(log(y + 1) ~ x) # transformación de y
+    plot(x, y, type = "p")
+    plot(x, y, type = "l")
+    plot(x, y, type = "b")
+    plot(c(1,5), c(1,5))
+
+    legend(1, 4, c("uno", "dos", "tres"), lty = 1:3,
+    col = c("red", "blue", "green"),
+    pch = 15:17, cex = 2)
+```
+
+Con `text` podemos representar caracteres de texto directamente:
+
+    
+```{r, eval = FALSE}
+sexo <- c(rep("v", 20), rep("m", 30))
+    plot(x, y, type = "n")
+    text(x, y, labels = sexo)
+```
+
+### Ejemplo. Puntos.
+    
+```{r, eval = FALSE}
+points(x, y, pch = 3, col = "red")
+```
+
+Tipos de puntos.
+
+    
+```{r, eval = FALSE}
+plot(c(1, 10), c(1, 3), type = "n", axes = FALSE, xlab = "", ylab="")
+    points(1:10, rep(1, 10), pch = 1:10, cex = 2, col = "blue")
+    points(1:10, rep(2, 10), pch = 11:20, cex = 2, col = "red")
+    points(1:10, rep(3, 10), pch = 21:25, cex = 2, col = "blue", bg = "yellow")
+```
+
+### Ejemplo. Líneas
+    
+```{r, eval = FALSE}
+plot(c(0, 10), c(0, 10), type = "n", xlab ="", ylab ="")
+    
+for(i in 1:10){
+  abline(0, i/5, lty = i, lwd = 2)
+}
+```
+
+`lty` permite especificaciones más complejas (longitud de los segmentos que son alternativamente dibujados y no dibujados). El parámetro `par` controla muchos parámetros gráficos. Por ejemplo, `cex` puede referirse a los *labels* (`cex.lab`), otro, `cex.axis`, a la anotación de los ejes, etc. Hay muchos más colores. Ver `palette`, `colors`.
+
+```{e, eval=FALSE}
+par(mar=c(0,0,0,0))
+plot(0, 0, type = "n", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, xlab = "", ylab = "")
+line=25
+col=5
+rect(  rep((0:(col - 1)/col),line) ,  sort(rep((0:(line - 1)/line),col),decreasing=T)   ,   rep((1:col/col),line) , sort(rep((1:line/line),col),decreasing=T),  border = "light gray" , col=colors()[seq(1,line*col)])
+text(rep((0:(col - 1)/col),line)+0.1 ,  sort(rep((0:(line - 1)/line),col),decreasing=T)+0.015 , colors()[seq(1,line*col)]  , cex=1)
+dev.off()
+```
+
+### Ejemplo. Identificación interactiva de datos
+
+La función `identify`$(x,y,\textit{etiquetas})$ identifica los puntos con el ratón y escribe la correspondiente etiqueta.
+        
+```{r, eval = FALSE}
+
+x <- runif(10)
+y <- rnorm(10)
+nombres <- paste("punto (", x, ",", y, ")",sep ="")
+plot(x, y)
+identify(x, y, labels = nombres)
+```
+
+`locator()` devuelve las coordenadas de los puntos.
+    
+```{r, eval = FALSE}
+plot(x, y)
+locator()
+text(locator(1), "el marcado", adj = 0)
+```
+
+### Ejemplo. Múltiples gráficos por ventana
+
+Empezamos con `par(mfrow=c(`*filas*,*columnas*`))` antes del comando `plot`.
+
+```{r, eval = FALSE}
+    par(mfrow = c(2, 2))
+    plot(rnorm(10))
+    plot(runif(5), rnorm(5))
+    plot(runif(10))
+    plot(rnorm(10), rnorm(10))
+```
+
+Podemos mostrar muchos gráficos en el mismo dispositivo gráfico. La
+función más flexible y sofisticada es `split.screen`, bien explicada
+en *R para principiantes*, secc. 4.1.2 (p. 30).
+
+```{r, eval=FALSE}
+set.seed(5)
+x <- rnorm(100, 50, 25)
+y <- -0.3*x^2 + 25*x + 92 + rnorm(100, sd=300)
+
+#______ Window With 2 Rows, Top Row In 2 Columns ______#
+split.screen(c(2,1)) # Makes Screen 1 and 2
+
+split.screen(c(1,2), screen=1) # Makes Screen 3 and 4
+
+#______ Output On Screen 2 ______#
+
+screen(2)
+plot(x,y)
+ 
+#______ Histograms on Screens 3 and 4 ______#
+screen(3)
+hist(x)
+screen(4)
+hist(y)
+```
+
+### Ejemplo. Datos multivariantes
+
+Un diagrama de dispersión múltiple:
+
+```{r, eval = FALSE}
+X <- matrix(rnorm(1000), ncol = 5)
+    colnames(X) <- c("a", "id", "edad", "loc", "weight")
+    pairs(X)
+```
+
+    
+Gráficos condicionados (revelan interacciones):
+
+```{r, eval = FALSE}
+    Y <- as.data.frame(X)
+    Y$sexo <- as.factor(c(rep("Macho", 80),
+    rep("Hembra", 120)))
+    coplot(weight ~ edad | sexo, data = Y)
+    coplot(weight ~ edad | loc, data = Y)
+    coplot(weight ~ edad | loc * sexo, data = Y)
+```
+
+
+La librería `lattice` permite lo mismo, y mucho más, que `coplot`. Ver secc. 4.6 de *R para principiantes*. Échale un vistazo a esta página [graphics-side-by-side](http://blog.revolutionanalytics.com/2009/07/lattice-and-ggplot-graphics-side-by-side.html) para realizar gráficos sofisticados en tus investigaciones.
+
+### Ejemplo. Boxplots sencillos.
+
+Los diagramas de caja son muy útiles para ver rápidamente las
+principales características de una variable cuantitativa, o comparar
+entre variables.
+
+```{r, eval = FALSE}
+rm(sexo)
+attach(Y)
+boxplot(weight)
+plot(sexo, weight)
+detach()
+boxplot(weight ~ sexo, data = Y, col = c("red", "blue"))
+```
+
+La función `boxplot` tiene muchas opciones; se puede modificar el
+aspecto, mostrarlos horizontalmente, en una matriz de boxplots, etc.
+Véase la ayuda `?boxplot`.
+
+### Ejemplo. Un poco de ruido
+
+Los datos cuantitativos discretos pueden ser difíciles de ver bien.
+Podemos añadir un poco de ruido con el comando `jitter`.
+
+    
+```{r, eval = FALSE}
+dc1 <- sample(1:5, 500, replace = TRUE)
+dc2 <- dc1 + sample(-2:2, 500, replace = TRUE, prob = c(1, 2, 3, 2, 1)/9)
+plot(dc1, dc2)
+plot(jitter(dc1), jitter(dc2))
+```
+
+### Ejemplo. Dibujando rectas
+
+Podemos añadir muchos elementos a un gráfico, además de leyendas y líneas rectas.
+
+```{r, eval = FALSE}
+x <- rnorm(50)
+y <- rnorm(50)
+plot(x, y)
+lines(lowess(x, y), lty = 2)
+plot(x, y)
+abline(lm(y ~ x), lty = 3)
+```
+
+Podemos añadir otros elementos con *panel functions* en otras funciones (como `pairs`, `lattice`, etc).
+
+### Nota. Más sobre gráficos
+
+Podemos modificar márgenes exteriores de figuras y entre figuras (véase `?par` y búsquense `oma`, `omi`, `mar`, `mai`; ejemplos en *An introduction to R*, secc. 12.5.3 y 12.5.4.
+
+También gráficos 3D: `persp`, `image`, `contour`; histogramas:
+`hist`; gráficos de barras: `barplot`; gráficos de comparación de
+cuantiles, usados para comparar la distribución de dos variables, o
+la disribución de unos datos frente a un estándar (ej., distribución
+normal): `qqplot`, `qqnorm` y, en paquete `car`, `qq.plot`.
+
+Si queremos usar notación matemática usaremos `plotmath` y expresiones de texto arbitrariamente complejas en las coordenadas `expression`
+
+```{r, eval=FALSE}
+x <- seq(-pi, pi, len = 65)
+plot(x, sin(x), type = "l", col = 2, xlab = expression(phi), ylab = expression(f(phi)))
+```
+
+
+Si lo que necesitas son gráficos tridimensionales dinámicos échale un vistazo a [esta web](http://moderndata.plot.ly/interactive-r-visualizations-with-d3-ggplot2-rstudio/)
+
+### Ejemplo. Guardar los gráficos
+
+Podemos usar los menús y guardar con distintos formatos. También podemos especificar donde queremos guardar el gráfico:
+
+```{r, eval = FALSE}
+pdf(file = "f1.pdf", width = 8, height = 10)
+plot(rnorm(10))
+dev.off()
+```
+
+O bien, podemos copiar una figura a un fichero.
+
+```{r, eval = FALSE}
+plot(runif(50))
+dev.copy2eps()
+```

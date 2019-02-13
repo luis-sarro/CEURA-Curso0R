@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Representación gráfica</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">0</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Curs-R-1.html">Introducción</a>
+</li>
+<li>
+  <a href="Curs-R-2.html">Estructuras de datos</a>
+</li>
+<li>
+  <a href="Curs-R-3.html">Lectura/Escritura de datos</a>
+</li>
+<li>
+  <a href="Curs-R-4.html">Representación gráfica</a>
+</li>
+<li>
+  <a href="Curs-R-5.html">Funciones</a>
+</li>
+<li>
+  <a href="Curs-R-6.html">Cuadernos en R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/header.png" alt="School Footer">
+
+</body>
+</html>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Representación gráfica</h1>
+
+</div>
+
+
+<p>R incluye muchas y variadas funciones para hacer gráficos. El sistema permite desde gráficos muy simples a figuras de calidad para incluir en artículos y libros. Sólo examinaremos la superficie. Más detalles en el libro <em>R Graphics</em> de Paul Murrell o profundizar en el paquete <a href="http://ggplot2.tidyverse.org/">ggplot2</a></p>
+<p>También podemos ver un buen conjunto de ejemplos con <code>demo(graphics)</code>.</p>
+<div id="ejemplo.-el-comando-plot" class="section level3">
+<h3>Ejemplo. El comando <code>plot</code></h3>
+<p>Si escribimos <code>plot(x,y)</code> donde <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> son vectores con <span class="math inline">\(n\)</span> coordenadas, entonces R representa el gráfico de dispersión con los puntos de coordenadas <span class="math inline">\((x_i,y_i)\)</span>. Este comando incluye por defecto una elección automática de ejes, escalas, etiquetas de los ejes, densidad de las líneas, etc., que pueden ser modificados añadiendo parámetros gráficos al comando y que pueden visualizarse con <code>help(par)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">4</span>)
+y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">4</span>)
+<span class="kw">plot</span>(x, y, <span class="dt">main =</span> <span class="st">&quot;Título principal&quot;</span>,
+     <span class="dt">sub =</span> <span class="st">&quot;subtítulo&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;eje x&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;eje y&quot;</span>,
+     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</code></pre></div>
+</div>
+<div id="ejemplo.-variaciones-de-plot" class="section level3">
+<h3>Ejemplo. Variaciones de <code>plot</code></h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">cbind</span>(x,y)
+    <span class="kw">plot</span>(z)
+    <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x)
+    <span class="kw">plot</span>(<span class="kw">log</span>(y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>x) <span class="co"># transformación de y</span>
+    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>)
+    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)
+    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)
+    <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>))
+
+    <span class="kw">legend</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="kw">c</span>(<span class="st">&quot;uno&quot;</span>, <span class="st">&quot;dos&quot;</span>, <span class="st">&quot;tres&quot;</span>), <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
+    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),
+    <span class="dt">pch =</span> <span class="dv">15</span><span class="op">:</span><span class="dv">17</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</code></pre></div>
+<p>Con <code>text</code> podemos representar caracteres de texto directamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sexo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;v&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;m&quot;</span>, <span class="dv">30</span>))
+    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)
+    <span class="kw">text</span>(x, y, <span class="dt">labels =</span> sexo)</code></pre></div>
+</div>
+<div id="ejemplo.-puntos." class="section level3">
+<h3>Ejemplo. Puntos.</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">points</span>(x, y, <span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p>Tipos de puntos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)
+    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
+    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">bg =</span> <span class="st">&quot;yellow&quot;</span>)</code></pre></div>
+</div>
+<div id="ejemplo.-lineas" class="section level3">
+<h3>Ejemplo. Líneas</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span><span class="st">&quot;&quot;</span>)
+    
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+  <span class="kw">abline</span>(<span class="dv">0</span>, i<span class="op">/</span><span class="dv">5</span>, <span class="dt">lty =</span> i, <span class="dt">lwd =</span> <span class="dv">2</span>)
+}</code></pre></div>
+<p><code>lty</code> permite especificaciones más complejas (longitud de los segmentos que son alternativamente dibujados y no dibujados). El parámetro <code>par</code> controla muchos parámetros gráficos. Por ejemplo, <code>cex</code> puede referirse a los <em>labels</em> (<code>cex.lab</code>), otro, <code>cex.axis</code>, a la anotación de los ejes, etc. Hay muchos más colores. Ver <code>palette</code>, <code>colors</code>.</p>
+<div class="sourceCode"><pre class="sourceCode e"><code class="sourceCode eiffel">par(mar=c(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+plot(<span class="dv">0</span>, <span class="dv">0</span>, type = <span class="st">&quot;n&quot;</span>, xlim = c(<span class="dv">0</span>, <span class="dv">1</span>), ylim = c(<span class="dv">0</span>, <span class="dv">1</span>), axes = FALSE, xlab = <span class="st">&quot;&quot;</span>, ylab = <span class="st">&quot;&quot;</span>)
+line=<span class="dv">25</span>
+col=<span class="dv">5</span>
+rect(  rep((<span class="dv">0</span>:(col - <span class="dv">1</span>)/col),line) ,  sort(rep((<span class="dv">0</span>:(line - <span class="dv">1</span>)/line),col),decreasing=T)   ,   rep((<span class="dv">1</span>:col/col),line) , sort(rep((<span class="dv">1</span>:line/line),col),decreasing=T),  border = <span class="st">&quot;light gray&quot;</span> , col=colors()[seq(<span class="dv">1</span>,line*col)])
+text(rep((<span class="dv">0</span>:(col - <span class="dv">1</span>)/col),line)+<span class="dv">0</span>.<span class="dv">1</span> ,  sort(rep((<span class="dv">0</span>:(line - <span class="dv">1</span>)/line),col),decreasing=T)+<span class="dv">0</span>.<span class="dv">015</span> , colors()[seq(<span class="dv">1</span>,line*col)]  , cex=<span class="dv">1</span>)
+dev.off()</code></pre></div>
+</div>
+<div id="ejemplo.-identificacion-interactiva-de-datos" class="section level3">
+<h3>Ejemplo. Identificación interactiva de datos</h3>
+<p>La función <code>identify</code><span class="math inline">\((x,y,\textit{etiquetas})\)</span> identifica los puntos con el ratón y escribe la correspondiente etiqueta.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)
+y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
+nombres &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;punto (&quot;</span>, x, <span class="st">&quot;,&quot;</span>, y, <span class="st">&quot;)&quot;</span>,<span class="dt">sep =</span><span class="st">&quot;&quot;</span>)
+<span class="kw">plot</span>(x, y)
+<span class="kw">identify</span>(x, y, <span class="dt">labels =</span> nombres)</code></pre></div>
+<p><code>locator()</code> devuelve las coordenadas de los puntos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y)
+<span class="kw">locator</span>()
+<span class="kw">text</span>(<span class="kw">locator</span>(<span class="dv">1</span>), <span class="st">&quot;el marcado&quot;</span>, <span class="dt">adj =</span> <span class="dv">0</span>)</code></pre></div>
+</div>
+<div id="ejemplo.-multiples-graficos-por-ventana" class="section level3">
+<h3>Ejemplo. Múltiples gráficos por ventana</h3>
+<p>Empezamos con <code>par(mfrow=c(</code><em>filas</em>,<em>columnas</em><code>))</code> antes del comando <code>plot</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
+    <span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))
+    <span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">5</span>), <span class="kw">rnorm</span>(<span class="dv">5</span>))
+    <span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">10</span>))
+    <span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
+<p>Podemos mostrar muchos gráficos en el mismo dispositivo gráfico. La función más flexible y sofisticada es <code>split.screen</code>, bien explicada en <em>R para principiantes</em>, secc. 4.1.2 (p. 30).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">5</span>)
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">25</span>)
+y &lt;-<span class="st"> </span><span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">25</span><span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="dv">92</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">sd=</span><span class="dv">300</span>)
+
+<span class="co">#______ Window With 2 Rows, Top Row In 2 Columns ______#</span>
+<span class="kw">split.screen</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)) <span class="co"># Makes Screen 1 and 2</span>
+
+<span class="kw">split.screen</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">screen=</span><span class="dv">1</span>) <span class="co"># Makes Screen 3 and 4</span>
+
+<span class="co">#______ Output On Screen 2 ______#</span>
+
+<span class="kw">screen</span>(<span class="dv">2</span>)
+<span class="kw">plot</span>(x,y)
+ 
+<span class="co">#______ Histograms on Screens 3 and 4 ______#</span>
+<span class="kw">screen</span>(<span class="dv">3</span>)
+<span class="kw">hist</span>(x)
+<span class="kw">screen</span>(<span class="dv">4</span>)
+<span class="kw">hist</span>(y)</code></pre></div>
+</div>
+<div id="ejemplo.-datos-multivariantes" class="section level3">
+<h3>Ejemplo. Datos multivariantes</h3>
+<p>Un diagrama de dispersión múltiple:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">ncol =</span> <span class="dv">5</span>)
+    <span class="kw">colnames</span>(X) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;id&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;loc&quot;</span>, <span class="st">&quot;weight&quot;</span>)
+    <span class="kw">pairs</span>(X)</code></pre></div>
+<p>Gráficos condicionados (revelan interacciones):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    Y &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(X)
+    Y<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Macho&quot;</span>, <span class="dv">80</span>),
+    <span class="kw">rep</span>(<span class="st">&quot;Hembra&quot;</span>, <span class="dv">120</span>)))
+    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y)
+    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>loc, <span class="dt">data =</span> Y)
+    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>loc <span class="op">*</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y)</code></pre></div>
+<p>La librería <code>lattice</code> permite lo mismo, y mucho más, que <code>coplot</code>. Ver secc. 4.6 de <em>R para principiantes</em>. Échale un vistazo a esta página <a href="http://blog.revolutionanalytics.com/2009/07/lattice-and-ggplot-graphics-side-by-side.html">graphics-side-by-side</a> para realizar gráficos sofisticados en tus investigaciones.</p>
+</div>
+<div id="ejemplo.-boxplots-sencillos." class="section level3">
+<h3>Ejemplo. Boxplots sencillos.</h3>
+<p>Los diagramas de caja son muy útiles para ver rápidamente las principales características de una variable cuantitativa, o comparar entre variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(sexo)
+<span class="kw">attach</span>(Y)
+<span class="kw">boxplot</span>(weight)
+<span class="kw">plot</span>(sexo, weight)
+<span class="kw">detach</span>()
+<span class="kw">boxplot</span>(weight <span class="op">~</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</code></pre></div>
+<p>La función <code>boxplot</code> tiene muchas opciones; se puede modificar el aspecto, mostrarlos horizontalmente, en una matriz de boxplots, etc. Véase la ayuda <code>?boxplot</code>.</p>
+</div>
+<div id="ejemplo.-un-poco-de-ruido" class="section level3">
+<h3>Ejemplo. Un poco de ruido</h3>
+<p>Los datos cuantitativos discretos pueden ser difíciles de ver bien. Podemos añadir un poco de ruido con el comando <code>jitter</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dc1 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">500</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+dc2 &lt;-<span class="st"> </span>dc1 <span class="op">+</span><span class="st"> </span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">2</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">500</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)<span class="op">/</span><span class="dv">9</span>)
+<span class="kw">plot</span>(dc1, dc2)
+<span class="kw">plot</span>(<span class="kw">jitter</span>(dc1), <span class="kw">jitter</span>(dc2))</code></pre></div>
+</div>
+<div id="ejemplo.-dibujando-rectas" class="section level3">
+<h3>Ejemplo. Dibujando rectas</h3>
+<p>Podemos añadir muchos elementos a un gráfico, además de leyendas y líneas rectas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)
+y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)
+<span class="kw">plot</span>(x, y)
+<span class="kw">lines</span>(<span class="kw">lowess</span>(x, y), <span class="dt">lty =</span> <span class="dv">2</span>)
+<span class="kw">plot</span>(x, y)
+<span class="kw">abline</span>(<span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x), <span class="dt">lty =</span> <span class="dv">3</span>)</code></pre></div>
+<p>Podemos añadir otros elementos con <em>panel functions</em> en otras funciones (como <code>pairs</code>, <code>lattice</code>, etc).</p>
+</div>
+<div id="nota.-mas-sobre-graficos" class="section level3">
+<h3>Nota. Más sobre gráficos</h3>
+<p>Podemos modificar márgenes exteriores de figuras y entre figuras (véase <code>?par</code> y búsquense <code>oma</code>, <code>omi</code>, <code>mar</code>, <code>mai</code>; ejemplos en <em>An introduction to R</em>, secc. 12.5.3 y 12.5.4.</p>
+<p>También gráficos 3D: <code>persp</code>, <code>image</code>, <code>contour</code>; histogramas: <code>hist</code>; gráficos de barras: <code>barplot</code>; gráficos de comparación de cuantiles, usados para comparar la distribución de dos variables, o la disribución de unos datos frente a un estándar (ej., distribución normal): <code>qqplot</code>, <code>qqnorm</code> y, en paquete <code>car</code>, <code>qq.plot</code>.</p>
+<p>Si queremos usar notación matemática usaremos <code>plotmath</code> y expresiones de texto arbitrariamente complejas en las coordenadas <code>expression</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span>pi, pi, <span class="dt">len =</span> <span class="dv">65</span>)
+<span class="kw">plot</span>(x, <span class="kw">sin</span>(x), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">xlab =</span> <span class="kw">expression</span>(phi), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">f</span>(phi)))</code></pre></div>
+<p>Si lo que necesitas son gráficos tridimensionales dinámicos échale un vistazo a <a href="http://moderndata.plot.ly/interactive-r-visualizations-with-d3-ggplot2-rstudio/">esta web</a></p>
+</div>
+<div id="ejemplo.-guardar-los-graficos" class="section level3">
+<h3>Ejemplo. Guardar los gráficos</h3>
+<p>Podemos usar los menús y guardar con distintos formatos. También podemos especificar donde queremos guardar el gráfico:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">file =</span> <span class="st">&quot;f1.pdf&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">10</span>)
+<span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))
+<span class="kw">dev.off</span>()</code></pre></div>
+<p>O bien, podemos copiar una figura a un fichero.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">50</span>))
+<span class="kw">dev.copy2eps</span>()</code></pre></div>
+</div>
+
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/Footnote.png" alt="School Footer">
+
+</body>
+</html>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

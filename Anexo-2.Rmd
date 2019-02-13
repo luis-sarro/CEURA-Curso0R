@@ -1,0 +1,15 @@
+Instalación de paquetes adicionales
+-----------------------------------
+Si al revisar los paquetes que existen en las [CRAN Task Views](http://cran.r-project.org/web/views/) te interesara probar o trabajar con alguno, deberás instalarlo utilizando el método más adecuado dependiendo de tu sistema operativo:
+  
+- Windows:
+  - Desde el menú **Packages -> Install package(s)...**, primero nos pide seleccionar el ''CRAN mirror''.
+  - Desde R, con `install.packages()` como en GNU/Linux.
+  - Desde una ''ventana del sistema'' o desde **Inicio-Ejecutar...** `RCMD INSTALL paquete`
+  - Desde la *interface* de XEmacs.
+
+- GNU-Linux o Macintosh:
+  - Mediante consola  `R CMD INSTALL paquete-x.y.z.tar.gz`. Permite instalar aunque uno no sea root (especificar el dir)
+  - Más cómodo, desde R: `install.packages()`, `update.packages()`, etc. También permiten instalar si no eres root (especificar `lib.loc`).
+  
+Con **RStudio** se puede utilizar ''Install Packages'' en la pestaña **Packages** del panel inferior derecho.

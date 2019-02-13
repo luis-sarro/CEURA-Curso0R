@@ -1,0 +1,382 @@
+\section{Datos}
+
+\subsection{Lectura de datos}
+
+\begin{itemize}
+    \item Para leer un fichero simple, con los datos separados
+    por espacios en blanco, tabuladores o saltos de línea, se
+    utiliza la instrucción \verb"read.table" en la forma:
+    \begin{verbatim}
+    > fichero.df <- read.table("c:/dir/mi.fichero",
+    + header = TRUE, sep = "",
+    + comment.char = "")
+    \end{verbatim}
+
+    \item Si el carácter decimal no es un punto sino, por ej.,
+    una coma, usar: \verb[dec = ","[.
+
+    \item Se pueden saltar líneas (\verb"skip") o leer un número
+    fijo de líneas (\verb"nrows").
+
+    \item Hay funciones especializadas para otros archivos
+    (ej., \verb"read.csv") pero son casos específicos de \verb"read.table".
+
+\end{itemize}
+
+\newslide
+
+\subsection{Guardar y leer datos}
+
+\begin{itemize}
+    \item Resulta muy importante poder guardar datos, funciones, etc., para
+    ser usados en otras sesiones de R. Esos datos así guardados pueden
+    compartirse con otros usuarios e incluso utilizarse en distintos
+    sistemas operativos.
+    \begin{verbatim}
+    > x <- runif(20)
+    > y <- list(a = 1, b = TRUE, c = "patata")
+    > save(x, y, file = "xy.RData")
+    \end{verbatim}
+    \item Los leeremos con
+    \begin{verbatim}
+    > load("xy.RData")
+    \end{verbatim}
+
+\newslide
+
+    \item Podemos guardar todos los objetos con
+    \begin{verbatim}
+    > save.image() # guardado como ".RData"
+    > save.image(file = "nombre.RData")
+    \end{verbatim}
+    \item  El fichero \verb".RData" se carga al iniciarse R.
+    
+    \item R y muchos otros paquetes incorporan archivos con datos:
+
+    Se cargan con \verb[load("nombre.RData")[.
+
+    \item La instrucción \verb"data" permite cargar archivos
+    de las librerías disponibles.
+    \begin{verbatim}
+    > data() # muestra todos los archivos
+    > data(iris)
+    > data(iris, package = "base") # equivalente
+    > ?iris
+    \end{verbatim}
+\end{itemize}
+
+\subsection{Importar datos de Excel}
+
+\begin{itemize}
+    \item Lo mejor es exportar los datos desde Excel a un archivo
+    de texto separado por tabuladores.
+    \item Cuidado con las últimas columnas y \emph{missing data}
+    (Excel elimina los ``trailing tabs''). Dos formas de minimizar
+    problemas: \begin{itemize}
+        \item Usar \verb"NA" para missing.
+        \item Poner una última columna con datos arbitrarios (ej.,
+        una columna llena de 2s).
+    \end{itemize}
+    \item Cuidado también con líneas extra al final del fichero.
+    \item Salvamos como texto (sólo salvamos una de las hojas).
+    \item Importamos en R con \verb"read.table".
+\end{itemize}
+
+\newslide
+
+\subsection{Exportar datos}
+
+\begin{itemize}
+    \item Lo más sencillo es exportar una matriz
+
+    (es necesario transponer la matriz).
+    \begin{verbatim}
+    > write(t(x), file = "c:/dir/data.txt",
+    +       ncolumns = n,
+    +       append = FALSE)
+    \end{verbatim}
+
+    \item Pero para exportar un \verb"data.frame" es mejor
+    \begin{verbatim}
+    > write.table(my.data.frame,
+    +       file = "mi.output.txt",
+    +       sep = "",row.names = FALSE,
+    +       col.names = TRUE)
+    \end{verbatim}
+    \item  Para escribir un fichero CSV importable desde Excel
+    \begin{verbatim}
+    >  write.table(x, file = "foo.csv", sep = ",",
+    +              col.names = NA)
+    \end{verbatim}
+\end{itemize}
+
+%\newslide
+
+
+
+\section{Gráficos}
+
+\subsection{Introducción}
+
+\begin{itemize}
+\item R incluye muchas y variadas funciones para hacer gráficos.
+\item El sistema permite desde gráficos muy simples a figuras de
+calidad para incluir en artículos y libros.
+\item Sólo examinaremos la superficie. Más detalles en el libro \emph{R Graphics} de Paul Murrell.
+\item También podemos ver un buen conjunto de ejemplos con \verb"demo(graphics)".
+\item El comando \verb"plot" es uno de los más utilizados para realizar gráficos.
+\end{itemize}
+
+\newslide
+
+\subsection{El comando \texttt{plot}}
+
+\begin{itemize}
+\item Si escribimos \verb"plot"$(\mathbf{x},\mathbf{y})$ donde $\mathbf{x}$ e $\mathbf{y}$ son vectores con $n$ coordenadas, entonces R representa el gráfico de dispersión
+con los puntos de coordenadas $(x_i,y_i)$.
+\item Este comando incluye por defecto una elección automática de ejes,
+escalas, etiquetas de los ejes, densidad de las líneas, etc., que pueden
+ser modificados añadiendo parámetros gráficos al comando y que pueden
+visualizarse con \verb"help(par)".
+\begin{verbatim}
+> x <- runif(50, 0, 4); y <- runif(50, 0, 4)
+> plot(x, y, main = "Título principal",
++ sub = "subtítulo", xlab = "eje x", ylab = "eje y",
++ xlim = c(-5,5),ylim = c (-5,5))
+\end{verbatim}
+
+\newslide
+
+\item Variaciones de \verb"plot":
+\begin{verbatim}
+> z <- cbind(x,y)
+> plot(z)
+> plot(y ~ x)
+> plot(log(y + 1) ~ x) # transformación de y
+> plot(x, y, type = "p")
+> plot(x, y, type = "l")
+> plot(x, y, type = "b")
+> plot(c(1,5), c(1,5))
+> legend(1, 4, c("uno", "dos", "tres"), lty = 1:3,
++ col = c("red", "blue", "green"),
++ pch = 15:17, cex = 2)
+\end{verbatim}
+\item Con \verb"text" podemos representar caracteres de texto directamente:
+\begin{verbatim}
+> sexo <- c(rep("v", 20), rep("m", 30))
+> plot(x, y, type = "n")
+> text(x, y, labels = sexo)
+\end{verbatim}
+
+\newslide
+
+\item Puntos.
+\begin{verbatim}
+> points(x, y, pch = 3, col = "red")
+\end{verbatim}
+\item Tipos de puntos.
+\begin{verbatim}
+> plot(c(1, 10), c(1, 3), type = "n", axes = FALSE,
++      xlab = "", ylab="")
+> points(1:10, rep(1, 10), pch = 1:10, cex = 2, col = "blue")
+> points(1:10, rep(2, 10), pch = 11:20, cex = 2, col = "red")
+> points(1:10, rep(3, 10), pch = 21:30, cex = 2,
++        col = "blue", bg = "yellow")
+\end{verbatim}
+\item Tipos de líneas.
+\begin{verbatim}
+> plot(c(0, 10), c(0, 10), type = "n", xlab ="",
++ ylab ="")
+> for(i in 1:10)
++ abline(0, i/5, lty = i, lwd = 2)
+> for(i in 1:10)
++ abline(0, i/5, lty = i, lwd = 2)
+\end{verbatim}
+
+\newslide
+
+\item \verb"lty" permite especificaciones más complejas
+(longitud de los segmentos que son alternativamente dibujados y no dibujados).
+\item \verb"par" controla muchos parámetros gráficos.
+Por ejemplo, \verb"cex" puede referirse a los ``labels'' (\verb"cex.lab"),
+otro, \verb"cex.axis", a la anotación de los ejes, etc.
+\item Hay muchos más colores. Ver \verb"palette", \verb"colors".
+
+\end{itemize}
+
+\newslide
+
+\subsection{Identificación interactiva de datos}
+
+\begin{itemize}
+\item \verb"identify"$(x,y,\textit{etiquetas})$ identifica los puntos con el ratón
+y escribe la correspondiente etiqueta.
+\begin{verbatim}
+> x <- 1:10
+> y <- sample(1:10)
+> nombres <- paste("punto", x, ".", y, sep ="")
+> plot(x, y)
+> identify(x, y, labels = nombres)
+\end{verbatim}
+\item \verb"locator()" devuelve las coordenadas de los puntos.
+\begin{verbatim}
+> plot(x, y)
+> locator()
+> text(locator(1), "el marcado", adj = 0)
+\end{verbatim}
+\end{itemize}
+
+\newslide
+
+\subsection{Múltiples gráficos por ventana}
+
+\begin{itemize}
+\item Empezamos con \verb"par(mfrow=c("\textit{filas},\textit{columnas}\verb"))"
+antes del comando \verb"plot".
+\begin{verbatim}
+> par(mfrow = c(2, 2))
+> plot(rnorm(10))
+> plot(runif(5), rnorm(5))
+> plot(runif(10))
+> plot(rnorm(10), rnorm(10))
+\end{verbatim}
+\item Podemos mostrar muchos gráficos en el mismo dispositivo gráfico.
+La función más flexible y sofisticada es \verb"split.screen",
+bien explicada en \emph{R para principiantes}, secc. 4.1.2 (p. 30).
+\end{itemize}
+
+\newslide
+
+\subsection{Datos multivariantes}
+
+\begin{itemize}
+\item Diagrama de dispersión múltiple.
+\begin{verbatim}
+> X <- matrix(rnorm(1000), ncol = 5)
+> colnames(X) <- c("a", "id", "edad", "loc",
++ "weight")
+> pairs(X)
+\end{verbatim}
+\item Gráficos condicionados (revelan interacciones).
+\begin{verbatim}
+> Y <- as.data.frame(X)
+> Y$sexo <- as.factor(c(rep("Macho", 80),
++ rep("Hembra", 120)))
+> coplot(weight ~ edad | sexo, data = Y)
+> coplot(weight ~ edad | loc, data = Y)
+> coplot(weight ~ edad | loc * sexo, data = Y)
+\end{verbatim}
+\item La librería \verb"lattice" permite lo mismo, y mucho más, que
+\verb"coplot". Ver secc. 4.6 de \emph{R para principiantes}.
+\end{itemize}
+
+\newslide
+
+\subsection{Boxplots}
+
+\begin{itemize}
+\item Los diagramas de caja son muy útiles para ver rápidamente
+las principales características de una variable cuantitativa,
+o comparar entre variables.
+\begin{verbatim}
+> attach(Y)
+> boxplot(weight)
+> plot(sexo, weight)
+> detach()
+> boxplot(weight ~ sexo, data = Y,
++ col = c("red", "blue"))
+\end{verbatim}
+\item La función \verb"boxplot" tiene muchas opciones;
+se puede modificar el aspecto, mostrarlos horizontalmente,
+en una matriz de boxplots, etc. Véase la ayuda \verb"?boxplot".
+\end{itemize}
+
+\newslide
+
+\subsection{Un poco de ruido}
+
+Los datos cuantitativos discretos pueden ser difíciles de ver bien.
+Podemos añadir un poco de ruido con el comando \verb"jitter".
+\begin{verbatim}
+> dc1 <- sample(1:5, 500, replace = TRUE)
+> dc2 <- dc1 + sample(-2:2, 500, replace = TRUE,
++ prob = c(1, 2, 3, 2, 1)/9)
+> plot(dc1, dc2)
+> plot(jitter(dc1), jitter(dc2))
+\end{verbatim}
+
+\newslide
+
+\subsection{Dibujar rectas}
+
+\begin{itemize}
+\item Podemos añadir muchos elementos a un gráfico, además
+de leyendas y líneas rectas.
+\begin{verbatim}
+> x <- rnorm(50)
+> y <- rnorm(50)
+> plot(x, y)
+> lines(lowess(x, y), lty = 2)
+> plot(x, y)
+> abline(lm(y ~ x), lty = 3)
+\end{verbatim}
+\item Podemos añadir otros elementos con ``panel functions''
+en otras funciones (como \verb"pairs", \verb"lattice", etc).
+\end{itemize}
+
+\newslide
+
+\subsection{Más gráficos}
+
+\begin{itemize}
+\item Podemos modificar márgenes exteriores de figuras y entre
+figuras (véase \verb"?par" y búsquense \verb"oma", \verb"omi",
+\verb"mar", \verb"mai"; ejemplos en \emph{An introduction to R},
+secc. 12.5.3 y 12.5.4.
+
+\item También gráficos 3D: \verb"persp", \verb"image",
+\verb"contour"; histogramas: \verb"hist"; gráficos de barras:
+\verb"barplot"; gráficos de comparación de cuantiles, usados para
+comparar la distribución de dos variables, o la disribución de
+unos datos frente a un estándar (ej., distribución normal):
+\verb"qqplot", \verb"qqnorm" y, en paquete \verb"car",
+\verb"qq.plot".
+
+\item Notación matemática (\verb"plotmath") y expresiones de texto
+arbitrariamente complejas.
+
+\item Gráficos tridimensionales dinámicos con XGobi y GGobi. Ver:
+\url{http://cran.r-project.org/src/contrib/Descriptions/xgobi.html},
+\url{http://www.ggobi.org},
+\url{http://www.mcs.vuw.ac.nz/~ray/R-stuff/windows/gguide.pdf}.
+\end{itemize}
+
+\newslide
+
+\subsection{Guardar los gráficos}
+
+\begin{itemize}
+\item En Windows, podemos usar los menús y guardar con distintos
+formatos.
+
+\item También podemos especificar donde queremos guardar el
+gráfico.
+\begin{verbatim}
+> pdf(file = "f1.pdf", width = 8, height = 10)
+> plot(rnorm(10))
+> dev.off()
+\end{verbatim}
+
+\item O bien, podemos copiar una figura a un fichero.
+\begin{verbatim}
+> plot(runif(50))
+> dev.copy2eps()
+\end{verbatim}
+
+\end{itemize}
+
+\newslide
+
+
+
+\endinput

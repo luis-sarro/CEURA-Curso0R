@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Introducción y conceptos básicos</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">0</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Curs-R-1.html">Introducción</a>
+</li>
+<li>
+  <a href="Curs-R-2.html">Estructuras de datos</a>
+</li>
+<li>
+  <a href="Curs-R-3.html">Lectura/Escritura de datos</a>
+</li>
+<li>
+  <a href="Curs-R-4.html">Representación gráfica</a>
+</li>
+<li>
+  <a href="Curs-R-5.html">Funciones</a>
+</li>
+<li>
+  <a href="Curs-R-6.html">Cuadernos en R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/header.png" alt="School Footer">
+
+</body>
+</html>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introducción y conceptos básicos</h1>
+
+</div>
+
+
+<p>Este curso está basado en el documento <a href="http://www.ub.edu/stat/docencia/EADB/Curso%20basico%20de%20R.pdf"><em>Curso básico de R</em></a> del profesor Francesc Carmona del Departamento de Estadística de la Universitat de Barcelona y en su transformación en un <a href="https://ocw.uca.es/course/view.php?id=62"><em>sitio web</em></a> mediante RMarkDown de <a href="https://scholar.google.com/citations?user=WUt1yTQAAAAJ&amp;hl=en">Ángel Berihuete</a>.</p>
+<p>El objetivo principal del mismo es proporcionar los elementos básicos para empezar a trabajar con el lenguaje de programación R en el ámbito de la Ciencia de Datos. Está enfocado a estudiantes sin conocimientos previos de programación. Todo comentario para la mejora del texto (en fondo y forma) será gratamente bienvenido.</p>
+<div id="por-que-elegir-r-en-lugar-de-s-matlab-python-spss-etc.-etc.-etc." class="section level2">
+<h2>¿Por qué elegir R en lugar de S, Matlab, Python, SPSS, etc., etc., etc.?</h2>
+<p>Esta es una de las primeras preguntas que te plantearás cuando comiences a trabajar en el área. Actualmente (año 2019) hay <a href="http://en.wikipedia.org/wiki/Comparison_of_statistical_packages">gran cantidad de software</a> que podría ser válido para realizar las tareas propias del área sobre tus datos. Sin embargo, no todo ese software es libre/gratuito, ni está mantenido (con actualizaciones periódicas) de forma continua por un grupo sólido de investigadores/desarrolladores, o no es multiplataforma (lo puedes utilizar en sistemas GNU-Linux, MacOSX o Windows). Desde esta perspectiva, recomendaríamos especialmente dos lenguajes de programación: R y Python.</p>
+<p>Este curso se centrará en R, cuyos mayores atractivos son:</p>
+<ul>
+<li>R es gratuito. Puede utilizarse en sistemas operativos GNU-Linux, MacOSX o Windows.</li>
+<li>R tiene un excelente sistema de ayuda.</li>
+<li>R tiene un excelente sistema gráfico.</li>
+<li>Los estudiantes pueden migrar fácilmente de software comercial (SPSS, Statgraphics, S-Plus) a R.</li>
+<li>R posee un sistema de programación muy potente, incluyendo funciones estadísticas pre-instaladas en el programa.</li>
+<li><p>Los usuarios de R pueden ampliar el potencial del programa utilizando funciones programadas por ellos mismos. Sin embargo no todo es bueno. Los mayores inconvenientes que encontrarás en el uso de R son:</p></li>
+<li>Tiene una <em>interface</em> gráfica muy limitada. Esto significa que será <em>duro</em>, al principio, aprender a utilizar la <em>consola de comandos</em>. Para mejorar este aspecto existen varios IDE que facilitan mucho la labor del programador o científico. En este curso vamos a mostrar uno de ellos: <a href="https://www.rstudio.com/"><em>RStudio</em></a>.</li>
+<li><p>No hay soporte comercial. Sin embargo, las listas de distribución suelen aportar más y mejor ayuda que el servicio técnico de los programas.</p></li>
+</ul>
+<p>Todo el software necesario para trabajar con R se puede encontrar en <a href="http://cran.es.r-project.org/bin" class="uri">http://cran.es.r-project.org/bin</a>. Una vez allí, elige el archivo para instalar de acuerdo a la arquitectura de tu ordenador. R consta de un sistema base y de paquetes adicionales que extienden su funcionalidad. Puedes encontrar una lista de dichos paquetes en <a href="http://cran.es.r-project.org/web/packages/" class="uri">http://cran.es.r-project.org/web/packages/</a>.</p>
+</div>
+<div id="como-iniciamos-una-sesion" class="section level2">
+<h2>¿Cómo iniciamos una sesión?</h2>
+<p>Como hemos dicho antes, R es un programa multiplataforma y en general se ejecutará de forma distinta en cada uno de los ordenadores:</p>
+<ul>
+<li><p>Windows: (i) Hacer doble-click en el icono. Se abrirá <code>Rgui.exe</code>. (ii) Desde una “ventana del sistema” ejecutar <code>Rterm.exe</code>.</p></li>
+<li><p>GNU-Linux: Escribir “R” en una shell.</p></li>
+<li><p>Macintosh: (i) Escribir “R” en una shell. (ii) Hacer doble-click en el icono en la carpeta de Aplicaciones.</p></li>
+</ul>
+<p>Existe la posibilidad también de utilizar algún entorno integrado de desarrollo (EID) o IDE (del inglés, Integrated Development Environment) para R, por ejemplo Rstudio (también multiplataforma), que ejecutará R en un entorno más amigable. En cualquier caso, se puede adaptar el inicio de una sesión en R (ej., qué paquetes se cargan, mensajes, etc.). Ver sección 10.8 en <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf"><em>An introduction to R</em></a>.</p>
+<p>A continuación os exponemos una sesión inicial con cálculos estadísticos básicos. Podéis cortar y pegar el código en vuestra terminal/consola de R o RStudio. Observad además que el símbolo # indica el principio de un comentario, es decir, esa línea no se ejecutará.</p>
+</div>
+<div id="ejemplos" class="section level2">
+<h2>Ejemplos</h2>
+<div id="ejemplo-1.-r-como-calculadora" class="section level3">
+<h3>Ejemplo 1. R como calculadora</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="dv">2</span><span class="op">+</span><span class="dv">2</span>
+    <span class="kw">sqrt</span>(<span class="dv">10</span>)
+    <span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">5</span>
+    <span class="co"># Intereses sobre 1000 euros</span>
+    <span class="dv">1000</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span><span class="fl">0.075</span>)<span class="op">^</span><span class="dv">5</span> <span class="op">-</span><span class="st"> </span><span class="dv">1000</span>
+    <span class="co"># R conoce pi</span>
+    pi
+    <span class="co"># Circunferencia de la Tierra en el Ecuador en km</span>
+    <span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="dv">6378</span>
+    <span class="co"># Convertimos ángulos a radianes y luego calculamos el seno</span>
+    <span class="kw">sin</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">45</span>,<span class="dv">60</span>,<span class="dv">90</span>)<span class="op">*</span>pi<span class="op">/</span><span class="dv">180</span>)</code></pre></div>
+</div>
+<div id="ejemplo-2.-una-sesion-con-elementos-estadisticos" class="section level3">
+<h3>Ejemplo 2. Una sesión con elementos estadísticos</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># 5 números aleatorios de una distribución normal de media 0 y desviación típica 1</span>
+        <span class="kw">rnorm</span>(<span class="dv">5</span>, <span class="dt">mean=</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+    <span class="co"># asignamos unos números a un objeto (un vector) x</span>
+        x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5</span>) 
+    <span class="co"># muestra un resumen de x (un summary &quot;inteligente&quot;)</span>
+    <span class="kw">summary</span>(x) 
+    <span class="co"># o también:</span>
+   w &lt;-<span class="st"> </span><span class="kw">summary</span>(x)
+   w
+   <span class="kw">print</span>(w) <span class="co"># escribir w y print(w) produce el mismo resultado</span>
+   ## summary(x) TAMBIÉN es un objeto.</code></pre></div>
+</div>
+<div id="ejemplo-3.-ayuda-dentro-del-programa" class="section level3">
+<h3>Ejemplo 3. Ayuda dentro del programa</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rnorm
+<span class="kw">help</span>(rnorm)
+<span class="co"># más fácil ?rnorm</span>
+?rnorm             
+<span class="kw">help.start</span>()
+<span class="co"># ?help.search</span>
+?help.search       
+<span class="kw">help.search</span>(<span class="st">&quot;normal&quot;</span>)
+<span class="co"># ?apropos</span>
+?apropos           
+<span class="kw">apropos</span>(<span class="st">&quot;normal&quot;</span>)
+<span class="co"># ?demo</span>
+?demo              
+<span class="kw">demo</span>(graphics) 
+<span class="kw">demo</span>(persp)
+<span class="kw">demo</span>(lm.glm)</code></pre></div>
+<p>Pero… ¡cuidado!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="cf">if</span> <span class="co"># mal</span>
+<span class="kw">help</span>(<span class="st">&quot;if&quot;</span>) <span class="co"># bien</span></code></pre></div>
+</div>
+<div id="ejemplo-4.-un-ejemplo-un-poco-mas-avanzado" class="section level3">
+<h3>Ejemplo 4. Un ejemplo un poco más avanzado</h3>
+<p>No os preocupéis: los elementos de este ejemplo los iremos desgranando a lo largo de este curso 0 o en módulos posteriores.</p>
+<p>Sea <span class="math inline">\(X\)</span> una variable aleatoria con distribución exponencial de parámetro <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(X_1,X_2,\dots,X_n\)</span> una muestra aleatoria simple. Se sabe que la distribución de la variable aleatoria <span class="math inline">\(Z\)</span> definida como <span class="math inline">\(Z=n\cdot\min\{X_1,X_2,\dots,X_n\}\)</span> es exponencial de parámetro <span class="math inline">\(\alpha\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Definimos los parámetros de la distribución exponencial</span>
+     alpha &lt;-<span class="st"> </span><span class="fl">0.01</span>; n &lt;-<span class="st"> </span><span class="dv">50</span> 
+<span class="co"># Ahora vamos a generar m muestras y a almacenarlas como filas de una matriz</span>
+     m &lt;-<span class="st"> </span><span class="dv">1000</span>
+     datos &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rexp</span>(n <span class="op">*</span><span class="st"> </span>m, alpha), <span class="dt">ncol=</span>n)
+<span class="co"># Ahora definimos una función llamada fz que calcula la variable aleatoria Z para cada muestra</span>
+     fz &lt;-<span class="st"> </span><span class="cf">function</span>(x) n<span class="op">*</span><span class="kw">min</span>(x)
+<span class="co"># Y se la aplicamos a nuestras m muestras</span>
+     z &lt;-<span class="st"> </span><span class="kw">apply</span>(datos,<span class="dv">1</span>,fz)
+     <span class="kw">mean</span>(z) <span class="co"># debe ser 1/alpha=100 aprox</span>
+    
+     <span class="kw">hist</span>(z,<span class="dt">freq=</span>F)
+     x &lt;-<span class="st"> </span><span class="kw">seq</span> (<span class="dv">0</span>,<span class="kw">max</span>(z),<span class="dt">length.out=</span><span class="dv">100</span>)
+     <span class="kw">lines</span>(x,<span class="kw">dexp</span>(x,<span class="dt">rate=</span>alpha))
+    
+     <span class="kw">ks.test</span>(z,<span class="st">&quot;pexp&quot;</span>,alpha)</code></pre></div>
+</div>
+</div>
+<div id="por-que-usar-r-desde-un-editor" class="section level2">
+<h2>¿Por qué usar R desde un editor?</h2>
+<p>Cuando trabajes con colaboradores será muy importante que compartas no sólo tus resultados, sino también el código con el que los has obtenido. De esta forma estarás dando toda la información sobre tu investigación de manera reproducible (<a href="http://iai.asm.org/content/78/12/4972.full" class="uri">http://iai.asm.org/content/78/12/4972.full</a>). Para crear el código R que utilizarás en tu investigación necesitarás un editor de texto.</p>
+<p>Existen editores de texto que se han especializado para trabajar de forma cómoda con el lenguaje de progrmación R. Ten en cuenta que el uso de scripts y el mantenimiento del código ordenado y comentado es una “buena práctica estadística”. Para todo ello es muy recomendable leer [<strong>la guía de estilo de Google</strong>] (<a href="https://google.github.io/styleguide/Rguide.xml" class="uri">https://google.github.io/styleguide/Rguide.xml</a>) o alternativas.</p>
+<p>Algunos editores de texto te ayudarán con los colores de sintaxis, la compleción de paréntesis, etc. Nuestra recomendación es que utilices un editor de texto que sea multiplataforma (sobre todo si trabajas con otros investigadores), y cuya interfaz pueda utilizarse además para otros paquetes estadísticos (ej., SAS, XLispStat, Arc, etc.), numéricos (ej., Octave) o procesador de texto (LaTeX).</p>
+<p>A los usuarios de R nos gusta mucho <a href="http://www.rstudio.com/">Rstudio</a>, y es muy recomendable para principiantes. Si eres programador en otros lenguajes (como Python o LaTeX) una buena opción sería <a href="http://www.sublimetext.com/">Sublime Tex</a>, pero este último es de pago. La alternativa es <a href="http://www.xemacs.org/">XEmacs</a> con su versión para estadística <a href="http://ess.r-project.org/">ESS</a>, aunque no es muy conocido para los usuarios de Windows (mejor con las modificaciones de J. Fox).</p>
+<p>En el entorno Windows también se utiliza mucho <a href="https://sourceforge.net/projects/tinn-r">Tinn-R</a> y <a href="https://cran.r-project.org/web/packages/RWinEdt/index.html">R-WinEdt</a>.</p>
+</div>
+
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/Footnote.png" alt="School Footer">
+
+</body>
+</html>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

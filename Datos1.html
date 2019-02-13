@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Vectores</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">0</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Curs-R-1.html">Introducción</a>
+</li>
+<li>
+  <a href="Curs-R-2.html">Estructuras de datos</a>
+</li>
+<li>
+  <a href="Curs-R-3.html">Lectura/Escritura de datos</a>
+</li>
+<li>
+  <a href="Curs-R-4.html">Representación gráfica</a>
+</li>
+<li>
+  <a href="Curs-R-5.html">Funciones</a>
+</li>
+<li>
+  <a href="Curs-R-6.html">Cuadernos en R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/header.png" alt="School Footer">
+
+</body>
+</html>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Vectores</h1>
+
+</div>
+
+
+<div id="ejemplo-1.-generacion-de-secuencias" class="section level3">
+<h3>Ejemplo 1. Generación de secuencias</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; y &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>
+<span class="dv">1</span><span class="op">:</span><span class="dv">4</span><span class="op">+</span><span class="dv">1</span>
+<span class="dv">1</span><span class="op">:</span>(<span class="dv">4</span><span class="op">+</span><span class="dv">1</span>)
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">18</span>, <span class="dt">by =</span> <span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">18</span>, <span class="dt">length =</span> <span class="dv">30</span>)
+y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">along =</span> x)
+z2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">seq</span>(<span class="dt">from=</span><span class="op">-</span><span class="dv">7</span>,<span class="dt">to=</span><span class="dv">5</span>,<span class="dt">by=</span><span class="dv">2</span>))
+<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+<span class="kw">rep</span>(x, <span class="dv">2</span>)
+y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>)
+<span class="kw">rep</span>(x, y)
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))
+<span class="kw">rep</span>(x, x)
+<span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">8</span>)
+<span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">5</span>) <span class="co"># como rep(1:3, rep(5, 3))</span>
+<span class="kw">gl</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">20</span>) <span class="co"># ¡Alerta! gl genera factores</span>
+<span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Sano&quot;</span>, <span class="st">&quot;Enfermo&quot;</span>, <span class="st">&quot;Muerto&quot;</span>))
+<span class="kw">expand.grid</span>(<span class="dt">edad =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">25</span>), <span class="dt">sexo =</span> <span class="kw">c</span>(<span class="st">&quot;Macho&quot;</span>, <span class="st">&quot;Hembra&quot;</span>), <span class="dt">loc =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<p>Podemos combinar: <code>z3 &lt;- c(1:5, rep(8, 3))</code></p>
+</div>
+<div id="ejemplo-2.-generacion-de-secuencias-aleatorias" class="section level3">
+<h3>Ejemplo 2. Generación de secuencias aleatorias</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x=</span><span class="dv">5</span>)
+<span class="kw">sample</span>(<span class="dt">x=</span><span class="dv">5</span>, <span class="dt">size=</span><span class="dv">3</span>)
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+<span class="kw">sample</span>(x)
+<span class="kw">sample</span>(x, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+<span class="kw">sample</span>(x, <span class="dt">size =</span> <span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x), <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+probs &lt;-<span class="st"> </span>x<span class="op">/</span><span class="kw">sum</span>(x)
+muestra &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dt">size=</span> <span class="dv">100</span>, <span class="dt">replace=</span>T, <span class="dt">prob =</span> probs)
+<span class="kw">hist</span>(muestra)</code></pre></div>
+<p>Números aleatorios <code>rDistribución(n,parámetros)</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="co"># rnorm(10, mean = 0,sd = 1)</span>
+<span class="kw">runif</span>(<span class="dv">8</span>,<span class="dt">min=</span><span class="dv">2</span>,<span class="dt">max=</span><span class="dv">10</span>)</code></pre></div>
+</div>
+<div id="ejemplo-3.-seleccion-de-elementos-de-un-vector" class="section level3">
+<h3>Ejemplo 3. Selección de elementos de un vector</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
+x[<span class="dv">1</span>]
+x[<span class="dv">3</span>]
+x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]
+x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>]
+x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
+y &lt;-<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
+x[y]
+x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)]
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)
+x[y]
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;patata&quot;</span>)
+x[<span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;patata&quot;</span>)]</code></pre></div>
+</div>
+<div id="ejemplo-4.-valores-ausentes" class="section level3">
+<h3>Ejemplo 4. Valores ausentes</h3>
+<p><code>NA</code> es el código de ‘Not available’.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="ot">NA</span>)
+<span class="kw">is.na</span>(v)
+<span class="kw">which</span>(<span class="kw">is.na</span>(v))
+w &lt;-<span class="st"> </span>v[<span class="op">!</span><span class="kw">is.na</span>(v)] <span class="co"># sin los valores perdidos</span>
+v <span class="op">==</span><span class="st"> </span><span class="ot">NA</span> <span class="co"># !No funciona! ¿Por qué?</span></code></pre></div>
+<p>Si es necesario podemos sustituir <code>NA</code> por, p.ej. <code>0</code>, con la instrucción</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v[<span class="kw">is.na</span>(v)] &lt;-<span class="st"> </span><span class="dv">0</span></code></pre></div>
+<p>Cuidado, el infinito y <code>NaN</code> (‘not a number’) son diferentes de <code>NA</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>
+<span class="op">-</span><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>
+<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
+<span class="kw">is.infinite</span>(<span class="op">-</span><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>)
+<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
+<span class="kw">is.na</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">0</span>)</code></pre></div>
+<p>Con algunas funciones puede especificarse qué hacer con los valores perdidos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xna &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">4</span>)
+<span class="kw">mean</span>(xna)
+<span class="kw">mean</span>(xna, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Además para funciones de modelado de datos o ‘modelling functions’ (por ejemplo <code>lm</code>) lo mejor es usar <code>na.omit</code> o <code>na.exclude</code>. Esta última es más conveniente para generar predicciones, residuos, etc.</p>
+<p>Si queremos eliminar todos los <code>NA</code>:</p>
+<p><code>r   XNA &lt;- matrix(c(1,2,NA,3,NA,4), nrow = 3)   XNA   X.no.na &lt;- na.omit(XNA)</code></p>
+</div>
+<div id="ejemplo-5.-ordenacion-de-vectores" class="section level3">
+<h3>Ejemplo 5. Ordenación de vectores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">3</span>)
+<span class="kw">order</span>(x1)
+<span class="kw">sort</span>(x1)
+<span class="kw">rev</span>(x1)
+<span class="kw">rank</span>(x1)
+x1[<span class="kw">order</span>(x1)]
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>); <span class="kw">rank</span>(x2)
+<span class="kw">min</span>(x1) 
+<span class="kw">which.min</span>(x1) 
+<span class="kw">which</span>(x1 <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(x1))
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>); <span class="kw">order</span>(y, x1)</code></pre></div>
+<p><code>order</code> y <code>sort</code> admiten <code>decreasing = TRUE</code>.</p>
+</div>
+<div id="ejemplo-6.-vectores-de-caracteres" class="section level3">
+<h3>Ejemplo 6. Vectores de caracteres</h3>
+<p>Otras funciones de manipulación de caracteres:</p>
+<p><code>r   codigos &lt;- paste(c(&quot;A&quot;, &quot;B&quot;), 2:3, sep = &quot;&quot;)   codigos &lt;- paste(c(&quot;A&quot;, &quot;B&quot;), 2:3, sep = &quot;.&quot;)   juntar &lt;- paste(c(&quot;una&quot;, &quot;frase&quot;, &quot;simple&quot;), collapse =&quot; &quot;)   columna.a &lt;- LETTERS[1:5]; columna.b &lt;- 10:15   juntar &lt;- paste(columna.a, columna.b, sep =&quot;&quot;)   substr(&quot;abcdef&quot;,2,4) # Seleccionar subcadenas    x &lt;- paste(LETTERS[1:5], collapse=&quot;&quot;)   substr(x, 3, 5) &lt;- &quot;uv&quot; # Sustituir subcadenas   print(x)   x &lt;- paste(LETTERS[1:5], collapse=&quot;&quot;)   substr(x, 3, 4) &lt;- &quot;uvs&quot; # ¡Cuidado!   print(x)</code></p>
+<p>Más funciones: <code>nchar</code>, <code>grep</code>, <code>match</code>, <code>pmatch</code>, <code>tolower</code>, <code>toupper</code>, <code>sub</code>, <code>gsub</code>, <code>regexpr</code>.</p>
+</div>
+<div id="ejemplo-7.-factores" class="section level3">
+<h3>Ejemplo 7. Factores</h3>
+<p>Consideremos una secuencia de códigos postales:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codigo.postal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28430</span>, <span class="dv">28016</span>, <span class="dv">28034</span>)
+<span class="kw">mode</span>(codigo.postal)</code></pre></div>
+<p>No deberíamos usar el código postal en, por ejemplo, un ANOVA como si fuera un vector numérico. Usar variables <em>aparentemente</em> numéricas en análisis estadísticos es un grave error. Por tanto, debemos transformar dicha variable a un factor (automaticamente se generarán los niveles del mismo)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codigo.postal &lt;-<span class="st"> </span><span class="kw">factor</span>(codigo.postal) <span class="co"># mejor</span>
+<span class="kw">mode</span>(codigo.postal)</code></pre></div>
+<p>Si queremos convertir un vector factor en numérico:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
+x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">2</span>)
+<span class="kw">aov</span>(y <span class="op">~</span><span class="st"> </span>x) <span class="co"># ¡no es lo que queremos!</span>
+<span class="kw">aov</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">factor</span>(x)) <span class="co"># mejor</span>
+
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">89</span>, <span class="dv">1000</span>)
+y &lt;-<span class="st"> </span><span class="kw">factor</span>(x)
+y
+<span class="kw">as.numeric</span>(y) <span class="co"># mal. los valores han sido recodificados</span>
+<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(y)) <span class="co"># bien</span></code></pre></div>
+<p>Podemos fijar el orden de las etiquetas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>))
+ftr1
+ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>))
+ftr1</code></pre></div>
+</div>
+
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<img src="images/Footnote.png" alt="School Footer">
+
+</body>
+</html>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

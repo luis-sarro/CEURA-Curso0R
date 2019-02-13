@@ -1,0 +1,19 @@
+name: "Curso 0: Introducción a R - CEURA"
+navbar:
+  title: "0"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Introducción"
+      href: Curs-R-1.html
+    - text: "Estructuras de datos"
+      href: Curs-R-2.html
+    - text: "Lectura/Escritura de datos"
+      href: Curs-R-3.html
+    - text: "Representación gráfica"
+      href: Curs-R-4.html
+    - text: "Funciones"
+      href: Curs-R-5.html
+    - text: "Cuadernos en R"
+      href: Curs-R-6.html
+output_dir: "."      

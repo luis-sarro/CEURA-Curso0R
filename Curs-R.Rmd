@@ -1,0 +1,24 @@
+Curso de R básico
+=================
+  
+**Francesc Carmona** 
+
+<fcarmona@ub.edu> 
+
+Departamento de Estadística. Universidad de Barcelona
+
+**Angel Berihuete** 
+
+<angel.berihuete@uca.es> 
+
+Departamento de Estadística e Investigación Operativa. Universidad de Cádiz.
+
+Contenido
+---------
+
+- [Introducción](Curs-R-1.html)
+- [Gestión de datos](Curs-R-2.html)
+- [Gráficos](Plots.html)
+- [Funciones y programación](Curs-R-4.html)
+- [Documentación sobre R](Anexo-1.html)
+- [Instalación de paquetes adicionales](Anexo-2.html)

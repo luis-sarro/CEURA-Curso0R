@@ -1,0 +1,34 @@
+---
+title: "Listas"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      before_body: [header.html]
+      after_body: [footer.html]
+---
+
+
+Las listas pueden contener cada uno de los conjuntos definidos anteriormente:
+
+
+```{r, eval = FALSE}
+     attributes(una.lista); names(una.lista)
+     length(una.lista)
+     una.lista[[4]]
+     una.lista[4] # ¿por qué sale el nombre? class
+     una.lista$factor.classes
+     una.lista[[3]] <- list(NULL); una.lista
+     una.lista[[3]] <- NULL
+     una.lista # hemos eliminado el "slot" una.matriz
+     unlist(una.lista)
+     otra.lista <- list(cucu = 25, una.lista)
+     unlist(otra.lista)
+     unlist(otra.lista, recursive = FALSE)
+     una.lista <- c(una.lista, otro.elemento = "una frase")
+
+```
+
