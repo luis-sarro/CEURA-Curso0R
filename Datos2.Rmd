@@ -56,6 +56,14 @@ im
 a4[im] # Se interpreta que cada fila de im es una indexación de a4
 ```
 
+¡Muy útil! A veces necesitamos saber qué elementos de una matriz cumplen una condición. Ya hemos visto el uso de la función *which* con vectores. ¿Cómo opera en matrices?
+
+```{r, eval = FALSE}
+which(a4 > 10) # Mmmmm No era lo que esperaba
+which(a4 > 10, arr.ind=T) ¡Ahora sí!      
+```
+
+
 ### Ejemplo 1. Explicitar los nombres de las filas y columnas.
 
 ```{r, eval = FALSE}
@@ -136,3 +144,15 @@ a9 <- matrix(rnorm(30), nrow = 5)
 cbind(a4, a9)
 rbind(a4, a9) # no funciona
 ```
+
+### Ejercicios propuestos
+
+20. Cree un vector que contenga 120 números enteros aleatorios entre 1 y 10. Con ellos, cree una matriz de dimensiones 10x12 y un array de dimensiones 5x6x4.
+21. Sustituya los valores de la matriz creada en 20. que superen el umbral de 5 por valores ausentes.
+22. Reordene la tercera dimensión del array creado en 20. de manera que la suma de todos los elementos de cada subarray 2D sea creciente.
+23. Cree una matriz cuadrada $A$ de 100 elementos con valores generados a partir de una normal (Gaussiana) estándar (de media 0 y desviación estándar 1). Calcule sus autovalores y autovectores.
+24. Cree una matriz diagonal con los autovalores obtenidos en 23. 
+25. Demuestre que el producto de la matriz creada en 20. por su inversa es la matriz identidad.
+26. Cree un vector $b$ de dimensión 10 con valores aleatorios muestreados de la normal estándar y resuelva el sistema lineal de ecuaciones $A\cdot x= b$. Compruebe el resultado.
+
+

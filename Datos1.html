@@ -26,7 +26,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
+<style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -62,29 +62,7 @@ code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Doc
 code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
 code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-
 </style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -141,14 +119,8 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
-}
-summary {
-  display: list-item;
 }
 </style>
 
@@ -164,6 +136,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -183,43 +156,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -241,77 +177,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -500,8 +377,7 @@ y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">5</
 <span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">8</span>)
 <span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">5</span>) <span class="co"># como rep(1:3, rep(5, 3))</span>
 <span class="kw">gl</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">20</span>) <span class="co"># ¡Alerta! gl genera factores</span>
-<span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Sano&quot;</span>, <span class="st">&quot;Enfermo&quot;</span>, <span class="st">&quot;Muerto&quot;</span>))
-<span class="kw">expand.grid</span>(<span class="dt">edad =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">25</span>), <span class="dt">sexo =</span> <span class="kw">c</span>(<span class="st">&quot;Macho&quot;</span>, <span class="st">&quot;Hembra&quot;</span>), <span class="dt">loc =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Sano&quot;</span>, <span class="st">&quot;Enfermo&quot;</span>, <span class="st">&quot;Muerto&quot;</span>))</code></pre></div>
 <p>Podemos combinar: <code>z3 &lt;- c(1:5, rep(8, 3))</code></p>
 </div>
 <div id="ejemplo-2.-generacion-de-secuencias-aleatorias" class="section level3">
@@ -578,7 +454,18 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</sp
 <div id="ejemplo-6.-vectores-de-caracteres" class="section level3">
 <h3>Ejemplo 6. Vectores de caracteres</h3>
 <p>Otras funciones de manipulación de caracteres:</p>
-<p><code>r   codigos &lt;- paste(c(&quot;A&quot;, &quot;B&quot;), 2:3, sep = &quot;&quot;)   codigos &lt;- paste(c(&quot;A&quot;, &quot;B&quot;), 2:3, sep = &quot;.&quot;)   juntar &lt;- paste(c(&quot;una&quot;, &quot;frase&quot;, &quot;simple&quot;), collapse =&quot; &quot;)   columna.a &lt;- LETTERS[1:5]; columna.b &lt;- 10:15   juntar &lt;- paste(columna.a, columna.b, sep =&quot;&quot;)   substr(&quot;abcdef&quot;,2,4) # Seleccionar subcadenas    x &lt;- paste(LETTERS[1:5], collapse=&quot;&quot;)   substr(x, 3, 5) &lt;- &quot;uv&quot; # Sustituir subcadenas   print(x)   x &lt;- paste(LETTERS[1:5], collapse=&quot;&quot;)   substr(x, 3, 4) &lt;- &quot;uvs&quot; # ¡Cuidado!   print(x)</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codigos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+codigos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)
+juntar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;una&quot;</span>, <span class="st">&quot;frase&quot;</span>, <span class="st">&quot;simple&quot;</span>), <span class="dt">collapse =</span><span class="st">&quot; &quot;</span>)
+columna.a &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]; columna.b &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">15</span>
+juntar &lt;-<span class="st"> </span><span class="kw">paste</span>(columna.a, columna.b, <span class="dt">sep =</span><span class="st">&quot;&quot;</span>)
+<span class="kw">substr</span>(<span class="st">&quot;abcdef&quot;</span>,<span class="dv">2</span>,<span class="dv">4</span>) <span class="co"># Seleccionar subcadenas </span>
+x &lt;-<span class="st"> </span><span class="kw">paste</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)
+<span class="kw">substr</span>(x, <span class="dv">3</span>, <span class="dv">5</span>) &lt;-<span class="st"> &quot;uv&quot;</span> <span class="co"># Sustituir subcadenas</span>
+<span class="kw">print</span>(x)
+x &lt;-<span class="st"> </span><span class="kw">paste</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)
+<span class="kw">substr</span>(x, <span class="dv">3</span>, <span class="dv">4</span>) &lt;-<span class="st"> &quot;uvs&quot;</span> <span class="co"># ¡Cuidado!</span>
+<span class="kw">print</span>(x)</code></pre></div>
 <p>Más funciones: <code>nchar</code>, <code>grep</code>, <code>match</code>, <code>pmatch</code>, <code>tolower</code>, <code>toupper</code>, <code>sub</code>, <code>gsub</code>, <code>regexpr</code>.</p>
 </div>
 <div id="ejemplo-7.-factores" class="section level3">
@@ -605,6 +492,35 @@ y
 ftr1
 ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>))
 ftr1</code></pre></div>
+<p>A la inversa, podemos querer transformar un vector numérico en una variable categórica por discretización de los valores. Por ejemplo, una variable edad en varios intervalos…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edad &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">90</span>)
+bloque.edad &lt;-<span class="st"> </span><span class="kw">cut</span>(edad, <span class="dt">breaks=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">18</span>,<span class="dv">23</span>,<span class="dv">67</span>,<span class="dv">90</span>))
+<span class="kw">is.factor</span>(bloque.edad)</code></pre></div>
+</div>
+<div id="ejercicios-propuestos" class="section level3">
+<h3>Ejercicios propuestos</h3>
+<p><em>Muy importante: id guardando el código que resuelve estos ejercicios para su posterior reutilización.</em></p>
+<ol style="list-style-type: decimal">
+<li>Cree una secuencia de valores numéricos entre 1970 y 2019 que representen los años correspondientes</li>
+<li>Cree una secuencia de 1001 valores numéricos entre 0 y 1</li>
+<li>Cree un vector de 14 cadenas de texto que reproduzca los días de la semana (de lunes a domingo) de dos semanas consecutivas.</li>
+<li>Cree un vector numérico en el que cada número entero <code>n</code> entre 3 y 7 se repita <code>n</code> veces: 333444455555 etc</li>
+<li>Cree un vector de factores que contenga 25 valores del conjunto “transacción”,“devolución” y “anulación” en este orden.</li>
+<li>Cree un vector que muestree aleatoriamente 100 valores del vector creado en 2. sin repeticiones</li>
+<li>Cree un vector de longitud 50 que muestree aleatoriamente el vector creado en 5. permitiendo repeticiones</li>
+<li>Cree un vector de longitud 10 a partir del vector creado en 1. en el que la probabilidad de repetición de cada elemento original sea proporcional al tiempo transcurrido desde 1970).</li>
+<li>Cree un vector numérico que contenga 15 números reales aleatorios entre 1970 y 2019</li>
+<li>Cree un vector numérico de 100 valores generados a partir de una distribución normal (Gaussiana) centrada en 1.4 y con desviación estándar 0.5</li>
+<li>Almacene en un vector distinto los elementos impares del vector creado en 10.</li>
+<li>Imprima sólo los valores del vector creado en 10. superiores a la media más 3 veces el valor de la desviación estándar.</li>
+<li>Almacene en un vector numérico los índices del vector creado en 10. que cumplan la condición de encontrarse a menos de una desviación estándar de la media.</li>
+<li>Sustituya los valores del vector creado en 10. que estén a más de 3 desviaciones estándar de la media por valores ausentes.</li>
+<li>Calcule la media y la suma de los valores del vector creado en 14.</li>
+<li>Ordene de mayor a menor los valores del vector creado en 10.</li>
+<li>Cree un vector de cadenas de caracteres de longitud 100 que contenga una muestra aleatoria de las categorías enumeradas en el ejercicio 5. y reordene dicho vector de acuerdo a la reordenación de los índices que transforma el vector creado en 10. en uno ordenado de menor a mayor.</li>
+<li>Convierta el vector creado en 1. de numérico a factor.</li>
+<li>Cree un vector de factores categorizando los valores del vector creado en 10. según se encuentren en intervalos de anchura la desviación estándar comenzando en la media.</li>
+</ol>
 </div>
 
 <html>

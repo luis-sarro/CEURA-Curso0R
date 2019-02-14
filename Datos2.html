@@ -26,7 +26,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
+<style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -62,29 +62,7 @@ code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Doc
 code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
 code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-
 </style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -141,14 +119,8 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
-}
-summary {
-  display: list-item;
 }
 </style>
 
@@ -164,6 +136,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -183,43 +156,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -241,77 +177,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -505,6 +382,9 @@ a4[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">im &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
 im
 a4[im] <span class="co"># Se interpreta que cada fila de im es una indexación de a4</span></code></pre></div>
+<p>¡Muy útil! A veces necesitamos saber qué elementos de una matriz cumplen una condición. Ya hemos visto el uso de la función <em>which</em> con vectores. ¿Cómo opera en matrices?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(a4 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># Mmmmm No era lo que esperaba</span>
+<span class="kw">which</span>(a4 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, <span class="dt">arr.ind=</span>T) ¡Ahora sí<span class="op">!</span><span class="st">      </span></code></pre></div>
 <div id="ejemplo-1.-explicitar-los-nombres-de-las-filas-y-columnas." class="section level3">
 <h3>Ejemplo 1. Explicitar los nombres de las filas y columnas.</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">190</span>,<span class="dv">8</span>,<span class="dv">22</span>,<span class="dv">191</span>,<span class="dv">4</span>,<span class="fl">1.7</span>,<span class="dv">223</span>,<span class="dv">80</span>,<span class="dv">2</span>,<span class="dv">210</span>,<span class="dv">50</span>,<span class="dv">3</span>)
@@ -572,6 +452,18 @@ a9 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw"
 
 <span class="kw">cbind</span>(a4, a9)
 <span class="kw">rbind</span>(a4, a9) <span class="co"># no funciona</span></code></pre></div>
+</div>
+<div id="ejercicios-propuestos" class="section level3">
+<h3>Ejercicios propuestos</h3>
+<ol start="20" style="list-style-type: decimal">
+<li>Cree un vector que contenga 120 números enteros aleatorios entre 1 y 10. Con ellos, cree una matriz de dimensiones 10x12 y un array de dimensiones 5x6x4.</li>
+<li>Sustituya los valores de la matriz creada en 20. que superen el umbral de 5 por valores ausentes.</li>
+<li>Reordene la tercera dimensión del array creado en 20. de manera que la suma de todos los elementos de cada subarray 2D sea creciente.</li>
+<li>Cree una matriz cuadrada de 100 elementos con valores generados a partir de una normal (Gaussiana) estándar (de media 0 y desviación estándar 1). Calcule sus autovalores y autovectores.</li>
+<li>Cree una matriz diagonal con los autovalores obtenidos en 23.</li>
+<li>Demuestre que el producto de la matriz creada en 20. por su inversa es la matriz identidad.</li>
+<li>Cree un vector <span class="math inline">\(b\)</span> de dimensión 10 con valores aleatorios muestreados de la normal estándar.</li>
+</ol>
 </div>
 
 <html>
