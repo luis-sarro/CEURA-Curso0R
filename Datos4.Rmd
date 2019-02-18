@@ -16,19 +16,29 @@ Las listas pueden contener cada uno de los conjuntos definidos anteriormente:
 
 
 ```{r, eval = FALSE}
-     attributes(una.lista); names(una.lista)
+una.lista <- list(x=seq(1,10,by=0.2),
+                  y=rnorm(10), 
+                  z=data.frame(a=c("lunes","miércoles","viernes"), b=c(1,2,3), c=c(1.1,3.4,5.1)),
+                  v=cut(rnorm(199),breaks = seq(-10,10,length.out = 21)))
+     attributes(una.lista); 
+     names(una.lista)
      length(una.lista)
      una.lista[[4]]
-     una.lista[4] # ¿por qué sale el nombre? class
-     una.lista$factor.classes
-     una.lista[[3]] <- list(NULL); una.lista
+     una.lista[4] 
+     una.lista$z
+     una.lista[[3]] <- list(NULL) # Una lista puede contener una lista, claro
+     una.lista
      una.lista[[3]] <- NULL
-     una.lista # hemos eliminado el "slot" una.matriz
-     unlist(una.lista)
-     otra.lista <- list(cucu = 25, una.lista)
-     unlist(otra.lista)
-     unlist(otra.lista, recursive = FALSE)
+     una.lista # hemos eliminado el "slot" z
+     ul <- unlist(una.lista)
+     typeof(ul)
+     w <- list(a=c("lunes","miércoles","viernes"), b=c(1,2,3), c=c(1.1,3.4,5.1))
+     otra.lista <- list(w, una.lista)
+     ul <- unlist(otra.lista)
+     ul2 <- unlist(otra.lista, recursive = FALSE) # Descend below the first level?
      una.lista <- c(una.lista, otro.elemento = "una frase")
 
 ```
 
+### Ejercicios propuestos
+33. Cree una lista que combine un factor, un data.frame, una matriz y un array. A continuación, almacene cada uno de los componentes en una variable separada e inspeccione el tipo de dichas variables.

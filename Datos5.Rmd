@@ -16,7 +16,7 @@ Para saber los objetos que hemos definido hacemos
 ```{r, eval = FALSE}
              ls()
              objects()
-             objects(pattern="a*")
+             objects(pattern=glob2rx("o*")) # pattern puede contener expresiones regulares pero ¡cuidado! los wildcards requieren traducción a través de glob2rx
 
 ```
 
@@ -100,7 +100,7 @@ search() # el search path
 detach(datos.df)
 attach(datos.df)
 D
-A # cuidado
+A # ¡cuidado! En search() aparece primero el .GlobalEnv
 ```
 
 Conclusión: En “entornos confusos”, como un análisis que se prolonga dos semanas, es mejor evitar `attach` y acceder siempre a las variables usando su localización explícita y completa.
@@ -139,8 +139,7 @@ de un objeto definido: (i)  Modo (`mode`) o tipo básico (vector o array: lógic
   is.function(f1)
 ```
 
-Nombres para los objetos
-------------------------
+### Nombres para los objetos
 
 Los nombres válidos para un objeto son combinaciones de letras, números y el punto '.'. Los nombres no pueden empezar con un número. R es 'case-sensitive', es decir, la variable `x` es distinta de la variable  `X`. Hay nombres reservados ('function', 'if', etc.). Otras consideraciones:
   
@@ -153,8 +152,8 @@ Los nombres válidos para un objeto son combinaciones de letras, números y el p
 x <- 1:5 # Estilo correcto
 ```
 
-Operaciones aritméticas
------------------------
+### Operaciones aritméticas
+
 
 ¡Recuerda! las operaciones con vectores mejoran el uso de bucles (en tiempo y memoria). Las principales operaciones aritméticas:
 
@@ -177,8 +176,8 @@ Operaciones aritméticas
   which.max(presidents) # 2
 ```
 
-Operadores lógicos
-------------------
+### Operadores lógicos
+
 
 R es capaz de trabajar con los operadores lógicos habituales en otros lenguajes de progrmación. Destacamos:
 
@@ -246,13 +245,8 @@ setdiff(w, v)
 setdiff(v, w)
 ```
 
-
-
-
-
-En resumen
-----------
-
+### En resumen
+ 
 -   La manipulación de datos en R es muy flexible.
 -   Podemos seleccionar variables, casos, subsecciones de datos, etc, de acuerdo con criterios arbitrarios (que usan, además, condiciones que pueden implicar a un número arbitrario de variables y casos).
 -   Los data.frames y las matrices pueden separarse, juntarse, cambiarse de forma (`reshape`), etc.
@@ -260,3 +254,11 @@ En resumen
 -   Podemos preparar código que repita las mismas operaciones con datos semejantes (i.e., podemos automatizar el proceso con sencillez).
 -   Podemos verificar 'al vuelo' que estas transformaciones hacen lo que queremos que hagan (mirando selectivamente los resultados, o 'emulando' el proceso en unos datos artificiales más pequeños).
 -   Por tanto, una vez que los datos están en R, no hay muchas razones para exportarlos y hacer la selección y manipulación con otros lenguajes (ej., Python, Perl) para luego volver a leerlos en R.
+
+### Ejercicios propuestos
+
+34. Busque la ayuda de pmin y de cummin. ¿Qué nos permiten hacer las variantes (p)aralelas o a(cum)ulativas de las funciones clásicas?
+35. 
+36. 
+37. 
+38. 
