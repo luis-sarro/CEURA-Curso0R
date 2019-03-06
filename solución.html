@@ -11,7 +11,7 @@
 
 
 
-<title>Anexo-2.utf8.md</title>
+<title>solución.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -315,24 +315,67 @@ $(document).ready(function () {
 </div>
 
 
-<div id="instalacion-de-paquetes-adicionales" class="section level2">
-<h2>Instalación de paquetes adicionales</h2>
-<p>Si al revisar los paquetes que existen en las <a href="http://cran.r-project.org/web/views/">CRAN Task Views</a> te interesara probar o trabajar con alguno, deberás instalarlo utilizando el método más adecuado dependiendo de tu sistema operativo:</p>
-<ul>
-<li>Windows:
-<ul>
-<li>Desde el menú <strong>Packages -&gt; Install package(s)…</strong>, primero nos pide seleccionar el ‘’CRAN mirror’’.</li>
-<li>Desde R, con <code>install.packages()</code> como en GNU/Linux.</li>
-<li>Desde una ‘’ventana del sistema’’ o desde <strong>Inicio-Ejecutar…</strong> <code>RCMD INSTALL paquete</code></li>
-<li>Desde la <em>interface</em> de XEmacs.</li>
-</ul></li>
-<li>GNU-Linux o Macintosh:
-<ul>
-<li>Mediante consola <code>R CMD INSTALL paquete-x.y.z.tar.gz</code>. Permite instalar aunque uno no sea root (especificar el dir)</li>
-<li>Más cómodo, desde R: <code>install.packages()</code>, <code>update.packages()</code>, etc. También permiten instalar si no eres root (especificar <code>lib.loc</code>).</li>
-</ul></li>
-</ul>
-<p>Con <strong>RStudio</strong> se puede utilizar ‘’Install Packages’’ en la pestaña <strong>Packages</strong> del panel inferior derecho.</p>
+<div id="ceura-curso0r" class="section level1">
+<h1>CEURA-Curso0R</h1>
+<p>Curso 0 de R para Máster de Data Science de CEURA</p>
+<p>Con el conjunto de datos sunspots, realizar el siguiente ejercicio:</p>
+<ol style="list-style-type: decimal">
+<li>Representar gráficamente la serie temporal de manchas solares.</li>
+</ol>
+<pre class="r"><code>plot(sunspots)</code></pre>
+<p>sunspots es una serie temporal (una de las muchas estructuras de datos que no hemos podido explicar en este curso) que contiene de manera implícita una definición del punto inicial y del punto final de la serie. Se asume que las medidas están equiespaciadas.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Crear otra serie temporal en la que cada valor original sea sustituido por la media de los 5 puntos anteriores y los 5 puntos posteriores. Si faltan puntos al comienzo o al final de la serie temporal original, no importa.</li>
+</ol>
+<pre class="r"><code># La solución corta tomada del paquete TSPred, que puede ser instalado con install.packages()
+sws &lt;- slidingWindows(sunspots,5)
+nTS &lt;- sunspots
+n &lt;- length(nTS)
+nTS[3:(n-2)] &lt;- apply(sws,1,mean)
+nTS[1] &lt;- mean(sunspots[1:3])
+nTS[2] &lt;- mean(sunspots[1:4])
+nTS[n-1] &lt;- mean(sunspots[(n-3):n])
+nTS[n] &lt;- mean(sunspots[(n-2):n])
+plot(sunspots)
+lines(nTS,col=&quot;red&quot;,lwd=2)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Haga lo mismo que en el apartado 2 pero sustituya los puntos por una media ponderada en la que los pesos utilizados correspondan a las densidades de probabilidad de una Gaussiana de desviación estándar equivalente a 3 puntos.</li>
+</ol>
+<pre class="r"><code>nTS &lt;- sunspots
+n &lt;- length(nTS)
+weights &lt;- dnorm(seq(-1,1,length.out = 5))
+nTS[3:(n-2)] &lt;- apply(sws,1,weighted.mean,w=weights)
+nTS[1] &lt;- weighted.mean(sunspots[1:3],w=weights[3:5])
+nTS[2] &lt;- mean(sunspots[1:4],,w=weights[2:5])
+nTS[n-1] &lt;- mean(sunspots[(n-3):n],w=weights[1:4])
+nTS[n] &lt;- mean(sunspots[(n-2):n],w=weights[1:3])
+plot(sunspots)
+lines(nTS,col=&quot;red&quot;,lwd=2)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Represente gráficamente los residuos (diferencia) entre la serie original y la generada en 3.</li>
+</ol>
+<pre class="r"><code>plot(sunspots-nTS)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Represente gráficamente las medianas y cuantiles de la serie original agrupados por intervalos de un año (boxplot).</li>
+</ol>
+<pre class="r"><code>times &lt;- time(sunspots)
+groups &lt;- cut(times, breaks = max(times)-min(times)+1)
+boxplot(sunspots~groups, at=unique(floor(times))) 
+boxplot(sunspots~groups, at=unique(floor(times)), xlim=c(1750,1800),names=unique(floor(times))) # Zoom para ver mejor la gráfica</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Finalmente, busque mediante prueba y error el periodo de tiempo que hace que los máximos y mínimos consecutivos se superpongan.</li>
+</ol>
+<pre class="r"><code># A simple vista (gráfica anterior) se ve que los máximos se repiten cada aproximadamente 11 años
+# Comprobémoslo
+
+for(periodo in seq(10.8,11.5,length.out=10))
+{
+  col &lt;- col+1
+  fase &lt;- ((times - times[1])/periodo)%%1
+  plot(fase,sunspots, main=periodo)
+}
+
+# ¿Con qué periodo hay menos dispersión de los puntos? </code></pre>
 </div>
 
 

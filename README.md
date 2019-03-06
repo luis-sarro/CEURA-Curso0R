@@ -1,7 +1,6 @@
 # CEURA-Curso0R
 Curso 0 de R para Máster de Data Science de CEURA
 
-
 Con el conjunto de datos sunspots, realizar el siguiente ejercicio:
 
 1. Representar gráficamente la serie temporal de manchas solares.
@@ -10,3 +9,5 @@ Con el conjunto de datos sunspots, realizar el siguiente ejercicio:
 4. Represente gráficamente los residuos (diferencia) entre la serie original y la generada en 3.
 5. Represente gráficamente las medianas y cuantiles de la serie original agrupados por intervalos de un año (boxplot).
 6. Finalmente, busque mediante prueba y error el periodo de tiempo que hace que los máximos y mínimos consecutivos se superpongan. 
+
+La solución,  <a href="solución.html">aquí</a>

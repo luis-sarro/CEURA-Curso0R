@@ -27,41 +27,66 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -481,18 +506,18 @@ div.tocify {
 
 
 <p>Casi todo en R es un objeto, incluyendo funciones y estructuras de datos. Para saber los objetos que tenemos en el espacio de trabajo utilizaremos <code>ls()</code>. Además si escribimos el nombre de un objeto muestra su contenido (por ejemplo <code>sd</code>). Para guardar el contenido del espacio de trabajo se pueden utilizar las funciones <code>save.image()</code> y <code>save(&lt;objetos&gt;,file=&quot;nombre.RData&quot;)</code>. Si queremos trabajar con datos propios se pueden cargar con <code>load()</code> desde la carpeta de trabajo (o del camino que especifiquemos) o se pueden adjuntar con <code>attach()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># primero borramos (remove) todos los objetos del entorno de trabajo</span>
-<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
-<span class="co"># ahora cargamos algunos datos del paquete MASS</span>
-<span class="kw">data</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;Animals&quot;</span>,<span class="st">&quot;crabs&quot;</span>,<span class="st">&quot;UScrime&quot;</span>), <span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>)
-<span class="kw">ls</span>()
-<span class="kw">save</span>(<span class="st">&quot;Animals&quot;</span>,<span class="st">&quot;crabs&quot;</span>,<span class="st">&quot;UScrime&quot;</span>, <span class="dt">file=</span><span class="st">&quot;misdatos.RData&quot;</span>)
-<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
-<span class="kw">ls</span>()
-<span class="kw">load</span>(<span class="st">&quot;misdatos.RData&quot;</span>)
-<span class="kw">ls</span>()</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># primero borramos (remove) todos los objetos del entorno de trabajo</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co"># ahora cargamos algunos datos del paquete MASS</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">data</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;Animals&quot;</span>,<span class="st">&quot;crabs&quot;</span>,<span class="st">&quot;UScrime&quot;</span>), <span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">save</span>(<span class="st">&quot;Animals&quot;</span>,<span class="st">&quot;crabs&quot;</span>,<span class="st">&quot;UScrime&quot;</span>, <span class="dt">file=</span><span class="st">&quot;misdatos.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="kw">load</span>(<span class="st">&quot;misdatos.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw">ls</span>()</a></code></pre></div>
 <p>Adjuntar los datos hará que podamos acceder a ellos de forma directa, unicamente indicando sus nombres. Observemos que los datos adjuntados ocupan la segunda posición en la ‘search list’. Para ‘desadjuntarlos’ utilizaremos la función <code>detach()</code>.</p>
-<p>Puede que tu investigación involucre cargar archivos de grandes bases de datos. En ese caso deberías “perder” algo de tiempo buscando la mejor estrategía para cargarlos de forma eficiente. Echa un vistazo <a href="http://cran.r-project.org/web/packages/saves/index.html">aquí</a> y <a href="http://www.bytemining.com/wp-content/uploads/2010/08/r_hpc_II.pdf">aquí</a>, y luego echa un vistazo a este paquete <a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/">dplyr</a>.</p>
+<p>Puede que tu investigación involucre cargar archivos de grandes bases de datos. En ese caso deberías “perder” algo de tiempo buscando la mejor estrategía para cargarlos de forma eficiente. Echa un vistazo <a href="http://cran.r-project.org/web/packages/saves/index.html">aquí</a> y <a href="http://www.columbia.edu/~sjm2186/EPIC_R/EPIC_R_BigData.pdf">aquí</a>, y luego echa un vistazo a este paquete <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">dplyr</a>.</p>
 <p>Hay diferentes estructuras de datos y los siguientes enlaces profundizan lo suficiente para que tengas las destrezas básicas en su manejo. Si no puedes esperar … la siguiente sección te hace un resumen de dichas estructuras.</p>
 <ul>
 <li><a href="Datos1.html">Vectores</a></li>
@@ -507,32 +532,33 @@ div.tocify {
 <ul>
 <li><code>vector</code>: colección ordenada de elementos del mismo tipo.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
-    y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
-    z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">    x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">    y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">    z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
 <ul>
 <li><code>array</code>: generalización multidimensional del vector. Elementos del mismo tipo.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">array</span>(x, <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)) <span class="co"># utilizamos el vector x definido anteriormente</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">array</span>(x, <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)) <span class="co"># utilizamos el vector x definido anteriormente</span></a></code></pre></div>
+<p>Fijaos qué ocurre cuando no proporcionamos suficientes elementos para rellenar la estructura que queremos definir.</p>
 <ul>
 <li><code>data.frame</code>: como el array, pero con columnas de diferentes tipos. Es el objeto más habitual para los datos experimentales.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  dades &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ID=</span><span class="kw">c</span>(<span class="st">&quot;gen0&quot;</span>, <span class="st">&quot;genB&quot;</span>, <span class="st">&quot;genZ&quot;</span>),
-  <span class="dt">subj1 =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">33</span>), <span class="dt">subj2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">34</span>, <span class="dv">15</span>),
-  <span class="dt">oncogen =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),
-  <span class="dt">loc =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">30</span>, <span class="dv">125</span>))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">  datos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ID=</span><span class="kw">c</span>(<span class="st">&quot;gen0&quot;</span>, <span class="st">&quot;genB&quot;</span>, <span class="st">&quot;genZ&quot;</span>),</a>
+<a class="sourceLine" id="cb4-2" title="2">  <span class="dt">subj1 =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">33</span>), <span class="dt">subj2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">34</span>, <span class="dv">15</span>),</a>
+<a class="sourceLine" id="cb4-3" title="3">  <span class="dt">oncogen =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb4-4" title="4">  <span class="dt">loc =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">30</span>, <span class="dv">125</span>))</a></code></pre></div>
 <ul>
-<li><code>factor</code>: tipo de vector para datos cualitativos.</li>
+<li><code>factor</code>: tipo de vector para datos categóricos.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">        ff &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">        ff &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;M&quot;</span>))</a></code></pre></div>
 <ul>
 <li><code>list</code>: cada lista está formada por componentes que pueden ser otras listas. Cada componente puede ser de distinto tipo. Son contenedores generales de datos. Muy flexibles, pero sin estructura. Muchas funciones devuelven una lista o conjunto de resultados de distinta longitud y distinto tipo.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">         una.lista &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">un.vector =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-                        <span class="dt">una.palabra =</span> <span class="st">&quot;hola&quot;</span>,
-                        <span class="dt">una.matriz =</span> <span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>), <span class="dt">ncol =</span> <span class="dv">5</span>),
-                        <span class="dt">lista2 =</span> <span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">5</span>,
-                                   <span class="dt">b =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">         una.lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">un.vector =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb6-2" title="2">                        <span class="dt">una.palabra =</span> <span class="st">&quot;hola&quot;</span>,</a>
+<a class="sourceLine" id="cb6-3" title="3">                        <span class="dt">una.matriz =</span> <span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>), <span class="dt">ncol =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb6-4" title="4">                        <span class="dt">lista2 =</span> <span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb6-5" title="5">                                   <span class="dt">b =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))))</a></code></pre></div>
 </div>
 
 <html>
