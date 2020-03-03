@@ -48,9 +48,12 @@ Los datos pueden declararse a través de diferentes objetos dentro de R:
 - `vector`: colección ordenada de elementos del mismo tipo.
   
 ```{r, eval = FALSE}
+    v <- as.vector(rnorm(15))
+    w <- vector("numeric",5)
     x <- c(1, 2, 3)
     y <- c("a", "b", "c")
     z <- c(TRUE, TRUE, FALSE)
+    
 ```
 
 - `array`: generalización multidimensional del vector. Elementos del mismo tipo.

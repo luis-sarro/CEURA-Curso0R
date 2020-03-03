@@ -26,43 +26,90 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -119,8 +166,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -136,7 +189,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -156,6 +208,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -177,18 +266,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -362,141 +510,141 @@ div.tocify {
 <div id="ejemplo.-el-comando-plot" class="section level3">
 <h3>Ejemplo. El comando <code>plot</code></h3>
 <p>Si escribimos <code>plot(x,y)</code> donde <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> son vectores con <span class="math inline">\(n\)</span> coordenadas, entonces R representa el gráfico de dispersión con los puntos de coordenadas <span class="math inline">\((x_i,y_i)\)</span>. Este comando incluye por defecto una elección automática de ejes, escalas, etiquetas de los ejes, densidad de las líneas, etc., que pueden ser modificados añadiendo parámetros gráficos al comando y que pueden visualizarse con <code>help(par)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">4</span>)
-y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">4</span>)
-<span class="kw">plot</span>(x, y, <span class="dt">main =</span> <span class="st">&quot;Título principal&quot;</span>,
-     <span class="dt">sub =</span> <span class="st">&quot;subtítulo&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;eje x&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;eje y&quot;</span>,
-     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2">y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">plot</span>(x, y, <span class="dt">main =</span> <span class="st">&quot;Título principal&quot;</span>,</a>
+<a class="sourceLine" id="cb1-4" title="4">     <span class="dt">sub =</span> <span class="st">&quot;subtítulo&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;eje x&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;eje y&quot;</span>,</a>
+<a class="sourceLine" id="cb1-5" title="5">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</a></code></pre></div>
 </div>
 <div id="ejemplo.-variaciones-de-plot" class="section level3">
 <h3>Ejemplo. Variaciones de <code>plot</code></h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">cbind</span>(x,y)
-    <span class="kw">plot</span>(z)
-    <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x)
-    <span class="kw">plot</span>(<span class="kw">log</span>(y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>x) <span class="co"># transformación de y</span>
-    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>)
-    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)
-    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)
-    <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>))
-
-    <span class="kw">legend</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="kw">c</span>(<span class="st">&quot;uno&quot;</span>, <span class="st">&quot;dos&quot;</span>, <span class="st">&quot;tres&quot;</span>), <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
-    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),
-    <span class="dt">pch =</span> <span class="dv">15</span><span class="op">:</span><span class="dv">17</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">z &lt;-<span class="st"> </span><span class="kw">cbind</span>(x,y)</a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="kw">plot</span>(z)</a>
+<a class="sourceLine" id="cb2-3" title="3">    <span class="kw">plot</span>(y <span class="op">~</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb2-4" title="4">    <span class="kw">plot</span>(<span class="kw">log</span>(y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">~</span><span class="st"> </span>x) <span class="co"># transformación de y</span></a>
+<a class="sourceLine" id="cb2-5" title="5">    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb2-7" title="7">    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb2-9" title="9"></a>
+<a class="sourceLine" id="cb2-10" title="10">    <span class="kw">legend</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="kw">c</span>(<span class="st">&quot;uno&quot;</span>, <span class="st">&quot;dos&quot;</span>, <span class="st">&quot;tres&quot;</span>), <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb2-11" title="11">    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</a>
+<a class="sourceLine" id="cb2-12" title="12">    <span class="dt">pch =</span> <span class="dv">15</span><span class="op">:</span><span class="dv">17</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>Con <code>text</code> podemos representar caracteres de texto directamente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sexo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;v&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;m&quot;</span>, <span class="dv">30</span>))
-    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)
-    <span class="kw">text</span>(x, y, <span class="dt">labels =</span> sexo)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">sexo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;v&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;m&quot;</span>, <span class="dv">30</span>))</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">text</span>(x, y, <span class="dt">labels =</span> sexo)</a></code></pre></div>
 </div>
 <div id="ejemplo.-puntos." class="section level3">
 <h3>Ejemplo. Puntos.</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">points</span>(x, y, <span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">points</span>(x, y, <span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <p>Tipos de puntos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)
-    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
-    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
-    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">bg =</span> <span class="st">&quot;yellow&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">11</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4">    <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">bg =</span> <span class="st">&quot;yellow&quot;</span>)</a></code></pre></div>
 </div>
 <div id="ejemplo.-lineas" class="section level3">
 <h3>Ejemplo. Líneas</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span><span class="st">&quot;&quot;</span>)
-    
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
-  <span class="kw">abline</span>(<span class="dv">0</span>, i<span class="op">/</span><span class="dv">5</span>, <span class="dt">lty =</span> i, <span class="dt">lwd =</span> <span class="dv">2</span>)
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2">    </a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){</a>
+<a class="sourceLine" id="cb6-4" title="4">  <span class="kw">abline</span>(<span class="dv">0</span>, i<span class="op">/</span><span class="dv">5</span>, <span class="dt">lty =</span> i, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-5" title="5">}</a></code></pre></div>
 <p><code>lty</code> permite especificaciones más complejas (longitud de los segmentos que son alternativamente dibujados y no dibujados). El parámetro <code>par</code> controla muchos parámetros gráficos. Por ejemplo, <code>cex</code> puede referirse a los <em>labels</em> (<code>cex.lab</code>), otro, <code>cex.axis</code>, a la anotación de los ejes, etc. Hay muchos más colores. Ver <code>palette</code>, <code>colors</code>.</p>
-<div class="sourceCode"><pre class="sourceCode e"><code class="sourceCode eiffel">par(mar=c(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
-plot(<span class="dv">0</span>, <span class="dv">0</span>, type = <span class="st">&quot;n&quot;</span>, xlim = c(<span class="dv">0</span>, <span class="dv">1</span>), ylim = c(<span class="dv">0</span>, <span class="dv">1</span>), axes = FALSE, xlab = <span class="st">&quot;&quot;</span>, ylab = <span class="st">&quot;&quot;</span>)
-line=<span class="dv">25</span>
-col=<span class="dv">5</span>
-rect(  rep((<span class="dv">0</span>:(col - <span class="dv">1</span>)/col),line) ,  sort(rep((<span class="dv">0</span>:(line - <span class="dv">1</span>)/line),col),decreasing=T)   ,   rep((<span class="dv">1</span>:col/col),line) , sort(rep((<span class="dv">1</span>:line/line),col),decreasing=T),  border = <span class="st">&quot;light gray&quot;</span> , col=colors()[seq(<span class="dv">1</span>,line*col)])
-text(rep((<span class="dv">0</span>:(col - <span class="dv">1</span>)/col),line)+<span class="dv">0</span>.<span class="dv">1</span> ,  sort(rep((<span class="dv">0</span>:(line - <span class="dv">1</span>)/line),col),decreasing=T)+<span class="dv">0</span>.<span class="dv">015</span> , colors()[seq(<span class="dv">1</span>,line*col)]  , cex=<span class="dv">1</span>)
-dev.off()</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode e"><code class="sourceCode eiffel"><a class="sourceLine" id="cb7-1" title="1">par(mar=c(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb7-2" title="2">plot(<span class="dv">0</span>, <span class="dv">0</span>, type = <span class="st">&quot;n&quot;</span>, xlim = c(<span class="dv">0</span>, <span class="dv">1</span>), ylim = c(<span class="dv">0</span>, <span class="dv">1</span>), axes = FALSE, xlab = <span class="st">&quot;&quot;</span>, ylab = <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3">line=<span class="dv">25</span></a>
+<a class="sourceLine" id="cb7-4" title="4">col=<span class="dv">5</span></a>
+<a class="sourceLine" id="cb7-5" title="5">rect(  rep((<span class="dv">0</span>:(col - <span class="dv">1</span>)/col),line) ,  sort(rep((<span class="dv">0</span>:(line - <span class="dv">1</span>)/line),col),decreasing=T)   ,   rep((<span class="dv">1</span>:col/col),line) , sort(rep((<span class="dv">1</span>:line/line),col),decreasing=T),  border = <span class="st">&quot;light gray&quot;</span> , col=colors()[seq(<span class="dv">1</span>,line*col)])</a>
+<a class="sourceLine" id="cb7-6" title="6">text(rep((<span class="dv">0</span>:(col - <span class="dv">1</span>)/col),line)+<span class="dv">0</span><span class="fl">.1</span> ,  sort(rep((<span class="dv">0</span>:(line - <span class="dv">1</span>)/line),col),decreasing=T)+<span class="dv">0</span><span class="fl">.015</span> , colors()[seq(<span class="dv">1</span>,line*col)]  , cex=<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-7" title="7">dev.off()</a></code></pre></div>
 </div>
 <div id="ejemplo.-identificacion-interactiva-de-datos" class="section level3">
 <h3>Ejemplo. Identificación interactiva de datos</h3>
 <p>La función <code>identify</code><span class="math inline">\((x,y,\textit{etiquetas})\)</span> identifica los puntos con el ratón y escribe la correspondiente etiqueta.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)
-y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
-nombres &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;punto (&quot;</span>, x, <span class="st">&quot;,&quot;</span>, y, <span class="st">&quot;)&quot;</span>,<span class="dt">sep =</span><span class="st">&quot;&quot;</span>)
-<span class="kw">plot</span>(x, y)
-<span class="kw">identify</span>(x, y, <span class="dt">labels =</span> nombres)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">nombres &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;punto (&quot;</span>, x, <span class="st">&quot;,&quot;</span>, y, <span class="st">&quot;)&quot;</span>,<span class="dt">sep =</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="kw">plot</span>(x, y)</a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">identify</span>(x, y, <span class="dt">labels =</span> nombres)</a></code></pre></div>
 <p><code>locator()</code> devuelve las coordenadas de los puntos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y)
-<span class="kw">locator</span>()
-<span class="kw">text</span>(<span class="kw">locator</span>(<span class="dv">1</span>), <span class="st">&quot;el marcado&quot;</span>, <span class="dt">adj =</span> <span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">plot</span>(x, y)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">locator</span>()</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="kw">text</span>(<span class="kw">locator</span>(<span class="dv">1</span>), <span class="st">&quot;el marcado&quot;</span>, <span class="dt">adj =</span> <span class="dv">0</span>)</a></code></pre></div>
 </div>
 <div id="ejemplo.-multiples-graficos-por-ventana" class="section level3">
 <h3>Ejemplo. Múltiples gráficos por ventana</h3>
 <p>Empezamos con <code>par(mfrow=c(</code><em>filas</em>,<em>columnas</em><code>))</code> antes del comando <code>plot</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
-    <span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))
-    <span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">5</span>), <span class="kw">rnorm</span>(<span class="dv">5</span>))
-    <span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">10</span>))
-    <span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">    <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb10-2" title="2">    <span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb10-3" title="3">    <span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">5</span>), <span class="kw">rnorm</span>(<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb10-4" title="4">    <span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb10-5" title="5">    <span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">10</span>))</a></code></pre></div>
 <p>Podemos mostrar muchos gráficos en el mismo dispositivo gráfico. La función más flexible y sofisticada es <code>split.screen</code>, bien explicada en <em>R para principiantes</em>, secc. 4.1.2 (p. 30).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">5</span>)
-x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">25</span>)
-y &lt;-<span class="st"> </span><span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">25</span><span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="dv">92</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">sd=</span><span class="dv">300</span>)
-
-<span class="co">#______ Window With 2 Rows, Top Row In 2 Columns ______#</span>
-<span class="kw">split.screen</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)) <span class="co"># Makes Screen 1 and 2</span>
-
-<span class="kw">split.screen</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">screen=</span><span class="dv">1</span>) <span class="co"># Makes Screen 3 and 4</span>
-
-<span class="co">#______ Output On Screen 2 ______#</span>
-
-<span class="kw">screen</span>(<span class="dv">2</span>)
-<span class="kw">plot</span>(x,y)
- 
-<span class="co">#______ Histograms on Screens 3 and 4 ______#</span>
-<span class="kw">screen</span>(<span class="dv">3</span>)
-<span class="kw">hist</span>(x)
-<span class="kw">screen</span>(<span class="dv">4</span>)
-<span class="kw">hist</span>(y)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">set.seed</span>(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb11-3" title="3">y &lt;-<span class="st"> </span><span class="fl">-0.3</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">25</span><span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="dv">92</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">sd=</span><span class="dv">300</span>)</a>
+<a class="sourceLine" id="cb11-4" title="4"></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co">#______ Window With 2 Rows, Top Row In 2 Columns ______#</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="kw">split.screen</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)) <span class="co"># Makes Screen 1 and 2</span></a>
+<a class="sourceLine" id="cb11-7" title="7"></a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="kw">split.screen</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">screen=</span><span class="dv">1</span>) <span class="co"># Makes Screen 3 and 4</span></a>
+<a class="sourceLine" id="cb11-9" title="9"></a>
+<a class="sourceLine" id="cb11-10" title="10"><span class="co">#______ Output On Screen 2 ______#</span></a>
+<a class="sourceLine" id="cb11-11" title="11"></a>
+<a class="sourceLine" id="cb11-12" title="12"><span class="kw">screen</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb11-13" title="13"><span class="kw">plot</span>(x,y)</a>
+<a class="sourceLine" id="cb11-14" title="14"> </a>
+<a class="sourceLine" id="cb11-15" title="15"><span class="co">#______ Histograms on Screens 3 and 4 ______#</span></a>
+<a class="sourceLine" id="cb11-16" title="16"><span class="kw">screen</span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb11-17" title="17"><span class="kw">hist</span>(x)</a>
+<a class="sourceLine" id="cb11-18" title="18"><span class="kw">screen</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb11-19" title="19"><span class="kw">hist</span>(y)</a></code></pre></div>
 </div>
 <div id="ejemplo.-datos-multivariantes" class="section level3">
 <h3>Ejemplo. Datos multivariantes</h3>
 <p>Un diagrama de dispersión múltiple:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">ncol =</span> <span class="dv">5</span>)
-    <span class="kw">colnames</span>(X) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;id&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;loc&quot;</span>, <span class="st">&quot;weight&quot;</span>)
-    <span class="kw">pairs</span>(X)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">ncol =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">    <span class="kw">colnames</span>(X) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;id&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;loc&quot;</span>, <span class="st">&quot;weight&quot;</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3">    <span class="kw">pairs</span>(X)</a></code></pre></div>
 <p>Gráficos condicionados (revelan interacciones):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    Y &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(X)
-    Y<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Macho&quot;</span>, <span class="dv">80</span>),
-    <span class="kw">rep</span>(<span class="st">&quot;Hembra&quot;</span>, <span class="dv">120</span>)))
-    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y)
-    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>loc, <span class="dt">data =</span> Y)
-    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>loc <span class="op">*</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">    Y &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(X)</a>
+<a class="sourceLine" id="cb13-2" title="2">    Y<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Macho&quot;</span>, <span class="dv">80</span>),</a>
+<a class="sourceLine" id="cb13-3" title="3">    <span class="kw">rep</span>(<span class="st">&quot;Hembra&quot;</span>, <span class="dv">120</span>)))</a>
+<a class="sourceLine" id="cb13-4" title="4">    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y)</a>
+<a class="sourceLine" id="cb13-5" title="5">    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>loc, <span class="dt">data =</span> Y)</a>
+<a class="sourceLine" id="cb13-6" title="6">    <span class="kw">coplot</span>(weight <span class="op">~</span><span class="st"> </span>edad <span class="op">|</span><span class="st"> </span>loc <span class="op">*</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y)</a></code></pre></div>
 <p>La librería <code>lattice</code> permite lo mismo, y mucho más, que <code>coplot</code>. Ver secc. 4.6 de <em>R para principiantes</em>. Échale un vistazo a esta página <a href="http://blog.revolutionanalytics.com/2009/07/lattice-and-ggplot-graphics-side-by-side.html">graphics-side-by-side</a> para realizar gráficos sofisticados en tus investigaciones.</p>
 </div>
 <div id="ejemplo.-boxplots-sencillos." class="section level3">
 <h3>Ejemplo. Boxplots sencillos.</h3>
 <p>Los diagramas de caja son muy útiles para ver rápidamente las principales características de una variable cuantitativa, o comparar entre variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(sexo)
-<span class="kw">attach</span>(Y)
-<span class="kw">boxplot</span>(weight)
-<span class="kw">plot</span>(sexo, weight)
-<span class="kw">detach</span>()
-<span class="kw">boxplot</span>(weight <span class="op">~</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">rm</span>(sexo)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">attach</span>(Y)</a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="kw">boxplot</span>(weight)</a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="kw">plot</span>(sexo, weight)</a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="kw">detach</span>()</a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="kw">boxplot</span>(weight <span class="op">~</span><span class="st"> </span>sexo, <span class="dt">data =</span> Y, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</a></code></pre></div>
 <p>La función <code>boxplot</code> tiene muchas opciones; se puede modificar el aspecto, mostrarlos horizontalmente, en una matriz de boxplots, etc. Véase la ayuda <code>?boxplot</code>.</p>
 </div>
 <div id="ejemplo.-un-poco-de-ruido" class="section level3">
 <h3>Ejemplo. Un poco de ruido</h3>
 <p>Los datos cuantitativos discretos pueden ser difíciles de ver bien. Podemos añadir un poco de ruido con el comando <code>jitter</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dc1 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">500</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-dc2 &lt;-<span class="st"> </span>dc1 <span class="op">+</span><span class="st"> </span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">2</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">500</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)<span class="op">/</span><span class="dv">9</span>)
-<span class="kw">plot</span>(dc1, dc2)
-<span class="kw">plot</span>(<span class="kw">jitter</span>(dc1), <span class="kw">jitter</span>(dc2))</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">dc1 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">500</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2">dc2 &lt;-<span class="st"> </span>dc1 <span class="op">+</span><span class="st"> </span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">2</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">500</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)<span class="op">/</span><span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="kw">plot</span>(dc1, dc2)</a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="kw">plot</span>(<span class="kw">jitter</span>(dc1), <span class="kw">jitter</span>(dc2))</a></code></pre></div>
 </div>
 <div id="ejemplo.-dibujando-rectas" class="section level3">
 <h3>Ejemplo. Dibujando rectas</h3>
 <p>Podemos añadir muchos elementos a un gráfico, además de leyendas y líneas rectas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)
-y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)
-<span class="kw">plot</span>(x, y)
-<span class="kw">lines</span>(<span class="kw">lowess</span>(x, y), <span class="dt">lty =</span> <span class="dv">2</span>)
-<span class="kw">plot</span>(x, y)
-<span class="kw">abline</span>(<span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x), <span class="dt">lty =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb16-2" title="2">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="kw">plot</span>(x, y)</a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="kw">lines</span>(<span class="kw">lowess</span>(x, y), <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="kw">plot</span>(x, y)</a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="kw">abline</span>(<span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x), <span class="dt">lty =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p>Podemos añadir otros elementos con <em>panel functions</em> en otras funciones (como <code>pairs</code>, <code>lattice</code>, etc).</p>
 </div>
 <div id="nota.-mas-sobre-graficos" class="section level3">
@@ -504,19 +652,19 @@ y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5
 <p>Podemos modificar márgenes exteriores de figuras y entre figuras (véase <code>?par</code> y búsquense <code>oma</code>, <code>omi</code>, <code>mar</code>, <code>mai</code>; ejemplos en <em>An introduction to R</em>, secc. 12.5.3 y 12.5.4.</p>
 <p>También gráficos 3D: <code>persp</code>, <code>image</code>, <code>contour</code>; histogramas: <code>hist</code>; gráficos de barras: <code>barplot</code>; gráficos de comparación de cuantiles, usados para comparar la distribución de dos variables, o la disribución de unos datos frente a un estándar (ej., distribución normal): <code>qqplot</code>, <code>qqnorm</code> y, en paquete <code>car</code>, <code>qq.plot</code>.</p>
 <p>Si queremos usar notación matemática usaremos <code>plotmath</code> y expresiones de texto arbitrariamente complejas en las coordenadas <code>expression</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span>pi, pi, <span class="dt">len =</span> <span class="dv">65</span>)
-<span class="kw">plot</span>(x, <span class="kw">sin</span>(x), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">xlab =</span> <span class="kw">expression</span>(phi), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">f</span>(phi)))</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span>pi, pi, <span class="dt">len =</span> <span class="dv">65</span>)</a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="kw">plot</span>(x, <span class="kw">sin</span>(x), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">xlab =</span> <span class="kw">expression</span>(phi), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">f</span>(phi)))</a></code></pre></div>
 <p>Si lo que necesitas son gráficos tridimensionales dinámicos échale un vistazo a <a href="http://moderndata.plot.ly/interactive-r-visualizations-with-d3-ggplot2-rstudio/">esta web</a></p>
 </div>
 <div id="ejemplo.-guardar-los-graficos" class="section level3">
 <h3>Ejemplo. Guardar los gráficos</h3>
 <p>Podemos usar los menús y guardar con distintos formatos. También podemos especificar donde queremos guardar el gráfico:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">file =</span> <span class="st">&quot;f1.pdf&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">10</span>)
-<span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))
-<span class="kw">dev.off</span>()</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">pdf</span>(<span class="dt">file =</span> <span class="st">&quot;f1.pdf&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">dev.off</span>()</a></code></pre></div>
 <p>O bien, podemos copiar una figura a un fichero.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">50</span>))
-<span class="kw">dev.copy2eps</span>()</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">plot</span>(<span class="kw">runif</span>(<span class="dv">50</span>))</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">dev.copy2eps</span>()</a></code></pre></div>
 </div>
 
 <html>

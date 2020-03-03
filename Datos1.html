@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -26,43 +26,90 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -98,9 +145,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -114,13 +159,18 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -136,7 +186,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -156,6 +205,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -177,47 +263,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -231,6 +336,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -266,8 +377,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -282,6 +391,16 @@ div.tocify {
 }
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -357,170 +476,250 @@ div.tocify {
 </div>
 
 
-<div id="ejemplo-1.-generacion-de-secuencias" class="section level3">
+<div id="ejemplo-1.-generación-de-secuencias" class="section level3">
 <h3>Ejemplo 1. Generación de secuencias</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; y &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>
-<span class="dv">1</span><span class="op">:</span><span class="dv">4</span><span class="op">+</span><span class="dv">1</span>
-<span class="dv">1</span><span class="op">:</span>(<span class="dv">4</span><span class="op">+</span><span class="dv">1</span>)
-x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">18</span>, <span class="dt">by =</span> <span class="dv">2</span>)
-x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">18</span>, <span class="dt">length =</span> <span class="dv">30</span>)
-y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">along =</span> x)
-z2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">seq</span>(<span class="dt">from=</span><span class="op">-</span><span class="dv">7</span>,<span class="dt">to=</span><span class="dv">5</span>,<span class="dt">by=</span><span class="dv">2</span>))
-<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
-<span class="kw">rep</span>(x, <span class="dv">2</span>)
-y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>)
-<span class="kw">rep</span>(x, y)
-<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))
-<span class="kw">rep</span>(x, x)
-<span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">8</span>)
-<span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">5</span>) <span class="co"># como rep(1:3, rep(5, 3))</span>
-<span class="kw">gl</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">20</span>) <span class="co"># ¡Alerta! gl genera factores</span>
-<span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Sano&quot;</span>, <span class="st">&quot;Enfermo&quot;</span>, <span class="st">&quot;Muerto&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; y &lt;-<span class="st"> </span><span class="dv">-5</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dv">1</span><span class="op">:</span><span class="dv">4</span><span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dv">1</span><span class="op">:</span>(<span class="dv">4</span><span class="op">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">18</span>, <span class="dt">by =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">2</span>, <span class="dt">to =</span> <span class="dv">18</span>, <span class="dt">length =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">along =</span> x)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">z2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">seq</span>(<span class="dt">from=</span><span class="op">-</span><span class="dv">7</span>,<span class="dt">to=</span><span class="dv">5</span>,<span class="dt">by=</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">rep</span>(x, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">rep</span>(x, y)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">rep</span>(x, x)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">gl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">5</span>) <span class="co"># como rep(1:3, rep(5, 3))</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">gl</span>(<span class="dt">n =</span> <span class="dv">4</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">20</span>) <span class="co"># ¡Alerta! gl genera factores</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw">gl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">4</span>, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Sano&quot;</span>, <span class="st">&quot;Enfermo&quot;</span>, <span class="st">&quot;Muerto&quot;</span>))</a></code></pre></div>
 <p>Podemos combinar: <code>z3 &lt;- c(1:5, rep(8, 3))</code></p>
 </div>
-<div id="ejemplo-2.-generacion-de-secuencias-aleatorias" class="section level3">
+<div id="ejemplo-2.-generación-de-secuencias-aleatorias" class="section level3">
 <h3>Ejemplo 2. Generación de secuencias aleatorias</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dt">x=</span><span class="dv">5</span>)
-<span class="kw">sample</span>(<span class="dt">x=</span><span class="dv">5</span>, <span class="dt">size=</span><span class="dv">3</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-<span class="kw">sample</span>(x)
-<span class="kw">sample</span>(x, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-<span class="kw">sample</span>(x, <span class="dt">size =</span> <span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x), <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-probs &lt;-<span class="st"> </span>x<span class="op">/</span><span class="kw">sum</span>(x)
-muestra &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dt">size=</span> <span class="dv">100</span>, <span class="dt">replace=</span>T, <span class="dt">prob =</span> probs)
-<span class="kw">hist</span>(muestra)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">sample</span>(<span class="dt">x=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">sample</span>(<span class="dt">x=</span><span class="dv">5</span>, <span class="dt">size=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">sample</span>(x)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">sample</span>(x, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">sample</span>(x, <span class="dt">size =</span> <span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">probs &lt;-<span class="st"> </span>x<span class="op">/</span><span class="kw">sum</span>(x)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">muestra &lt;-<span class="st"> </span><span class="kw">sample</span>(x, <span class="dt">size=</span> <span class="dv">100</span>, <span class="dt">replace=</span>T, <span class="dt">prob =</span> probs)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">hist</span>(muestra)</a></code></pre></div>
 <p>Números aleatorios <code>rDistribución(n,parámetros)</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="co"># rnorm(10, mean = 0,sd = 1)</span>
-<span class="kw">runif</span>(<span class="dv">8</span>,<span class="dt">min=</span><span class="dv">2</span>,<span class="dt">max=</span><span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="co"># rnorm(10, mean = 0,sd = 1)</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">runif</span>(<span class="dv">8</span>,<span class="dt">min=</span><span class="dv">2</span>,<span class="dt">max=</span><span class="dv">10</span>)</a></code></pre></div>
 </div>
-<div id="ejemplo-3.-seleccion-de-elementos-de-un-vector" class="section level3">
+<div id="ejemplo-3.-selección-de-elementos-de-un-vector" class="section level3">
 <h3>Ejemplo 3. Selección de elementos de un vector</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
-x[<span class="dv">1</span>]
-x[<span class="dv">3</span>]
-x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]
-x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>]
-x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
-y &lt;-<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>
-x[y]
-x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)]
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)
-x[y]
-<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;patata&quot;</span>)
-x[<span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;patata&quot;</span>)]</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">x[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">x[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">y &lt;-<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">x[y]</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)]</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">x[y]</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;patata&quot;</span>)</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">x[<span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;patata&quot;</span>)]</a></code></pre></div>
 </div>
 <div id="ejemplo-4.-valores-ausentes" class="section level3">
 <h3>Ejemplo 4. Valores ausentes</h3>
 <p><code>NA</code> es el código de ‘Not available’.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="ot">NA</span>)
-<span class="kw">is.na</span>(v)
-<span class="kw">which</span>(<span class="kw">is.na</span>(v))
-w &lt;-<span class="st"> </span>v[<span class="op">!</span><span class="kw">is.na</span>(v)] <span class="co"># sin los valores perdidos</span>
-v <span class="op">==</span><span class="st"> </span><span class="ot">NA</span> <span class="co"># !No funciona! ¿Por qué?</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">is.na</span>(v)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">which</span>(<span class="kw">is.na</span>(v))</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">w &lt;-<span class="st"> </span>v[<span class="op">!</span><span class="kw">is.na</span>(v)] <span class="co"># sin los valores perdidos</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">v <span class="op">==</span><span class="st"> </span><span class="ot">NA</span> <span class="co"># !No funciona! ¿Por qué?</span></a></code></pre></div>
 <p>Si es necesario podemos sustituir <code>NA</code> por, p.ej. <code>0</code>, con la instrucción</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v[<span class="kw">is.na</span>(v)] &lt;-<span class="st"> </span><span class="dv">0</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">v[<span class="kw">is.na</span>(v)] &lt;-<span class="st"> </span><span class="dv">0</span></a></code></pre></div>
 <p>Cuidado, el infinito y <code>NaN</code> (‘not a number’) son diferentes de <code>NA</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>
-<span class="op">-</span><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>
-<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
-<span class="kw">is.infinite</span>(<span class="op">-</span><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>)
-<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
-<span class="kw">is.na</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dv">5</span><span class="op">/</span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="dv">-5</span><span class="op">/</span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">is.infinite</span>(<span class="op">-</span><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">is.na</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">0</span>)</a></code></pre></div>
 <p>Con algunas funciones puede especificarse qué hacer con los valores perdidos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xna &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">4</span>)
-<span class="kw">mean</span>(xna)
-<span class="kw">mean</span>(xna, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">xna &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">mean</span>(xna)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">mean</span>(xna, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Además para funciones de modelado de datos o ‘modelling functions’ (por ejemplo <code>lm</code>) lo mejor es usar <code>na.omit</code> o <code>na.exclude</code>. Esta última es más conveniente para generar predicciones, residuos, etc.</p>
 <p>Si queremos eliminar todos los <code>NA</code>:</p>
-<p><code>r   XNA &lt;- matrix(c(1,2,NA,3,NA,4), nrow = 3)   XNA   X.no.na &lt;- na.omit(XNA)</code></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">XNA &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="ot">NA</span>,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">XNA</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">X.no.na &lt;-<span class="st"> </span><span class="kw">na.omit</span>(XNA)</a></code></pre></div>
 </div>
-<div id="ejemplo-5.-ordenacion-de-vectores" class="section level3">
+<div id="ejemplo-5.-ordenación-de-vectores" class="section level3">
 <h3>Ejemplo 5. Ordenación de vectores</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">3</span>)
-<span class="kw">order</span>(x1)
-<span class="kw">sort</span>(x1)
-<span class="kw">rev</span>(x1)
-<span class="kw">rank</span>(x1)
-x1[<span class="kw">order</span>(x1)]
-x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>); <span class="kw">rank</span>(x2)
-<span class="kw">min</span>(x1) 
-<span class="kw">which.min</span>(x1) 
-<span class="kw">which</span>(x1 <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(x1))
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>); <span class="kw">order</span>(y, x1)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">order</span>(x1)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">sort</span>(x1)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">rev</span>(x1) <span class="co"># inverts the order. Does not sort in reverse order</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">rank</span>(x1)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">x1[<span class="kw">order</span>(x1)]</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>); <span class="kw">rank</span>(x2)</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw">min</span>(x1) </a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="kw">which.min</span>(x1) </a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="kw">which</span>(x1 <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(x1))</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>); <span class="kw">order</span>(y, x1)</a></code></pre></div>
 <p><code>order</code> y <code>sort</code> admiten <code>decreasing = TRUE</code>.</p>
 </div>
 <div id="ejemplo-6.-vectores-de-caracteres" class="section level3">
 <h3>Ejemplo 6. Vectores de caracteres</h3>
 <p>Otras funciones de manipulación de caracteres:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codigos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-codigos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)
-juntar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;una&quot;</span>, <span class="st">&quot;frase&quot;</span>, <span class="st">&quot;simple&quot;</span>), <span class="dt">collapse =</span><span class="st">&quot; &quot;</span>)
-columna.a &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]; columna.b &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">15</span>
-juntar &lt;-<span class="st"> </span><span class="kw">paste</span>(columna.a, columna.b, <span class="dt">sep =</span><span class="st">&quot;&quot;</span>)
-<span class="kw">substr</span>(<span class="st">&quot;abcdef&quot;</span>,<span class="dv">2</span>,<span class="dv">4</span>) <span class="co"># Seleccionar subcadenas </span>
-x &lt;-<span class="st"> </span><span class="kw">paste</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)
-<span class="kw">substr</span>(x, <span class="dv">3</span>, <span class="dv">5</span>) &lt;-<span class="st"> &quot;uv&quot;</span> <span class="co"># Sustituir subcadenas</span>
-<span class="kw">print</span>(x)
-x &lt;-<span class="st"> </span><span class="kw">paste</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)
-<span class="kw">substr</span>(x, <span class="dv">3</span>, <span class="dv">4</span>) &lt;-<span class="st"> &quot;uvs&quot;</span> <span class="co"># ¡Cuidado!</span>
-<span class="kw">print</span>(x)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">codigos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">codigos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">juntar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;una&quot;</span>, <span class="st">&quot;frase&quot;</span>, <span class="st">&quot;simple&quot;</span>), <span class="dt">collapse =</span><span class="st">&quot; &quot;</span>)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">columna.a &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]; columna.b &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">juntar &lt;-<span class="st"> </span><span class="kw">paste</span>(columna.a, columna.b, <span class="dt">sep =</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">substr</span>(<span class="st">&quot;abcdef&quot;</span>,<span class="dv">2</span>,<span class="dv">4</span>) <span class="co"># Seleccionar subcadenas </span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">x &lt;-<span class="st"> </span><span class="kw">paste</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="kw">substr</span>(x, <span class="dv">3</span>, <span class="dv">5</span>) &lt;-<span class="st"> &quot;uv&quot;</span> <span class="co"># Sustituir subcadenas</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="kw">print</span>(x)</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">x &lt;-<span class="st"> </span><span class="kw">paste</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw">substr</span>(x, <span class="dv">3</span>, <span class="dv">4</span>) &lt;-<span class="st"> &quot;uvs&quot;</span> <span class="co"># ¡Cuidado!</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="kw">print</span>(x)</a></code></pre></div>
 <p>Más funciones: <code>nchar</code>, <code>grep</code>, <code>match</code>, <code>pmatch</code>, <code>tolower</code>, <code>toupper</code>, <code>sub</code>, <code>gsub</code>, <code>regexpr</code>.</p>
 </div>
 <div id="ejemplo-7.-factores" class="section level3">
 <h3>Ejemplo 7. Factores</h3>
 <p>Consideremos una secuencia de códigos postales:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codigo.postal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28430</span>, <span class="dv">28016</span>, <span class="dv">28034</span>)
-<span class="kw">mode</span>(codigo.postal)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">codigo.postal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28430</span>, <span class="dv">28016</span>, <span class="dv">28034</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">mode</span>(codigo.postal)</a></code></pre></div>
 <p>No deberíamos usar el código postal en, por ejemplo, un ANOVA como si fuera un vector numérico. Usar variables <em>aparentemente</em> numéricas en análisis estadísticos es un grave error. Por tanto, debemos transformar dicha variable a un factor (automaticamente se generarán los niveles del mismo)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codigo.postal &lt;-<span class="st"> </span><span class="kw">factor</span>(codigo.postal) <span class="co"># mejor</span>
-<span class="kw">mode</span>(codigo.postal)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">codigo.postal &lt;-<span class="st"> </span><span class="kw">factor</span>(codigo.postal) <span class="co"># mejor</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">mode</span>(codigo.postal)</a></code></pre></div>
 <p>Si queremos convertir un vector factor en numérico:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
-x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">2</span>)
-<span class="kw">aov</span>(y <span class="op">~</span><span class="st"> </span>x) <span class="co"># ¡no es lo que queremos!</span>
-<span class="kw">aov</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">factor</span>(x)) <span class="co"># mejor</span>
-
-x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">89</span>, <span class="dv">1000</span>)
-y &lt;-<span class="st"> </span><span class="kw">factor</span>(x)
-y
-<span class="kw">as.numeric</span>(y) <span class="co"># mal. los valores han sido recodificados</span>
-<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(y)) <span class="co"># bien</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">aov</span>(y <span class="op">~</span><span class="st"> </span>x) <span class="co"># ¡no es lo que queremos!</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">aov</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">factor</span>(x)) <span class="co"># mejor</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">89</span>, <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">y &lt;-<span class="st"> </span><span class="kw">factor</span>(x)</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">y</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="kw">as.numeric</span>(y) <span class="co"># mal. los valores han sido recodificados</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(y)) <span class="co"># bien</span></a></code></pre></div>
 <p>Podemos fijar el orden de las etiquetas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>))
-ftr1
-ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>))
-ftr1</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>))</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">ftr1</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">ftr1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>))</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">ftr1</a></code></pre></div>
 <p>A la inversa, podemos querer transformar un vector numérico en una variable categórica por discretización de los valores. Por ejemplo, una variable edad en varios intervalos…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edad &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">90</span>)
-bloque.edad &lt;-<span class="st"> </span><span class="kw">cut</span>(edad, <span class="dt">breaks=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">18</span>,<span class="dv">23</span>,<span class="dv">67</span>,<span class="dv">90</span>))
-<span class="kw">is.factor</span>(bloque.edad)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">edad &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">bloque.edad &lt;-<span class="st"> </span><span class="kw">cut</span>(edad, <span class="dt">breaks=</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">18</span>,<span class="dv">23</span>,<span class="dv">67</span>,<span class="dv">90</span>))</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">is.factor</span>(bloque.edad)</a></code></pre></div>
 </div>
 <div id="ejercicios-propuestos" class="section level3">
 <h3>Ejercicios propuestos</h3>
 <p><em>Muy importante: id guardando el código que resuelve estos ejercicios para su posterior reutilización.</em></p>
 <ol style="list-style-type: decimal">
 <li>Cree una secuencia de valores numéricos entre 1970 y 2019 que representen los años correspondientes</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">sol1 &lt;-<span class="st"> </span><span class="dv">1970</span><span class="op">:</span><span class="dv">2019</span></a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
 <li>Cree una secuencia de 1001 valores numéricos entre 0 y 1</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">sol2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">length.out =</span> <span class="dv">1001</span>)</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
 <li>Cree un vector de 14 cadenas de texto que reproduzca los días de la semana (de lunes a domingo) de dos semanas consecutivas.</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># Mal: no genera cadenas de texto, sino factores</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">sol3 &lt;-<span class="st"> </span><span class="kw">gl</span>(<span class="dv">7</span>,<span class="dv">1</span>,<span class="dt">length=</span><span class="dv">14</span>, <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;L&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;X&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;V&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;D&quot;</span>))</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co"># Mejor:</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">sol3 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;L&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;X&quot;</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;V&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;D&quot;</span>),<span class="dv">2</span>)</a></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
 <li>Cree un vector numérico en el que cada número entero <code>n</code> entre 3 y 7 se repita <code>n</code> veces: 333444455555 etc</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">st4 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">3</span>,<span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">sol4 &lt;-<span class="st"> </span><span class="kw">rep</span>(st4,st4)</a></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
 <li>Cree un vector de factores que contenga 25 valores del conjunto “transacción”,“devolución” y “anulación” en este orden.</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">sol5 &lt;-<span class="st"> </span><span class="kw">gl</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dt">length=</span><span class="dv">25</span>,<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;transacción&quot;,&quot;</span>devolución&quot;,<span class="st">&quot;anulación&quot;))</span></a></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
 <li>Cree un vector que muestree aleatoriamente 100 valores del vector creado en 2. sin repeticiones</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">sol6 &lt;-<span class="st"> </span><span class="kw">sample</span>(sol2, <span class="dt">size=</span><span class="dv">100</span>)</a></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
 <li>Cree un vector de longitud 50 que muestree aleatoriamente el vector creado en 5. permitiendo repeticiones</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">sol7 &lt;-<span class="st"> </span><span class="kw">sample</span>(sol5,<span class="dt">size=</span><span class="dv">50</span>,<span class="dt">replace =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
 <li>Cree un vector de longitud 10 a partir del vector creado en 1. en el que la probabilidad de repetición de cada elemento original sea proporcional al tiempo transcurrido desde 1970).</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">st8 &lt;-<span class="st"> </span>(sol1<span class="dv">-1970</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">st8 &lt;-<span class="st"> </span>st8<span class="op">/</span><span class="kw">sum</span>(st8) <span class="co"># Al dividir por la suma, nos aseguramos que la probabilidad total es 1</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">sol8 &lt;-<span class="st"> </span><span class="kw">sample</span>(sol1,<span class="dt">size=</span><span class="dv">10</span>,<span class="dt">replace=</span><span class="ot">TRUE</span>,<span class="dt">prob =</span> st8)  </a></code></pre></div>
+<ol start="9" style="list-style-type: decimal">
 <li>Cree un vector numérico que contenga 15 números reales aleatorios entre 1970 y 2019</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">sol9 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">15</span>,<span class="dv">1970</span>,<span class="dv">2019</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">hist</span>(sol9) <span class="co"># Calcula y dibuja un histograma</span></a></code></pre></div>
+<ol start="10" style="list-style-type: decimal">
 <li>Cree un vector numérico de 100 valores generados a partir de una distribución normal (Gaussiana) centrada en 1.4 y con desviación estándar 0.5</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">sol10 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="fl">1.4</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">hist</span>(sol10)  <span class="co"># Calcula y dibuja un histograma</span></a></code></pre></div>
+<ol start="11" style="list-style-type: decimal">
 <li>Almacene en un vector distinto los elementos impares del vector creado en 10.</li>
-<li>Imprima sólo los valores del vector creado en 10. superiores a la media más 3 veces el valor de la desviación estándar.</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">st11 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(sol10),<span class="dt">by=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">print</span>(st11) <span class="co"># Comprobémoslo</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">sol11 &lt;-<span class="st"> </span>sol10[st11]</a></code></pre></div>
+<ol start="12" style="list-style-type: decimal">
+<li>Imprima sólo los valores del vector creado en 10. superiores a la media más 2 veces el valor de la desviación estándar.</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mean12 &lt;-<span class="st"> </span><span class="kw">mean</span>(sol10)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">sd12 &lt;-<span class="st"> </span><span class="kw">sd</span>(sol10)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">mask12 &lt;-<span class="st"> </span>(sol10 <span class="op">&gt;</span><span class="st"> </span>mean12 <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>sd12) <span class="co"># Vector booleano que es TRUE si se cumple la condición</span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw">print</span>(sol10[mask12])</a></code></pre></div>
+<ol start="13" style="list-style-type: decimal">
 <li>Almacene en un vector numérico los índices del vector creado en 10. que cumplan la condición de encontrarse a menos de una desviación estándar de la media.</li>
-<li>Sustituya los valores del vector creado en 10. que estén a más de 3 desviaciones estándar de la media por valores ausentes.</li>
+</ol>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">sol13 &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">abs</span>(sol10<span class="op">-</span>mean12) <span class="op">&lt;</span><span class="st"> </span>sd12) <span class="co"># abs(): tanto por debajo como por encima de la media</span></a></code></pre></div>
+<ol start="14" style="list-style-type: decimal">
+<li>Sustituya los valores del vector creado en 10. que estén a más de 2 desviaciones estándar de la media por valores ausentes.</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">mask14 &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">abs</span>(sol10<span class="op">-</span>mean12) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>sd12)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">sol10[mask14] &lt;-<span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<ol start="15" style="list-style-type: decimal">
 <li>Calcule la media y la suma de los valores del vector creado en 14.</li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">sol15a &lt;-<span class="st"> </span><span class="kw">mean</span>(sol10,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">sol15b &lt;-<span class="st"> </span><span class="kw">sum</span>(sol10,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<ol start="16" style="list-style-type: decimal">
 <li>Ordene de mayor a menor los valores del vector creado en 10.</li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">sol16 &lt;-<span class="st"> </span><span class="kw">sort</span>(sol10) <span class="co"># ¡¡¡¡La solución no contiene los valores ausentes!!!!</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co"># Comprobad el uso del parámetro na.last</span></a></code></pre></div>
+<ol start="17" style="list-style-type: decimal">
 <li>Cree un vector de cadenas de caracteres de longitud 100 que contenga una muestra aleatoria de las categorías enumeradas en el ejercicio 5. y reordene dicho vector de acuerdo a la reordenación de los índices que transforma el vector creado en 10. en uno ordenado de menor a mayor.</li>
+</ol>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">st17 &lt;-<span class="st"> </span><span class="kw">levels</span>(sol5) <span class="co">#Automáticamente produce texto (no factores)</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">st17b &lt;-<span class="st"> </span><span class="kw">sample</span>(st17,<span class="dt">size=</span><span class="dv">100</span>,<span class="dt">replace=</span>T)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">st17c &lt;-<span class="st"> </span><span class="kw">order</span>(sol10) <span class="co"># ¡¡¡order sí incluye datos ausentes y los coloca al final!!!</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">sol17 &lt;-<span class="st"> </span>st17b[st17c]  </a></code></pre></div>
+<ol start="18" style="list-style-type: decimal">
 <li>Convierta el vector creado en 1. de numérico a factor.</li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">sol18 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(sol1)</a></code></pre></div>
+<ol start="19" style="list-style-type: decimal">
 <li>Cree un vector de factores categorizando los valores del vector creado en 10. según se encuentren en intervalos de anchura la desviación estándar comenzando en la media.</li>
 </ol>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">st19 &lt;-<span class="st"> </span>(sol10 <span class="op">-</span><span class="st"> </span>mean12)<span class="op">/</span>sd12 <span class="co"># Por elección, tomamos la media antes de incluir valores ausentes.</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#Podría haberse resuelto recalculando la media y la desviación estándar</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">min.mah.dis &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="kw">min</span>(st19,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co"># Mínima distancia de la media en unidades de la desv. st.</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">max.mah.dis &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">max</span>(st19,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co"># Máxima distancia de la media en unidades de la desv. st.</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">sol19 &lt;-<span class="st"> </span><span class="kw">cut</span>(sol10,<span class="dt">breaks =</span> min.mah.dis<span class="op">:</span>max.mah.dis)</a></code></pre></div>
 </div>
 
 <html>
@@ -553,6 +752,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

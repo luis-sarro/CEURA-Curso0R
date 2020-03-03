@@ -26,43 +26,90 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -119,8 +166,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -136,7 +189,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -156,6 +208,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -177,18 +266,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -358,157 +506,172 @@ div.tocify {
 
 
 <p>R es un lenguaje que permite crear nuevas funciones. Una función se define con una asignación de la forma</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1,arg2,...){expresión}</code></pre></div>
-<p>La expresión es una fórmula o grupo de fórmulas que utilizan los argumentos para calcular su valor. El valor de dicha expresión es el valor que proporciona R en su salida y éste puede ser un simple número, un vector, una gráfica, una lista o un mensaje. Recuerda leer <a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">estas indicaciones</a> para mejor lectura de las personas con las que trabajarás.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1,arg2,...){expresión}</a></code></pre></div>
+<p>La expresión es una fórmula o grupo de fórmulas que utilizan los argumentos para calcular su valor. El valor de dicha expresión es el valor que proporciona R en su salida y éste puede ser un simple número, un vector, una gráfica, una lista o un mensaje. Recuerda leer <a href="https://google.github.io/styleguide/Rguide.xml">estas indicaciones</a> para mejor lectura de las personas con las que trabajarás.</p>
 <div id="ejemplo-1.-suma-de-una-progresion-aritmetica" class="section level3">
 <h3>Ejemplo 1. Suma de una progresión aritmética</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">suma &lt;-<span class="st"> </span><span class="cf">function</span>(a1,d,n){
-  an &lt;-<span class="st"> </span>a1<span class="op">+</span>(n<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>d
-  ((a1<span class="op">+</span>an)<span class="op">*</span>n)<span class="op">/</span><span class="dv">2</span>
-  }</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">suma &lt;-<span class="st"> </span><span class="cf">function</span>(a1,d,n){</a>
+<a class="sourceLine" id="cb2-2" title="2">  an &lt;-<span class="st"> </span>a1<span class="op">+</span>(n<span class="dv">-1</span>)<span class="op">*</span>d</a>
+<a class="sourceLine" id="cb2-3" title="3">  ((a1<span class="op">+</span>an)<span class="op">*</span>n)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-4" title="4">  }</a></code></pre></div>
 </div>
 <div id="ejemplo-2.-una-funcion-con-cuatro-argumentos" class="section level3">
 <h3>Ejemplo 2. Una función con cuatro argumentos</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    FuncionPrueba &lt;-<span class="st"> </span><span class="cf">function</span>(a,b,<span class="dt">c =</span> <span class="dv">4</span>,<span class="dt">d =</span> <span class="ot">FALSE</span>){x1&lt;-a<span class="op">*</span>z ...}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">z &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb3-2" title="2">    FuncionPrueba &lt;-<span class="st"> </span><span class="cf">function</span>(a,b,<span class="dt">c =</span> <span class="dv">4</span>,<span class="dt">d =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3">    {</a>
+<a class="sourceLine" id="cb3-4" title="4">      x1&lt;-a<span class="op">*</span>b<span class="dv">-5</span><span class="op">*</span>c<span class="op">*</span>d<span class="op">*</span>z</a>
+<a class="sourceLine" id="cb3-5" title="5">      <span class="kw">return</span>(x1)</a>
+<a class="sourceLine" id="cb3-6" title="6">      }</a></code></pre></div>
 <p>Observa que los argumentos <code>a</code> y <code>b</code> tienen que darse en el orden debido o, si los nombramos, podemos darlos en cualquier orden:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">FuncionPrueba</span>(<span class="dv">4</span>, <span class="dv">5</span>)
- <span class="kw">FuncionPrueba</span>(<span class="dt">b =</span> <span class="dv">5</span>, <span class="dt">a =</span> <span class="dv">4</span>)           </code></pre></div>
-<p>Pero los argumentos con nombre siempre se tienen que dar después de los posicionales</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">FuncionPrueba</span>(<span class="dt">c =</span> <span class="dv">25</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="co"># error!!</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"> <span class="kw">FuncionPrueba</span>(<span class="dv">4</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"> <span class="kw">FuncionPrueba</span>(<span class="dt">b =</span> <span class="dv">5</span>, <span class="dt">a =</span> <span class="dv">4</span>)           </a></code></pre></div>
+<p>Cuidado con el orden en el que se pasan los argumentos de la función</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">FuncionPrueba</span>(<span class="dt">c =</span> <span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
 <p>Los argumentos <code>c</code> y <code>d</code> tienen valores predefinidos. Podemos especificarlos nosotros o no (i.e., usar los valores predefinidos). Con <code>args(nombre.funcion)</code> podemos mostrar los argumentos de cualquier función. Además la expresión <code>...</code> permite pasar argumentos a otra función:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FuncionPrueba2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">label =</span> <span class="st">&quot;la x&quot;</span>, ...){
-                           <span class="kw">plot</span>(x, y, <span class="dt">xlab =</span> label, ...)
-                           }
-            
-<span class="kw">FuncionPrueba2</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)
-<span class="kw">FuncionPrueba2</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">FuncionPrueba2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">label =</span> <span class="st">&quot;la x&quot;</span>, ...){</a>
+<a class="sourceLine" id="cb6-2" title="2">                           <span class="kw">plot</span>(x, y, <span class="dt">xlab =</span> label, ...)</a>
+<a class="sourceLine" id="cb6-3" title="3">                           }</a>
+<a class="sourceLine" id="cb6-4" title="4">            </a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="kw">FuncionPrueba2</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="kw">FuncionPrueba2</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <p>Para realizar funciones de dos variables se puede utilizar el comando <code>outer</code>.</p>
 </div>
 <div id="ejemplo-3.-ejecutando-una-funcion-de-dos-variables" class="section level3">
 <h3>Ejemplo 3. Ejecutando una función de dos variables</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){<span class="kw">cos</span>(y)<span class="op">/</span>(x<span class="op">^</span><span class="dv">2</span><span class="op">-</span><span class="dv">3</span>)}
-z &lt;-<span class="st"> </span><span class="kw">outer</span>(x,y,f)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){<span class="kw">cos</span>(y)<span class="op">/</span>(x<span class="op">^</span><span class="dv">2-3</span>)}</a>
+<a class="sourceLine" id="cb7-2" title="2">z &lt;-<span class="st"> </span><span class="kw">outer</span>(x,y,f)</a></code></pre></div>
 </div>
 <div id="ejemplo-4.-la-familia-apply" class="section level3">
 <h3>Ejemplo 4. La familia <code>apply</code></h3>
 <p>Utilizar la función <code>apply</code> es generalmente mucho más eficiente que un bucle. Además de más claro, más fácil, etc..</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ax &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>), <span class="dt">ncol =</span> <span class="dv">5</span>)
-medias.por.fila &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, mean)
-por.si.na &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-MiFuncion &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="kw">return</span>(<span class="dv">2</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">25</span>)}
-MiFuncion.por.fila &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, MiFuncion)
-mas.simple &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, <span class="cf">function</span>(x){r, eval =<span class="st"> </span><span class="kw">FALSEeturn</span>(<span class="dv">2</span><span class="op">*</span>x <span class="op">-</span><span class="dv">25</span>)})
-medias.por.columna &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">2</span>, mean)
-sample.rows &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, sample)
-DosCosas &lt;-<span class="st"> </span><span class="cf">function</span>(y){r, eval =<span class="st"> </span><span class="kw">FALSEeturn</span>(<span class="kw">c</span>(<span class="kw">mean</span>(y), <span class="kw">var</span>(y)))}
-<span class="kw">apply</span>(ax, <span class="dv">1</span>, DosCosas)
-<span class="kw">t</span>(<span class="kw">apply</span>(ax, <span class="dv">1</span>, DosCosas))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parameters &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">mean =</span> <span class="op">-</span><span class="dv">5</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">12</span>)
-z.data &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="dv">11</span>), <span class="dt">nrow =</span> <span class="dv">11</span>)
-data &lt;-<span class="st"> </span>(z.data <span class="op">*</span><span class="st"> </span>parameters[,<span class="dv">2</span>]) <span class="op">+</span><span class="st"> </span>parameters[,<span class="dv">1</span>]
-<span class="kw">apply</span>(data, <span class="dv">1</span>, mean); <span class="kw">apply</span>(data, <span class="dv">1</span>, sd)</code></pre></div>
-<p>Las funciones <code>sapply(X,función)</code> y <code>lapply(X,función)</code> son como <code>apply(x,i,función)</code> pero no hay que especificar el índice <code>i=2</code>; <code>sapply</code> intenta simplificar el resultado a un vector o a una matriz (la “s” es de “simplify”“), pero <code>lapply</code> siempre devuelve una lista. Ambas pueden aplicarse a vectores, listas, arrays.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(airquality)
-<span class="kw">sapply</span>(airquality, <span class="cf">function</span>(x)<span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">ax &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>), <span class="dt">ncol =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2">medias.por.fila &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, mean)</a>
+<a class="sourceLine" id="cb8-3" title="3">por.si.na &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4">MiFuncion &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="kw">return</span>(<span class="dv">2</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">25</span>)}</a>
+<a class="sourceLine" id="cb8-5" title="5">MiFuncion.por.fila &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, MiFuncion)</a>
+<a class="sourceLine" id="cb8-6" title="6">mas.simple &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="dv">2</span><span class="op">*</span>x <span class="dv">-25</span>)})</a>
+<a class="sourceLine" id="cb8-7" title="7">medias.por.columna &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">2</span>, mean)</a>
+<a class="sourceLine" id="cb8-8" title="8">sample.rows &lt;-<span class="st"> </span><span class="kw">apply</span>(ax, <span class="dv">1</span>, sample)</a>
+<a class="sourceLine" id="cb8-9" title="9">DosCosas &lt;-<span class="st"> </span><span class="cf">function</span>(y){<span class="kw">return</span>(<span class="kw">c</span>(<span class="kw">mean</span>(y), <span class="kw">var</span>(y)))}</a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="kw">apply</span>(ax, <span class="dv">1</span>, DosCosas) <span class="co"># ¡Uy! Lo devuelve en un formato poco intuitivo...</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="kw">t</span>(<span class="kw">apply</span>(ax, <span class="dv">1</span>, DosCosas))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">parameters &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">mean =</span> <span class="dv">-5</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2">z.data &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="dv">11</span>), <span class="dt">nrow =</span> <span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3">data &lt;-<span class="st"> </span>(z.data <span class="op">*</span><span class="st"> </span>parameters[,<span class="dv">2</span>]) <span class="op">+</span><span class="st"> </span>parameters[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">apply</span>(data, <span class="dv">1</span>, mean); <span class="kw">apply</span>(data, <span class="dv">1</span>, sd)</a></code></pre></div>
+<p>Las funciones <code>sapply(X,función)</code> y <code>lapply(X,función)</code> son como <code>apply(X,i,función)</code> pero no hay que especificar el índice <code>i=2</code>; <code>sapply</code> intenta simplificar el resultado a un vector o a una matriz (la “s” es de “simplify”&quot;), pero <code>lapply</code> siempre devuelve una lista. Ambas pueden aplicarse a vectores, listas, arrays.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">data</span>(airquality)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">sapply</span>(airquality, <span class="cf">function</span>(x){<span class="kw">sum</span>(<span class="kw">is.na</span>(x))})</a></code></pre></div>
 <p>La función <code>tapply(x,y,función)</code> calcula la función especificada sobre el objeto <code>x</code> según las categorías de <code>y</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">19</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">23</span>,<span class="dv">19</span>,<span class="dv">19</span>,<span class="dv">21</span>,<span class="dv">18</span>)
-trat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;A&quot;</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="st">&quot;B&quot;</span>,<span class="dv">5</span>))
-x.media &lt;-<span class="st"> </span><span class="kw">tapply</span>(x,trat,mean)
-x.media</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">19</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">23</span>,<span class="dv">19</span>,<span class="dv">19</span>,<span class="dv">21</span>,<span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">trat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;A&quot;</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="st">&quot;B&quot;</span>,<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb11-3" title="3">x.media &lt;-<span class="st"> </span><span class="kw">tapply</span>(x,trat,mean)</a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="kw">print</span>(x.media)</a></code></pre></div>
 <p>Las funciones <code>apply</code>, <code>sapply</code>, <code>lapply</code> y <code>tapply</code> son muy útiles porque contribuyen a hacer el código más legible, fácil de entender, y facilitan posteriores modificaciones y aplicaciones. Consejo: cada vez que vayamos a usar un “loop” intentemos sustituirlo por algún miembro de familia <code>apply</code>. Algunas funciones hacen un <code>apply</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-m1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">ncol =</span> <span class="dv">5</span>)
-d1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(m1)
-<span class="kw">mean</span>(x1); <span class="kw">mean</span>(d1); <span class="kw">sd</span>(x1); <span class="kw">sd</span>(d1); <span class="kw">median</span>(m1); <span class="kw">median</span>(d1)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb12-2" title="2">m1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">ncol =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3">d1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(m1)</a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="kw">mean</span>(x1); </a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="kw">mean</span>(m1)</a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="kw">mean</span>(d1); <span class="co"># Oooops </span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="kw">sd</span>(x1); </a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="kw">sd</span>(m1)</a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="kw">sd</span>(d1); </a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="kw">median</span>(m1); </a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="kw">median</span>(d1)</a></code></pre></div>
 <p>Si te ha gustado el uso de la familia <code>apply</code> puede que también te interese echar un vistazo al paquete <a href="http://cran.r-project.org/web/packages/plyr/index.html">plyr</a></p>
 </div>
 <div id="ejemplo-5.-lexical-scoping" class="section level3">
 <h3>Ejemplo 5. Lexical scoping</h3>
 <p>En la función <code>FuncionPrueba</code>, <span class="math inline">\(z\)</span> es una <em>variable libre</em>, entonces ¿cómo se especifica su valor? Lexical scoping. Ver documento <em>Frames, environments and scope in R and S-PLUS</em> de J. Fox en <a href="http://cran.r-project.org/doc/contrib/Fox-Companion/appendix.html" class="uri">http://cran.r-project.org/doc/contrib/Fox-Companion/appendix.html</a> y sección 10.7 en <em>An introduction to R</em>. También ver <code>demo(scoping)</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cubo &lt;-<span class="st"> </span><span class="cf">function</span>(n) {
-sq &lt;-<span class="st"> </span><span class="cf">function</span>() n<span class="op">*</span>n <span class="co"># aquí n no es un argumento</span>
-n<span class="op">*</span><span class="kw">sq</span>()
-}</code></pre></div>
-<p>En esto R (lexical scope) y S-PLUS (static scope) son distintos.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb13-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>() x</a>
+<a class="sourceLine" id="cb13-3" title="3">g &lt;-<span class="st"> </span><span class="cf">function</span>() { x &lt;-<span class="st"> </span><span class="dv">0</span>; <span class="kw">f</span>() }</a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="kw">g</span>() <span class="co"># 1</span></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="er">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">eval.parent</span>(<span class="kw">quote</span>(x))</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">g</span>() <span class="co"># 0</span></a></code></pre></div>
+<p>Probad a quitar la función quote().</p>
+<p>En esto, R (lexical scope) y S-PLUS (static scope) son distintos.</p>
 </div>
 <div id="ejemplo-6.-control-de-ejecucion" class="section level3">
 <h3>Ejemplo 6. Control de ejecución</h3>
 <p>Las principales instrucciones para el control de la ejecución son, como en otros lenguajes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(cond) expr
-<span class="cf">if</span>(cond) cons.expr  <span class="cf">else</span>  alt.expr
-<span class="cf">for</span>(var <span class="cf">in</span> seq) expr
-<span class="cf">while</span>(cond) expr
-<span class="cf">repeat</span> expr
-<span class="cf">break</span>
-<span class="cf">next</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="cf">if</span>(cond) expr</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="cf">if</span>(cond) cons.expr  <span class="cf">else</span>  alt.expr</a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="cf">for</span>(var <span class="cf">in</span> seq) expr</a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="cf">while</span>(cond) expr</a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="cf">repeat</span> expr</a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="cf">break</span></a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="cf">next</span></a></code></pre></div>
 <p>La expresión <code>expr</code> (también <code>alt.expr</code>) puede ser una expresión simple o una de las llamadas expresiones compuestas, normalmente del tipo <code>{expr1; expr2}</code>. Uno de los errores más habituales es el olvido de los corchetes <code>{...}</code> alrededor de las instrucciones, i.e. después de <code>if(...)</code> o <code>for(...)</code></p>
 <p>Instrucciones de condicionamiento con <code>if (cond.logica)</code> <em>instrucción</em> <code>else</code> <em>instrucción.alternativa</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FuncionPrueba4 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-    <span class="cf">if</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="kw">print</span>(<span class="st">&quot;x &gt; 5&quot;</span>)
-    <span class="cf">else</span> {
-    y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
-    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;y is &quot;</span>, y))
-    }
-    }</code></pre></div>
-<p>Instrucciones de condicionamiento con <code>ifelse</code> es una versión vectorizada (Thomas Unternährer, R-help, 2003-04-17)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OddEven &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-    <span class="kw">ifelse</span>(x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Odd&quot;</span>, <span class="st">&quot;Even&quot;</span>)
-    }
-    
-mtf &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
-<span class="kw">ifelse</span>(mtf, <span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">FuncionPrueba4 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb16-2" title="2">    <span class="cf">if</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="kw">print</span>(<span class="st">&quot;x &gt; 5&quot;</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3">    <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb16-4" title="4">    y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-5" title="5">    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;y is &quot;</span>, y))</a>
+<a class="sourceLine" id="cb16-6" title="6">    }</a>
+<a class="sourceLine" id="cb16-7" title="7">    }</a></code></pre></div>
+<p>Instrucciones de condicionamiento con <code>ifelse</code> es una versión vectorizada</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">OddEven &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb17-2" title="2">    <span class="kw">ifelse</span>(x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Odd&quot;</span>, <span class="st">&quot;Even&quot;</span>)</a>
+<a class="sourceLine" id="cb17-3" title="3">    }</a>
+<a class="sourceLine" id="cb17-4" title="4">    </a>
+<a class="sourceLine" id="cb17-5" title="5">mtf &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb17-6" title="6"><span class="kw">ifelse</span>(mtf, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
 <p>Bucles <code>for (</code><em>variable.loop</em> <code>in</code> <em>valores</em><code>)</code> <em>instrucción</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="kw">cat</span>(<span class="st">&quot;el valor de i es&quot;</span>, i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-    continue.loop &lt;-<span class="st"> </span><span class="ot">TRUE</span>
-    x &lt;-<span class="st"> </span><span class="dv">0</span>
-    <span class="cf">while</span>(continue.loop) {
-    x &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-    <span class="kw">print</span>(x)
-    <span class="cf">if</span>( x <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) continue.loop &lt;-<span class="st"> </span><span class="ot">FALSE</span>
-      }</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="kw">cat</span>(<span class="st">&quot;el valor de i es&quot;</span>, i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2">    continue.loop &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb18-3" title="3">    x &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb18-4" title="4">    <span class="cf">while</span>(continue.loop) {</a>
+<a class="sourceLine" id="cb18-5" title="5">    x &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb18-6" title="6">    <span class="kw">print</span>(x)</a>
+<a class="sourceLine" id="cb18-7" title="7">    <span class="cf">if</span>( x <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) continue.loop &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb18-8" title="8">      }</a></code></pre></div>
 <p>utilizaremos <code>break</code> para salir de un loop.</p>
 </div>
-<div id="cuando-algo-va-mal-en-la-ejecucion-de-una-funcion" class="section level2">
-<h2>Cuando algo va mal en la ejecución de una función</h2>
+<div id="cuando-algo-va-mal-en-la-ejecucion-de-una-funcion" class="section level3">
+<h3>Cuando algo va mal en la ejecución de una función…</h3>
 <p>Cuando se produce un error, podemos ejecutar <code>traceback()</code> que nos informará de la secuencia de llamadas antes del “crash” de nuestra función. Es útil cuando se producen mensajes de error incomprensibles. Cuando se producen errores o la función da resultados incorrectos o <em>warnings</em> indebidos podemos seguir la ejecución de la función.</p>
 <ul>
-<li><p><code>browser</code> interrumpe la ejecución a partir de ese punto y permite seguir la ejecución o examinar el entorno; con <strong>n</strong> paso a paso, si otra tecla sigue la ejecución normal. <strong>Q</strong> para salir.</p></li>
-<li><p><code>debug</code> es como poner un <code>broswer</code> al principio de la función y se ejecuta la función paso a paso. Se sale con <strong>Q</strong>.</p></li>
+<li><p><code>browser</code> interrumpe la ejecución a partir de ese punto y permite seguir la ejecución o examinar el entorno; con el comando <strong>n</strong> se sigue la ejecución paso a paso, y con cualquier otra tecla, sigue la ejecución normal. <strong>Q</strong> para salir.</p></li>
+<li><p><code>debug</code> es como poner un <code>browser</code> al principio de la función y se ejecuta la función paso a paso. Se sale con <strong>Q</strong>.</p></li>
 </ul>
 <p>Por ejemplo</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MiFuncion2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
-    z &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="op">+</span><span class="st"> </span>y2 &lt;-<span class="st"> </span>z <span class="op">*</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>y3 &lt;-<span class="st"> </span>z <span class="op">*</span><span class="st"> </span>y <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">return</span>(y3 <span class="op">+</span><span class="st"> </span><span class="dv">25</span>)
-    }
-    <span class="kw">MiFuncion2</span>(<span class="kw">runif</span>(<span class="dv">3</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
-    <span class="kw">debug</span>(MiFuncion2)
-    <span class="kw">MiFuncion2</span>(<span class="kw">runif</span>(<span class="dv">3</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
-    <span class="kw">undebug</span>(MiFuncion2)
-    <span class="co"># insertar un browser() y correr de nuevo</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">MiFuncion2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb19-2" title="2">      <span class="co">#browser()</span></a>
+<a class="sourceLine" id="cb19-3" title="3">      z &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="op">+</span><span class="st"> </span>y2 &lt;-<span class="st"> </span>z <span class="op">*</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>y3 &lt;-<span class="st"> </span>z <span class="op">*</span><span class="st"> </span>y <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">return</span>(y3 <span class="op">+</span><span class="st"> </span><span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb19-4" title="4">    }</a>
+<a class="sourceLine" id="cb19-5" title="5">    <span class="kw">MiFuncion2</span>(<span class="kw">runif</span>(<span class="dv">3</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb19-6" title="6">    <span class="kw">debug</span>(MiFuncion2)</a>
+<a class="sourceLine" id="cb19-7" title="7">    <span class="kw">MiFuncion2</span>(<span class="kw">runif</span>(<span class="dv">3</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb19-8" title="8">    <span class="kw">undebug</span>(MiFuncion2)</a>
+<a class="sourceLine" id="cb19-9" title="9">    <span class="co"># insertar un browser() y correr de nuevo</span></a></code></pre></div>
 <p>Un ejemplo más</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">     d3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">g1=</span><span class="kw">runif</span>(<span class="dv">10</span>),<span class="dt">g2=</span><span class="kw">rnorm</span>(<span class="dv">10</span>),
-     <span class="dt">id1 =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">2</span>),
-     <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="st">&quot;d&quot;</span>, <span class="dv">3</span>)))
-     
-     MiFuncion3 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-    las.medias &lt;-<span class="st"> </span><span class="kw">mean</span>(x[, <span class="op">-</span><span class="dv">3</span>])
-    las.vars &lt;-<span class="st"> </span><span class="kw">var</span>(x[, <span class="op">-</span><span class="dv">3</span>])
-    max.total &lt;-<span class="st"> </span><span class="kw">max</span>(x[, <span class="op">-</span><span class="dv">3</span>])
-    tabla.clases &lt;-<span class="st"> </span><span class="kw">table</span>(x[, <span class="dv">3</span>])
-    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">row.means =</span> las.medias,
-    <span class="dt">row.vars =</span> las.vars, <span class="dt">maximum =</span> max.total,
-    <span class="dt">factor.classes =</span> tabla.clases))
-    }
-     <span class="kw">MiFuncion3</span>(d3)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">     d3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">g1=</span><span class="kw">runif</span>(<span class="dv">10</span>),<span class="dt">g2=</span><span class="kw">rnorm</span>(<span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb20-2" title="2">     <span class="dt">id1 =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb20-3" title="3">     <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="dv">2</span>), <span class="kw">rep</span>(<span class="st">&quot;d&quot;</span>, <span class="dv">3</span>)))</a>
+<a class="sourceLine" id="cb20-4" title="4">     </a>
+<a class="sourceLine" id="cb20-5" title="5">     MiFuncion3 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb20-6" title="6">    las.medias &lt;-<span class="st"> </span><span class="kw">mean</span>(x[, <span class="dv">-3</span>])</a>
+<a class="sourceLine" id="cb20-7" title="7">    las.vars &lt;-<span class="st"> </span><span class="kw">var</span>(x[, <span class="dv">-3</span>])</a>
+<a class="sourceLine" id="cb20-8" title="8">    max.total &lt;-<span class="st"> </span><span class="kw">max</span>(x[, <span class="dv">-3</span>])</a>
+<a class="sourceLine" id="cb20-9" title="9">    tabla.clases &lt;-<span class="st"> </span><span class="kw">table</span>(x[, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb20-10" title="10">    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">row.means =</span> las.medias,</a>
+<a class="sourceLine" id="cb20-11" title="11">    <span class="dt">row.vars =</span> las.vars, <span class="dt">maximum =</span> max.total,</a>
+<a class="sourceLine" id="cb20-12" title="12">    <span class="dt">factor.classes =</span> tabla.clases))</a>
+<a class="sourceLine" id="cb20-13" title="13">    }</a>
+<a class="sourceLine" id="cb20-14" title="14">     <span class="kw">MiFuncion3</span>(d3)</a></code></pre></div>
 </div>
-<div id="ejecucion-no-interactiva" class="section level2">
-<h2>Ejecución no interactiva</h2>
+<div id="ejecucion-no-interactiva" class="section level3">
+<h3>Ejecución no interactiva</h3>
 <p>Con <code>source</code> abrimos una sesión de R y ejecutamos todo el código dentro un archivo determinado:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;mi.fichero.con.codigo.R&quot;</span>)</code></pre></div>
-<p>También podemos ejecutar el archivo con todo nuestro código usando BATCH: <code>Rcmd BATCH mi.fichero.con.codigo.R</code></p>
-<p>En general <code>source</code> es más útil porque informa inmediatamente de errores en el código. BATCH no informa, pero tiene la ventaja de no requerir una sesión abierta de R para ejecutar el código (esto es my importante si en un futuro próximo vas a utilizar supercomputación en la forma de colas CONDOR o SLURM). Si lo vas a usar sería conveniente echar un vistazo a la ayuda <code>Rcmd BATCH --help</code></p>
-<p>Puede que necesitemos explícitos <code>print</code> statements o hacer <code>source(my.file.R, echo = TRUE)</code>. La función <code>sink</code> es el inverso de <code>source</code> (lo manda todo a un fichero). Se pueden crear paquetes, con nuestras funciones, que se comporten igual que los demás paquetes (ver <em>Writing R extensions</em>). Si esta es tu intención te recomendamos utilizar Rstudio, ya que la creación de paquetes y la depuración de los mismos ha mejorado mucho en las últimas versiones.</p>
-<p>Recuerda que R puede llamar código compilado en C/C++ y FORTRAN. Ver <code>.C</code>, <code>.Call</code>, <code>.Fortran</code>. <em>Lexical scoping</em> es importante en programación más avanzada. R es un verdadero <em>object-oriented language</em>. Dos implementaciones, las S3 classes y las S4 classes.</p>
-<p>(nota: No hemos mencionado el “computing on the language” (ej., <code>do.call</code>, <code>eval</code>, etc.).</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">source</span>(<span class="st">&quot;mi.fichero.con.codigo.R&quot;</span>)</a></code></pre></div>
+<p>Puede que necesitemos explícitos <code>print</code> statements o hacer <code>source(my.file.R, echo = TRUE)</code>. La función <code>sink</code> es el inverso de <code>source</code> (lo manda todo a un fichero). Se pueden crear paquetes, con nuestras funciones, que se comporten igual que los demás paquetes (ver <em>Writing R extensions</em>). Si ésta es tu intención te recomendamos utilizar Rstudio, ya que la creación de paquetes y la depuración de los mismos ha mejorado mucho en las últimas versiones.</p>
+<p>Recuerda que R puede llamar código compilado en C/C++ y FORTRAN. Ver <code>.C</code>, <code>.Call</code>, <code>.Fortran</code>. El <em>Lexical scoping</em> es importante en programación más avanzada. R es un lenguaje orientado a objeto verdadero. El libro <em>Advanced R</em> o la [página web]<a href="http://adv-r.had.co.nz/" class="uri">http://adv-r.had.co.nz/</a>) os darán una idea de los aspectos más avanzados de la programación OO en R.</p>
+<p>(Nota: no hemos mencionado el “computing on the language” (ej., <code>do.call</code>, <code>eval</code>, etc.).</p>
 </div>
 
 <html>
