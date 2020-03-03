@@ -43,6 +43,7 @@ También podemos considerar subconjuntos de un array
 
 ```{r, eval = FALSE}
 a[2, , ] # es un array de dimensión c(4,2)
+dim(a[2, , ])
 a4[1, ] # La primera fila de a4
 a4[, 2] # La segunda columna
 a4[c(1, 3), c(2, 4)] # Cuatro elementos de a4
@@ -60,7 +61,7 @@ a4[im] # Se interpreta que cada fila de im es una indexación de a4
 
 ```{r, eval = FALSE}
 which(a4 > 10) # Mmmmm No era lo que esperaba
-which(a4 > 10, arr.ind=T) ¡Ahora sí!      
+which(a4 > 10, arr.ind=T) #¡Ahora sí!      
 ```
 
 
@@ -80,11 +81,13 @@ datos["Barna", ]
 datos[ ,"C"]
 ```
 
+También se podría haber hecho con las funciones colnames() y rownames().
+
     
 ### Ejemplo 2. Ordenación por columnas.
 
 ```{r, eval = FALSE}
-a4 <- 1:20 
+a4 <- 1:20
 dim(a4) <- c(5, 4)
 attributes(a4)
 colnames(a4) <- paste("v", 1:4, sep = "")
