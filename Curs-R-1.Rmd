@@ -19,7 +19,7 @@ El objetivo principal del mismo es proporcionar los elementos básicos para empe
 
 ## ¿Por qué elegir R en lugar de S, Matlab, Python, SPSS, etc., etc., etc.?
 
-Esta es una de las primeras preguntas que te plantearás cuando comiences a trabajar en el área. Actualmente (año 2019) hay [gran cantidad de software](http://en.wikipedia.org/wiki/Comparison_of_statistical_packages) que podría ser válido para realizar las tareas propias del área sobre tus datos. Sin embargo, no todo ese software es libre/gratuito, ni está mantenido (con actualizaciones periódicas) de forma continua por un grupo sólido de investigadores/desarrolladores, o no es multiplataforma (lo puedes utilizar en sistemas GNU-Linux, MacOSX o Windows). Desde esta perspectiva, recomendaríamos especialmente dos lenguajes de programación: R y Python. 
+Esta es una de las primeras preguntas que te plantearás cuando comiences a trabajar en el área. Actualmente (año 2020) hay [gran cantidad de software](http://en.wikipedia.org/wiki/Comparison_of_statistical_packages) que podría ser válido para realizar las tareas propias del área sobre tus datos. Sin embargo, no todo ese software es libre/gratuito, ni está mantenido (con actualizaciones periódicas) de forma continua por un grupo sólido de investigadores/desarrolladores, o no es multiplataforma (lo puedes utilizar en sistemas GNU-Linux, MacOSX o Windows). Desde esta perspectiva, recomendaríamos especialmente dos lenguajes de programación: R y Python. 
 
 Este curso se centrará en R, cuyos mayores atractivos son:
 
