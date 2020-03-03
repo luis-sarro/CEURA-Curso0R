@@ -50,9 +50,13 @@ set.seed(1) # fija la semilla del random number generator
 d1 <- data.frame(g1 = runif(10), g2 = rnorm(10))
 d1$edad <- c(rep(20, 5), rep(40, 5))
 set.seed(1)
-d2 <- cbind(g1 = runif(10), g2 = rnorm(10))
+d2 <- cbind(g1 = runif(10), g2 = rnorm(10)) # No es un data.frame
 d2[, 3] <- c(rep(20, 5), rep(40, 5)) # error
-d2 <- cbind(d2, edad = c(rep(20, 5), rep(40, 5)))
+d2 <- cbind(d2, edad = c(rep(20, 5), rep(40, 5))) # No es un dataframe
+print(d2$edad)
+d2 <- cbind(g1 = runif(10), g2 = rnorm(10))
+d3 <- cbind(d2, edad = c(rep(20, 5), rep(40, 5))) # Ahora sí
+print(d3$edad)
 ```      
 
 Además, en los `data.frame` los “character vectors” se convierten en factores. Podemos convertir matrices a `data.frame` con `as.data.frame()`. Los `data.frame` también tienen `rownames`, `colnames`.
@@ -65,7 +69,7 @@ attributes(a10) # cuando no están definidos
 
 ### Ejemplo. Tabular variables cualitativas
 
-La tabulación cruzada de dos variables cualitativas se consigue con la función `table`:
+La tabulación cruzada (conteo de casos) de dos variables cualitativas se consigue con la función `table`:
             
 ```{r, eval = FALSE}
 sexo <- sample(c("H","M"),100,replace = T)

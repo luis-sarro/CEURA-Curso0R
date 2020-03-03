@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -44,7 +44,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -102,7 +102,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -145,9 +145,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -161,7 +159,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -266,8 +263,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -312,6 +307,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -324,48 +320,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -379,6 +336,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -414,8 +377,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -430,6 +391,16 @@ div.tocify {
 }
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -506,47 +477,51 @@ div.tocify {
 
 
 <p>Se utilizan para datos de diferentes tipos. Por ejemplo, si tenemos los vectores</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb1-2" title="2">x2 &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb1-3" title="3">x3 &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
-<a class="sourceLine" id="cb1-4" title="4">a9 &lt;-<span class="st"> </span><span class="kw">cbind</span>(x1, x2, x3)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">x2 &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">x3 &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">a9 &lt;-<span class="st"> </span><span class="kw">cbind</span>(x1, x2, x3)</a></code></pre></div>
 <p>¿De qué tipo es <code>a9</code>? ¿Es eso lo que queríamos? Mejor con un <code>data.frame</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">a10 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1, x2, x3)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">a10 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1, x2, x3)</a></code></pre></div>
 <p>Ahora pueden aplicarse, por ejemplo, algunas técnicas de reducción de dimensión como el análisis de componentes principales:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">prcomp</span>(a10[, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])<span class="co"># comp. principales</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">prcomp</span>(a10[, <span class="kw">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)])</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">prcomp</span>(a10[, <span class="dv">-3</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">prcomp</span>(a10[, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])<span class="co"># comp. principales</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">prcomp</span>(a10[, <span class="kw">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)])</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">prcomp</span>(a10[, <span class="dv">-3</span>])</a></code></pre></div>
 <p>También podemos añadir alguna columna a una matriz como <code>datos</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">playa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>,<span class="st">&quot;si&quot;</span>,<span class="st">&quot;no&quot;</span>,<span class="st">&quot;no&quot;</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2">datos.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(datos, playa)</a>
-<a class="sourceLine" id="cb4-3" title="3">datos.df<span class="op">$</span>playa</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">playa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>,<span class="st">&quot;si&quot;</span>,<span class="st">&quot;no&quot;</span>,<span class="st">&quot;no&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">datos.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(datos, playa)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">datos.df<span class="op">$</span>playa</a></code></pre></div>
 <p>Usar <code>$</code> facilita el acceso y la creación de nuevas columnas:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>) <span class="co"># fija la semilla del random number generator</span></a>
-<a class="sourceLine" id="cb5-2" title="2">d1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">g1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">g2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb5-3" title="3">d1<span class="op">$</span>edad &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-5" title="5">d2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">g1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">g2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb5-6" title="6">d2[, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>)) <span class="co"># error</span></a>
-<a class="sourceLine" id="cb5-7" title="7">d2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(d2, <span class="dt">edad =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>) <span class="co"># fija la semilla del random number generator</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">d1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">g1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">g2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">d1<span class="op">$</span>edad &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">d2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">g1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">g2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)) <span class="co"># No es un data.frame</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">d2[, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>)) <span class="co"># error</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">d2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(d2, <span class="dt">edad =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>))) <span class="co"># No es un dataframe</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">print</span>(d2<span class="op">$</span>edad)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">d2 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">g1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">g2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">d3 &lt;-<span class="st"> </span><span class="kw">cbind</span>(d2, <span class="dt">edad =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">40</span>, <span class="dv">5</span>))) <span class="co"># Ahora sí</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">print</span>(d3<span class="op">$</span>edad)</a></code></pre></div>
 <p>Además, en los <code>data.frame</code> los “character vectors” se convierten en factores. Podemos convertir matrices a <code>data.frame</code> con <code>as.data.frame()</code>. Los <code>data.frame</code> también tienen <code>rownames</code>, <code>colnames</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">attributes</span>(a10) <span class="co"># cuando no están definidos</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co"># También podemos usar `dimnames(a10)`</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">attributes</span>(a10) <span class="co"># cuando no están definidos</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co"># También podemos usar `dimnames(a10)`</span></a></code></pre></div>
 <div id="ejemplo.-tabular-variables-cualitativas" class="section level3">
 <h3>Ejemplo. Tabular variables cualitativas</h3>
-<p>La tabulación cruzada de dos variables cualitativas se consigue con la función <code>table</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sexo &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;M&quot;</span>),<span class="dv">100</span>,<span class="dt">replace =</span> T)</a>
-<a class="sourceLine" id="cb7-2" title="2">nivel &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;4&quot;</span>,<span class="st">&quot;5&quot;</span>),<span class="dv">100</span>,<span class="dt">replace =</span> T)</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="kw">table</span>(sexo,nivel)</a></code></pre></div>
+<p>La tabulación cruzada (conteo de casos) de dos variables cualitativas se consigue con la función <code>table</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">sexo &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;M&quot;</span>),<span class="dv">100</span>,<span class="dt">replace =</span> T)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">nivel &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;4&quot;</span>,<span class="st">&quot;5&quot;</span>),<span class="dv">100</span>,<span class="dt">replace =</span> T)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">table</span>(sexo,nivel)</a></code></pre></div>
 <p>Se pueden crear data.frames que contengan todas las posibles combinaciones de varios vectores con expand.grid:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">expand.grid</span>(<span class="dt">edad =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">25</span>), <span class="dt">sexo =</span> <span class="kw">c</span>(<span class="st">&quot;Macho&quot;</span>, <span class="st">&quot;Hembra&quot;</span>), <span class="dt">loc =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">expand.grid</span>(<span class="dt">edad =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">25</span>), <span class="dt">sexo =</span> <span class="kw">c</span>(<span class="st">&quot;Macho&quot;</span>, <span class="st">&quot;Hembra&quot;</span>), <span class="dt">loc =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
 <p>Para introducir una tabla de contingencia también se utiliza la instrucción <code>table</code>. Las variables se definen con sus modalidades con la instrucción <code>expand.grid(var1,var2)</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">resultado &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(</a>
-<a class="sourceLine" id="cb9-2" title="2">             <span class="dt">calif=</span><span class="kw">c</span>(<span class="st">&quot;mejor&quot;</span>,<span class="st">&quot;peor&quot;</span>,<span class="st">&quot;igual&quot;</span>),</a>
-<a class="sourceLine" id="cb9-3" title="3">             <span class="dt">tratam=</span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>))</a>
-<a class="sourceLine" id="cb9-4" title="4"></a>
-<a class="sourceLine" id="cb9-5" title="5">             frec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">21</span>,<span class="dv">34</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">12</span>,<span class="dv">14</span>)</a>
-<a class="sourceLine" id="cb9-6" title="6">             tabla &lt;-<span class="st"> </span><span class="kw">table</span>(resultado<span class="op">$</span>calif,resultado<span class="op">$</span>tratam)<span class="op">*</span>frec</a>
-<a class="sourceLine" id="cb9-7" title="7">             tabla</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">resultado &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">             <span class="dt">calif=</span><span class="kw">c</span>(<span class="st">&quot;mejor&quot;</span>,<span class="st">&quot;peor&quot;</span>,<span class="st">&quot;igual&quot;</span>),</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">             <span class="dt">tratam=</span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>))</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">             frec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">21</span>,<span class="dv">34</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">12</span>,<span class="dv">14</span>)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">             tabla &lt;-<span class="st"> </span><span class="kw">table</span>(resultado<span class="op">$</span>calif,resultado<span class="op">$</span>tratam)<span class="op">*</span>frec</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">             tabla</a></code></pre></div>
 </div>
 <div id="ejercicios-propuestos" class="section level3">
 <h3>Ejercicios propuestos</h3>
@@ -590,6 +565,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
