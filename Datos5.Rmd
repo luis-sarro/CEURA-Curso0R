@@ -259,6 +259,3 @@ setdiff(v, w)
 
 34. Busque la ayuda de pmin y de cummin. ¿Qué nos permiten hacer las variantes (p)aralelas o a(cum)ulativas de las funciones clásicas?
 35. Programe la función (logística)[https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica]. Evalúe la función entre -6 y 6 en pasos de 0.1 unidades y almacene el resultado en un vector. Finalmente, modifique este último vector de manera que los valores inferiores a 0.1 se sustituyan por 0.1 y los superiores a 0.9 se sustituyan por 0.9. 
-36. 
-37. 
-38. 

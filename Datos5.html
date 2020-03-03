@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -44,7 +44,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -102,7 +102,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -145,9 +145,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -161,7 +159,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -266,8 +263,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -312,6 +307,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -324,48 +320,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -379,6 +336,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -414,8 +377,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -430,6 +391,16 @@ div.tocify {
 }
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -506,88 +477,88 @@ div.tocify {
 
 
 <p>Para saber los objetos que hemos definido hacemos</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">             <span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb1-2" title="2">             <span class="kw">objects</span>()</a>
-<a class="sourceLine" id="cb1-3" title="3">             <span class="kw">objects</span>(<span class="dt">pattern=</span><span class="kw">glob2rx</span>(<span class="st">&quot;o*&quot;</span>)) <span class="co"># pattern puede contener expresiones regulares pero ¡cuidado! los wildcards requieren traducción a través de glob2rx</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">             <span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">             <span class="kw">objects</span>()</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">             <span class="kw">objects</span>(<span class="dt">pattern=</span><span class="kw">glob2rx</span>(<span class="st">&quot;o*&quot;</span>)) <span class="co"># pattern puede contener expresiones regulares pero ¡cuidado! los wildcards requieren traducción a través de glob2rx</span></a></code></pre></div>
 <p>R tiene una lista donde buscar los objetos accesibles: ‘the search list’. Cargar un paquete extiende la ‘search list’. Para obtener la lista de los directorios, llamados ‘databases’:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">search</span>()</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw">search</span>()            </a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">search</span>()</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">search</span>()            </a></code></pre></div>
 <p>Para que un objeto o directorio sea fácilmente accesible lo podemos poner en la ‘search list’ de R. En el caso de un data.frame, esto permite acceder directamente a las columnas por su nombre.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">190</span>,<span class="dv">8</span>,<span class="dv">22</span>,<span class="dv">191</span>,<span class="dv">4</span>,<span class="fl">1.7</span>,<span class="dv">223</span>,<span class="dv">80</span>,<span class="dv">2</span>,<span class="dv">210</span>,<span class="dv">50</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2">datos &lt;-<span class="st"> </span><span class="kw">matrix</span>(x,<span class="dt">nrow=</span><span class="dv">4</span>,<span class="dt">byrow=</span>T)</a>
-<a class="sourceLine" id="cb3-3" title="3">ciudades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Barna&quot;</span>,<span class="st">&quot;Tarraco&quot;</span>,<span class="st">&quot;Lleida&quot;</span>,<span class="st">&quot;Girona&quot;</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">dimnames</span>(datos) &lt;-<span class="st"> </span><span class="kw">list</span>(ciudades,<span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb3-5" title="5">variables &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>)</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="kw">dimnames</span>(datos) &lt;-<span class="st"> </span><span class="kw">list</span>(ciudades,variables)</a>
-<a class="sourceLine" id="cb3-7" title="7"></a>
-<a class="sourceLine" id="cb3-8" title="8">playa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>,<span class="st">&quot;si&quot;</span>,<span class="st">&quot;no&quot;</span>,<span class="st">&quot;no&quot;</span>)</a>
-<a class="sourceLine" id="cb3-9" title="9">datos.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(datos, playa)</a>
-<a class="sourceLine" id="cb3-10" title="10">datos.df<span class="op">$</span>playa</a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="kw">str</span>(datos.df) <span class="co"># es un data.frame</span></a>
-<a class="sourceLine" id="cb3-13" title="13">A <span class="co"># error</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="kw">attach</span>(datos.df)</a>
-<a class="sourceLine" id="cb3-15" title="15">A <span class="co"># ahora sí</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="kw">plot</span>(A,B) <span class="co"># en lugar de plot(datos.df$A,datos.df$B)</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">190</span>,<span class="dv">8</span>,<span class="dv">22</span>,<span class="dv">191</span>,<span class="dv">4</span>,<span class="fl">1.7</span>,<span class="dv">223</span>,<span class="dv">80</span>,<span class="dv">2</span>,<span class="dv">210</span>,<span class="dv">50</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">datos &lt;-<span class="st"> </span><span class="kw">matrix</span>(x,<span class="dt">nrow=</span><span class="dv">4</span>,<span class="dt">byrow=</span>T)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">ciudades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Barna&quot;</span>,<span class="st">&quot;Tarraco&quot;</span>,<span class="st">&quot;Lleida&quot;</span>,<span class="st">&quot;Girona&quot;</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">dimnames</span>(datos) &lt;-<span class="st"> </span><span class="kw">list</span>(ciudades,<span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">variables &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">dimnames</span>(datos) &lt;-<span class="st"> </span><span class="kw">list</span>(ciudades,variables)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">playa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>,<span class="st">&quot;si&quot;</span>,<span class="st">&quot;no&quot;</span>,<span class="st">&quot;no&quot;</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">datos.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(datos, playa)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">datos.df<span class="op">$</span>playa</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">str</span>(datos.df) <span class="co"># es un data.frame</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">A <span class="co"># error</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">attach</span>(datos.df)</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">A <span class="co"># ahora sí</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw">plot</span>(A,B) <span class="co"># en lugar de plot(datos.df$A,datos.df$B)</span></a></code></pre></div>
 <p>Pero la actualización no es dinámica</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">datos.df<span class="op">$</span>D &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="co"># una nueva columna</span></a>
-<a class="sourceLine" id="cb4-2" title="2">datos.df <span class="co"># aquí está</span></a>
-<a class="sourceLine" id="cb4-3" title="3">D        <span class="co"># pero aquí no            </span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">datos.df<span class="op">$</span>D &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="co"># una nueva columna</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">datos.df <span class="co"># aquí está</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">D        <span class="co"># pero aquí no            </span></a></code></pre></div>
 <p>Recordamos que para desconectar</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"> <span class="kw">detach</span>(datos.df)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"> <span class="kw">detach</span>(datos.df)</a></code></pre></div>
 <p>Para borrar objetos concretos</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># rm(&lt;objetos&gt;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># rm(&lt;objetos&gt;)</span></a></code></pre></div>
 <p>Para borrar todos los objetos del entorno de trabajo:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># rm(list = ls())</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># rm(list = ls())</span></a></code></pre></div>
 <p>Para cargar un archivo <code>nombre.RData</code> con objetos diversos (datos, funciones,…) se puede hacer un <code>attach</code> o un <code>load</code>. La primera instrucción accede a los objetos cuando se requieren, la segunda los carga todos.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">search</span>()</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">attach</span>(<span class="st">&quot;misdatos.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">search</span>()</a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="kw">ls</span>(<span class="dt">pos=</span><span class="dv">2</span>) <span class="co"># segunda posición en la &#39;search list&#39;</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">summary</span>(crabs)</a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="kw">detach</span>(file<span class="op">:</span>misdatos.RData)</a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="kw">search</span>()</a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="kw">summary</span>(crabs)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">search</span>()</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">attach</span>(<span class="st">&quot;misdatos.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">search</span>()</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">ls</span>(<span class="dt">pos=</span><span class="dv">2</span>) <span class="co"># segunda posición en la &#39;search list&#39;</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">summary</span>(crabs)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">detach</span>(file<span class="op">:</span>misdatos.RData)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw">search</span>()</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw">summary</span>(crabs)</a></code></pre></div>
 <p>¡Alerta!</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">attach</span>(datos.df)</a>
-<a class="sourceLine" id="cb9-2" title="2">datos.df</a>
-<a class="sourceLine" id="cb9-3" title="3">A &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb9-4" title="4">A  <span class="co"># usa la última</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw">search</span>() <span class="co"># el search path</span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="kw">detach</span>(datos.df)</a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="kw">attach</span>(datos.df)</a>
-<a class="sourceLine" id="cb9-8" title="8">D</a>
-<a class="sourceLine" id="cb9-9" title="9">A <span class="co"># ¡cuidado! En search() aparece primero el .GlobalEnv</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">attach</span>(datos.df)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">datos.df</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">A &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">A  <span class="co"># usa la última</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">search</span>() <span class="co"># el search path</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">detach</span>(datos.df)</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw">attach</span>(datos.df)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">D</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">A <span class="co"># ¡cuidado! En search() aparece primero el .GlobalEnv</span></a></code></pre></div>
 <p>Conclusión: En “entornos confusos”, como un análisis que se prolonga dos semanas, es mejor evitar <code>attach</code> y acceder siempre a las variables usando su localización explícita y completa.</p>
-<div id="ejemplo-1.-obtener-mas-atributos-de-un-objeto." class="section level3">
+<div id="ejemplo-1.-obtener-más-atributos-de-un-objeto." class="section level3">
 <h3>Ejemplo 1. Obtener más atributos de un objeto.</h3>
 <p>Tenemos a nuestra disposición distintas funciones para obtener los atributos de un objeto definido: (i) Modo (<code>mode</code>) o tipo básico (vector o array: lógico, entero, real, carácter, etc); (ii) Tipo (<code>typeof</code>) tipo de elementos que contiene (int, double, etc.); (iii) Nombres (<code>names</code>) etiquetas de los elementos individuales de un vector o lista; (iv) Dimensiones (<code>dim</code>) de los arrays (alguna puede ser cero); (v) Dimnames (<code>dimnames</code>) nombres de las dimensiones de los arrays; (vi) Clase (<code>class</code>): vector alfanumérico con la lista de las clases del objeto; (vii) Otros: atributos de una serie temporal.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">  x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span> </a>
-<a class="sourceLine" id="cb10-2" title="2">  <span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb10-3" title="3">  y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">5</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>) </a>
-<a class="sourceLine" id="cb10-4" title="4">  <span class="kw">dim</span>(y)</a>
-<a class="sourceLine" id="cb10-5" title="5">  <span class="kw">is.vector</span>(x)</a>
-<a class="sourceLine" id="cb10-6" title="6">  <span class="kw">is.vector</span>(y)</a>
-<a class="sourceLine" id="cb10-7" title="7">  <span class="kw">is.array</span>(x)</a>
-<a class="sourceLine" id="cb10-8" title="8">  x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> </a>
-<a class="sourceLine" id="cb10-9" title="9">  x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) </a>
-<a class="sourceLine" id="cb10-10" title="10">  x3 &lt;-<span class="st"> &quot;patata&quot;</span></a>
-<a class="sourceLine" id="cb10-11" title="11">  <span class="kw">typeof</span>(x1)</a>
-<a class="sourceLine" id="cb10-12" title="12">  <span class="kw">typeof</span>(x2)</a>
-<a class="sourceLine" id="cb10-13" title="13">  <span class="kw">typeof</span>(x3)</a>
-<a class="sourceLine" id="cb10-14" title="14">  <span class="kw">mode</span>(x)</a>
-<a class="sourceLine" id="cb10-15" title="15">  <span class="kw">mode</span>(y)</a>
-<a class="sourceLine" id="cb10-16" title="16">  z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb10-17" title="17">  <span class="kw">mode</span>(z)</a>
-<a class="sourceLine" id="cb10-18" title="18">  <span class="kw">attributes</span>(y)</a>
-<a class="sourceLine" id="cb10-19" title="19">  w &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb10-20" title="20">  <span class="kw">attributes</span>(w)</a>
-<a class="sourceLine" id="cb10-21" title="21">  y &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(y)</a>
-<a class="sourceLine" id="cb10-22" title="22">  <span class="kw">attributes</span>(y)</a>
-<a class="sourceLine" id="cb10-23" title="23">  f1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">return</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x)} <span class="co"># función doble de un número</span></a>
-<a class="sourceLine" id="cb10-24" title="24">  <span class="kw">attributes</span>(f1)</a>
-<a class="sourceLine" id="cb10-25" title="25">  <span class="kw">is.function</span>(f1)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">  x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span> </a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">  y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">5</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>) </a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="kw">dim</span>(y)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="kw">is.vector</span>(x)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">  <span class="kw">is.vector</span>(y)</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="kw">is.array</span>(x)</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">  x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> </a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">  x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) </a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">  x3 &lt;-<span class="st"> &quot;patata&quot;</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="kw">typeof</span>(x1)</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="kw">typeof</span>(x2)</a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="kw">typeof</span>(x3)</a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">  <span class="kw">mode</span>(x)</a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">  <span class="kw">mode</span>(y)</a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">  z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">  <span class="kw">mode</span>(z)</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="kw">attributes</span>(y)</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">  w &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">  <span class="kw">attributes</span>(w)</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21">  y &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(y)</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">  <span class="kw">attributes</span>(y)</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">  f1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">return</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x)} <span class="co"># función doble de un número</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">  <span class="kw">attributes</span>(f1)</a>
+<a class="sourceLine" id="cb10-25" data-line-number="25">  <span class="kw">is.function</span>(f1)</a></code></pre></div>
 </div>
 <div id="nombres-para-los-objetos" class="section level3">
 <h3>Nombres para los objetos</h3>
@@ -597,10 +568,10 @@ div.tocify {
 <li>Evita nombres que usa R (ej., <code>c</code>, <code>mean</code>)</li>
 <li>Las asignaciones se hacen con <strong>&lt;-</strong> y se recomiendan los espacios. El signo <strong>=</strong> se reserva para los argumentos de las funciones.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># x&lt;-1:5   # Estilo incorrecto</span></a>
-<a class="sourceLine" id="cb11-2" title="2">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> <span class="co"># Estilo correcto</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># x&lt;-1:5   # Estilo incorrecto</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> <span class="co"># Estilo correcto</span></a></code></pre></div>
 </div>
-<div id="operaciones-aritmeticas" class="section level3">
+<div id="operaciones-aritméticas" class="section level3">
 <h3>Operaciones aritméticas</h3>
 <p>¡Recuerda! las operaciones con vectores mejoran el uso de bucles (en tiempo y memoria). Las principales operaciones aritméticas:</p>
 <ul>
@@ -612,68 +583,68 @@ div.tocify {
 <li>otras: <code>max</code>, <code>min</code>, <code>range</code>, <code>pmax</code>, <code>pmin</code>, <code>mean</code>, <code>median</code>, <code>var</code>, <code>sd</code>, <code>quantile</code>, <code>sum</code>, <code>prod</code>, <code>diff</code> <code>cumsum</code>, <code>cumprod</code>, <code>cummax</code>, <code>cummin</code></li>
 </ul>
 </div>
-<div id="ejemplo-2.-operaciones-basicas" class="section level3">
+<div id="ejemplo-2.-operaciones-básicas" class="section level3">
 <h3>Ejemplo 2. Operaciones básicas</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">  <span class="kw">data</span>(presidents)</a>
-<a class="sourceLine" id="cb12-2" title="2">  <span class="kw">help</span>(presidents)</a>
-<a class="sourceLine" id="cb12-3" title="3">  <span class="kw">range</span>(presidents, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb12-4" title="4">  <span class="kw">which.min</span>(presidents) <span class="co"># 28</span></a>
-<a class="sourceLine" id="cb12-5" title="5">  <span class="kw">which.max</span>(presidents) <span class="co"># 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">  <span class="kw">data</span>(presidents)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="kw">help</span>(presidents)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="kw">range</span>(presidents, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="kw">which.min</span>(presidents) <span class="co"># 28</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="kw">which.max</span>(presidents) <span class="co"># 2</span></a></code></pre></div>
 </div>
-<div id="operadores-logicos" class="section level3">
+<div id="operadores-lógicos" class="section level3">
 <h3>Operadores lógicos</h3>
 <p>R es capaz de trabajar con los operadores lógicos habituales en otros lenguajes de progrmación. Destacamos:</p>
 <ul>
 <li><p><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code></p></li>
 <li><p><code>!</code>, <code>&amp;</code>, <code>|</code>, <code>xor()</code> y los parecidos <code>&amp;&amp;</code>, <code>||</code></p></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">x &lt;-<span class="st"> </span><span class="dv">5</span>; x <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>; x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>; x <span class="op">==</span><span class="st"> </span><span class="dv">6</span>; x <span class="op">!=</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb13-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>); <span class="op">!</span>y; z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="kw">xor</span>(y, z)</a>
-<a class="sourceLine" id="cb13-4" title="4">y <span class="op">&amp;</span><span class="st"> </span>z</a>
-<a class="sourceLine" id="cb13-5" title="5">y <span class="op">|</span><span class="st"> </span>z</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span>; x <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>; x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>; x <span class="op">==</span><span class="st"> </span><span class="dv">6</span>; x <span class="op">!=</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>); <span class="op">!</span>y; z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">xor</span>(y, z)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">y <span class="op">&amp;</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">y <span class="op">|</span><span class="st"> </span>z</a></code></pre></div>
 <ul>
 <li>Las formas <code>&amp;&amp;</code>, <code>||</code> se evalúan de izquierda a derecha, examinando sólo el primer elemento de cada vector (si decide). Se suelen usar dentro de instrucciones ‘if’.</li>
 <li><code>if (is.numeric(x) &amp;&amp; min(x) &gt; 0) {entonces...</code>, <code>min(x)</code> no tiene sentido si <code>x</code> no es numérico.</li>
 <li><code>0 + y; as.numeric(y); mode(y) &lt;- &quot;numeric&quot;</code></li>
 </ul>
 </div>
-<div id="ejemplo-3.-usar-operadores-logicos" class="section level3">
+<div id="ejemplo-3.-usar-operadores-lógicos" class="section level3">
 <h3>Ejemplo 3. Usar operadores lógicos</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">peso &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">19</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">23</span>,<span class="dv">30</span>,<span class="dv">19</span>,<span class="dv">25</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2">peso <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb14-3" title="3">peso <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">|</span><span class="st"> </span>peso <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span></a>
-<a class="sourceLine" id="cb14-4" title="4">peso[peso<span class="op">&lt;</span><span class="dv">20</span>]</a>
-<a class="sourceLine" id="cb14-5" title="5">peso[peso<span class="op">&lt;</span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>peso<span class="op">!=</span><span class="dv">15</span>]</a>
-<a class="sourceLine" id="cb14-6" title="6">trat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;A&quot;</span>,<span class="dv">3</span>),<span class="kw">rep</span>(<span class="st">&quot;B&quot;</span>,<span class="dv">3</span>),<span class="kw">rep</span>(<span class="st">&quot;C&quot;</span>,<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb14-7" title="7">peso[trat<span class="op">==</span><span class="st">&quot;A&quot;</span>]</a>
-<a class="sourceLine" id="cb14-8" title="8">peso[trat<span class="op">==</span><span class="st">&quot;A&quot;</span><span class="op">|</span>trat<span class="op">==</span><span class="st">&quot;B&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">peso &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">19</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">23</span>,<span class="dv">30</span>,<span class="dv">19</span>,<span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">peso <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">peso <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">|</span><span class="st"> </span>peso <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">peso[peso<span class="op">&lt;</span><span class="dv">20</span>]</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">peso[peso<span class="op">&lt;</span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>peso<span class="op">!=</span><span class="dv">15</span>]</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">trat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;A&quot;</span>,<span class="dv">3</span>),<span class="kw">rep</span>(<span class="st">&quot;B&quot;</span>,<span class="dv">3</span>),<span class="kw">rep</span>(<span class="st">&quot;C&quot;</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">peso[trat<span class="op">==</span><span class="st">&quot;A&quot;</span>]</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">peso[trat<span class="op">==</span><span class="st">&quot;A&quot;</span><span class="op">|</span>trat<span class="op">==</span><span class="st">&quot;B&quot;</span>]</a></code></pre></div>
 </div>
 <div id="ejemplo-4.-agrupar-o-discretizar-datos" class="section level3">
 <h3>Ejemplo 4. Agrupar o discretizar datos</h3>
 <p>La función <code>split(x,f)</code></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">         <span class="kw">split</span>(peso,trat)</a>
-<a class="sourceLine" id="cb15-2" title="2">         <span class="kw">split</span>(peso,trat)<span class="op">$</span>A</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">         <span class="kw">split</span>(peso,trat)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">         <span class="kw">split</span>(peso,trat)<span class="op">$</span>A</a></code></pre></div>
 <p>La función <code>cut</code></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">vv &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2">cut1 &lt;-<span class="st"> </span><span class="kw">cut</span>(vv, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="kw">table</span>(cut1)</a>
-<a class="sourceLine" id="cb16-4" title="4">cut2 &lt;-<span class="st"> </span><span class="kw">cut</span>(vv, <span class="kw">quantile</span>(vv, <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">3</span><span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span>)))</a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="kw">summary</span>(cut2)</a>
-<a class="sourceLine" id="cb16-6" title="6"><span class="kw">class</span>(cut2)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">vv &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">cut1 &lt;-<span class="st"> </span><span class="kw">cut</span>(vv, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">table</span>(cut1)</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">cut2 &lt;-<span class="st"> </span><span class="kw">cut</span>(vv, <span class="kw">quantile</span>(vv, <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">3</span><span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span>)))</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw">summary</span>(cut2)</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="kw">class</span>(cut2)</a></code></pre></div>
 </div>
 <div id="ejemplo-5.-operaciones-con-conjuntos" class="section level3">
 <h3>Ejemplo 5. Operaciones con conjuntos</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>; y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">union</span>(x, y)</a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="kw">intersect</span>(x, y)</a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="kw">setdiff</span>(y, x)</a>
-<a class="sourceLine" id="cb17-5" title="5">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;bcA1&quot;</span>, <span class="st">&quot;bcA2&quot;</span>, <span class="st">&quot;blX1&quot;</span>)</a>
-<a class="sourceLine" id="cb17-6" title="6">w &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;bcA2&quot;</span>, <span class="st">&quot;xA3&quot;</span>)</a>
-<a class="sourceLine" id="cb17-7" title="7"><span class="kw">union</span>(v, w)</a>
-<a class="sourceLine" id="cb17-8" title="8"><span class="kw">intersect</span>(v, w)</a>
-<a class="sourceLine" id="cb17-9" title="9"><span class="kw">setdiff</span>(w, v)</a>
-<a class="sourceLine" id="cb17-10" title="10"><span class="kw">setdiff</span>(v, w)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>; y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">union</span>(x, y)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">intersect</span>(x, y)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">setdiff</span>(y, x)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;bcA1&quot;</span>, <span class="st">&quot;bcA2&quot;</span>, <span class="st">&quot;blX1&quot;</span>)</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">w &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;bcA2&quot;</span>, <span class="st">&quot;xA3&quot;</span>)</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw">union</span>(v, w)</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw">intersect</span>(v, w)</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="kw">setdiff</span>(w, v)</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="kw">setdiff</span>(v, w)</a></code></pre></div>
 </div>
 <div id="en-resumen" class="section level3">
 <h3>En resumen</h3>
@@ -691,10 +662,7 @@ div.tocify {
 <h3>Ejercicios propuestos</h3>
 <ol start="34" style="list-style-type: decimal">
 <li>Busque la ayuda de pmin y de cummin. ¿Qué nos permiten hacer las variantes (p)aralelas o a(cum)ulativas de las funciones clásicas?</li>
-<li>Programe la función (logística)[<a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica">https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica</a>]. Evalúe la función entre -6 y 6 en pasos de 0.1 unidades y almacene el resultado en un vector. Finalmente, modifique este último vector de manera que los valores inferiores a 0.1 se sustituyan por 0.1 y los superiores a 0.9 se sustituyan por 0.9.</li>
-<li></li>
-<li></li>
-<li></li>
+<li>Programe la función (logística)[<a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica" class="uri">https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica</a>]. Evalúe la función entre -6 y 6 en pasos de 0.1 unidades y almacene el resultado en un vector. Finalmente, modifique este último vector de manera que los valores inferiores a 0.1 se sustituyan por 0.1 y los superiores a 0.9 se sustituyan por 0.9.</li>
 </ol>
 </div>
 
@@ -728,6 +696,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
