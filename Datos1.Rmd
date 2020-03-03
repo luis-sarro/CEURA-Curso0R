@@ -217,99 +217,99 @@ is.factor(bloque.edad)
 *Muy importante: id guardando el código que resuelve estos ejercicios para su posterior reutilización.*
 
 1. Cree una secuencia de valores numéricos entre 1970 y 2019 que representen los años correspondientes
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol1 <- 1970:2019
 ```
 2. Cree una secuencia de 1001 valores numéricos entre 0 y 1
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol2 <- seq(0,1,length.out = 1001)
 ```
 3. Cree un vector de 14 cadenas de texto que reproduzca los días de la semana (de lunes a domingo) de dos semanas consecutivas.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 # Mal: no genera cadenas de texto, sino factores
 sol3 <- gl(7,1,length=14, label = c("L", "M", "X","J","V","S","D"))
 # Mejor:
 sol3 <- rep(c("L", "M", "X","J","V","S","D"),2)
 ```
 4. Cree un vector numérico en el que cada número entero `n` entre 3 y 7 se repita `n` veces: 333444455555 etc
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 st4 <- seq(3,7)
 sol4 <- rep(st4,st4)
 ```
 5. Cree un vector de factores que contenga 25 valores del conjunto "transacción","devolución" y "anulación" en este orden. 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol5 <- gl(3,1,length=25,labels = c("transacción","devolución","anulación"))
 ```
 6. Cree un vector que muestree aleatoriamente 100 valores del vector creado en 2. sin repeticiones
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol6 <- sample(sol2, size=100)
 ```
 7. Cree un vector de longitud 50 que muestree aleatoriamente el vector creado en 5. permitiendo repeticiones
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol7 <- sample(sol5,size=50,replace = TRUE)
 ```
 8. Cree un vector de longitud 10 a partir del vector creado en 1. en el que la probabilidad de repetición de cada elemento original sea proporcional al tiempo transcurrido desde 1970).
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 st8 <- (sol1-1970)
 st8 <- st8/sum(st8) # Al dividir por la suma, nos aseguramos que la probabilidad total es 1
 sol8 <- sample(sol1,size=10,replace=TRUE,prob = st8)  
 ```
 9. Cree un vector numérico que contenga 15 números reales aleatorios entre 1970 y 2019
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol9 <- runif(15,1970,2019)
 hist(sol9) # Calcula y dibuja un histograma
 ```
 10. Cree un vector numérico de 100 valores generados a partir de una distribución normal (Gaussiana) centrada en 1.4 y con desviación estándar 0.5
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol10 <- rnorm(100,1.4,0.5)
 hist(sol10)  # Calcula y dibuja un histograma
 ```
 11. Almacene en un vector distinto los elementos impares del vector creado en 10.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 st11 <- seq(1,length(sol10),by=2)
 print(st11) # Comprobémoslo
 sol11 <- sol10[st11]
 ```
 12. Imprima sólo los valores del vector creado en 10. superiores a la media más 2 veces el valor de la desviación estándar.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 mean12 <- mean(sol10)
 sd12 <- sd(sol10)
 mask12 <- (sol10 > mean12 + 2*sd12) # Vector booleano que es TRUE si se cumple la condición
 print(sol10[mask12])
 ```
 13. Almacene en un vector numérico los índices del vector creado en 10. que cumplan la condición de encontrarse a menos de una desviación estándar de la media.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol13 <- which(abs(sol10-mean12) < sd12) # abs(): tanto por debajo como por encima de la media
 ```
 14. Sustituya los valores del vector creado en 10. que estén a más de 2 desviaciones estándar de la media por valores ausentes.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 mask14 <- which(abs(sol10-mean12) > 2*sd12)
 sol10[mask14] <- NA
 ```
 15. Calcule la media y la suma de los valores del vector creado en 14.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol15a <- mean(sol10,na.rm=TRUE)
 sol15b <- sum(sol10,na.rm=TRUE)
 
 ```
 16. Ordene de mayor a menor los valores del vector creado en  10.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol16 <- sort(sol10) # ¡¡¡¡La solución no contiene los valores ausentes!!!!
 # Comprobad el uso del parámetro na.last
 ```
 17. Cree un vector de cadenas de caracteres de longitud 100 que contenga una muestra aleatoria de las categorías enumeradas en el ejercicio 5. y reordene dicho vector de acuerdo a la reordenación de los índices que transforma el vector creado en 10. en uno ordenado de menor a mayor.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 st17 <- levels(sol5) #Automáticamente produce texto (no factores)
 st17b <- sample(st17,size=100,replace=T)
 st17c <- order(sol10) # ¡¡¡order sí incluye datos ausentes y los coloca al final!!!
 sol17 <- st17b[st17c]  
 ```
 18. Convierta el vector creado en 1. de numérico a factor.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 sol18 <- as.factor(sol1)
 ```
 19. Cree un vector de factores categorizando los valores del vector creado en 10. según se encuentren en intervalos de anchura la desviación estándar comenzando en la media.
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 st19 <- (sol10 - mean12)/sd12 # Por elección, tomamos la media antes de incluir valores ausentes.
 #Podría haberse resuelto recalculando la media y la desviación estándar
 min.mah.dis <- floor(min(st19,na.rm = TRUE)) # Mínima distancia de la media en unidades de la desv. st.
